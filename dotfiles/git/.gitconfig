@@ -1,0 +1,106 @@
+##### BEGIN METATRON AUTOCONFIG
+# Do not remove the above line. The metatron CLI uses it to update this file.
+# Set git proxy configuration (must be the first directive in this file)
+[include]
+    path = /Users/jbuza/.gitconfig-proxy
+# Do not remove the below line. The metatron CLI uses it to update this file.
+##### END METATRON AUTOCONFIG
+[user]
+  name = Joe Buza
+  email = jbuza@netflix.com
+[color]
+  ui = auto
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
+[alias]
+  cmt = commit
+  cam = commit -am
+  st = status
+  br = branch
+  co = checkout
+  df = diff
+  dc = diff --cached
+  lg = log -p
+  lol = log --graph --decorate --pretty=oneline --abbrev-commit
+  lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+  ls = ls-files
+  please = push --force-with-lease
+  undo = reset --soft HEAD^
+  recommit = commit -a -c ORIG_HEAD
+  commend = commit --amend --no-edit
+  stsh = stash --keep-index
+  staash = stash --include-untracked
+  staaash = stash --all
+  shorty = status --short --
+  merc = merge --no-ff
+  br-old = branch --sort=committerdate
+  br-new = branch --sort=-committerdate
+  stash-untracked = "!f() {    \
+    git stash;               \
+    git stash -u;            \
+    git stash pop stash@{1}; \
+    }; f"
+  tags = log --tags --simplify-by-decoration --pretty="format:%ci %d"
+  ign = ls-files -o -i --exclude-standard
+  pr = "!f() { git fetch -fu ${2:-upstream} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
+  pr-clean = "!git checkout master ; git for-each-ref refs/heads/pr/* --format=\"%(refname)\" | while read ref ; do branch=${ref#refs/heads/} ; git branch -D $branch ; done"
+  commadd= "!git add -A ; git commend"
+  cleanup = !git-both-merged
+  pullall = '!git pull && git submodule update --init --recursive'
+  rebasemain= pull origin main -r
+
+[push]
+  default = matching
+[filter "media"]
+  clean = git-media-clean %f
+  smudge = git-media-smudge %f
+[commit]
+  template = ~/.git-commit-template.txt
+[fetch]
+  prune = true
+[mergetool]
+  prompt = true
+[mergetool "vimdiff"]
+  cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+[difftool]
+  prompt = false
+[github]
+ user = mujuni88
+[rerere]
+ enabled = true
+[submodule]
+ recurse = true
+[pull]
+	rebase = true
+[rebase]
+	updateRefs = true
+[init]
+	defaultBranch = main
+[core]
+  editor = nvim
+  pager = delta --features "$(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo default || echo GitHub)"
+
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+  features = catppuccin-mocha
+  navigate = true    # use n and N to move between diff sections
+  line-numbers = true
+  side-by-side = true
+[merge]
+  tool = vimdiff
+  conflictstyle = diff3
+[diff]
+  tool = vimdiff
+  colorMoved = default
