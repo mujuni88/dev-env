@@ -92,13 +92,11 @@ unsetopt correct
 # load rbenv automatically
 eval "$(rbenv init -)"
 
-# autojump
-[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
 ############################################
 # Export Paths
 ############################################
-export PATH=$HOME/.local/bin:/opt/homebrew/bin:$(yarn global bin):/opt/homebrew/opt/mysql-client/bin:$PATH
+export PATH="$HOME/bin:$HOME/.local/bin:/opt/homebrew/bin:$(yarn global bin):/opt/homebrew/opt/mysql-client/bin:$PATH"
 
 [ -s "/Users/jbuza/.jabba/jabba.sh" ] && source "/Users/jbuza/.jabba/jabba.sh"
 
@@ -127,16 +125,12 @@ export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 
 [[ -f "$HOME/fig-export/dotfiles/dotfile.zsh" ]] && builtin source "$HOME/fig-export/dotfiles/dotfile.zsh"
 
-# Q post block. Keep at the bottom of this file.
 # fnm
 FNM_PATH="/Users/jbuza/Library/Application Support/fnm"
 if [ -d "$FNM_PATH" ]; then
   export PATH="/Users/jbuza/Library/Application Support/fnm:$PATH"
   eval "`fnm env`"
 fi
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.dotfiles/homedir/.p10k.zsh ]] || source ~/.dotfiles/homedir/.p10k.zsh
 
 eval "$(zoxide init zsh)"
 
@@ -206,3 +200,4 @@ _fzf_comprun() {
 
 # Added by Windsurf
 export PATH="/Users/jbuza/.codeium/windsurf/bin:$PATH"
+
