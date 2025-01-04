@@ -203,3 +203,6 @@ _fzf_comprun() {
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 . "$HOME/.cargo/env"
+
+# Added by Windsurf
+export PATH="/Users/jbuza/.codeium/windsurf/bin:$PATH"
