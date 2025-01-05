@@ -17,8 +17,8 @@ local lazy = require("lazy")
 -- Then setup
 lazy.setup(
   {
-    { import = "plugins" },
-    { import = "plugins.lsp" }
+    { import = "jbuza.plugins" },
+    { import = "jbuza.plugins.lsp" }
   },
   {
     checker = {

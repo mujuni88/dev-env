@@ -1,2 +1,2 @@
-require("lazy")
-require("core")
+require("jbuza.core")
+require("jbuza.lazy")

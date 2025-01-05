@@ -5,54 +5,34 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Path to your oh-my-zsh configuration.
-export ZSH=$HOME/.dotfiles/oh-my-zsh
-export ZSH_THEME="powerlevel10k/powerlevel10k"
+# -- Environment Variables --
+export EDITOR='nvim'
+export VISUAL='nvim'
 export WEZTERM_THEME="everforest"
 export MYNIX="$HOME/my-nix"
-export MYDARWIN="$MYNIX/modules/darwin"
-export MYHOME_MANAGER="$MYNIX/modules/home-manager"
-export MYDOT_CONFIG="$HOME/.dotfiles/homedir/.config"
-export MYVIM_CONFIG="$MYNIX/nvim"
-export MYWEZ_CONFIG="$MYNIX/wezterm"
 
 export HOMEBREW_CASK_OPTS="--appdir=~/Applications --fontdir=/Library/Fonts"
 
+# -- History --
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_VERIFY
+setopt HIST_EXPIRE_DUPS_FIRST
 
-# Set to this to use case-sensitive completion
-export CASE_SENSITIVE="true"
+# -- Completion --
+autoload -U compinit
+compinit
 
-# disable weekly auto-update check
-# export DISABLE_AUTO_UPDATE="true"
+# Load version control information
+autoload -Uz vcs_info
+precmd() { vcs_info }
 
-# disable colors in ls
-# export DISABLE_LS_COLORS="true"
-
-# disable autosetting terminal title.
-export DISABLE_AUTO_TITLE="true"
-
-# Which plugins would you like to load? (plugins can be found in ~/.dotfiles/oh-my-zsh/plugins/*)
-# Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(
-  colorize
-  compleat
-  dirpersist
-  git
-  git-extras
-  history
-  cp
-  alias
-  npm
-  node
-  jira
-  yarn
-  web-search
-  per-directory-history
-)
-
-source $ZSH/oh-my-zsh.sh
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+# Format the vcs_info_msg_0_ variable
+zstyle ':vcs_info:git:*' formats '%b'
 
 source ~/.nvm/nvm.sh
 
@@ -92,7 +72,6 @@ unsetopt correct
 # load rbenv automatically
 eval "$(rbenv init -)"
 
-
 ############################################
 # Export Paths
 ############################################
@@ -100,9 +79,6 @@ export PATH="$HOME/bin:$HOME/.local/bin:/opt/homebrew/bin:$(yarn global bin):/op
 
 [ -s "/Users/jbuza/.jabba/jabba.sh" ] && source "/Users/jbuza/.jabba/jabba.sh"
 
-# tabtab source for packages
-# uninstall by removing these lines
-[[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
 REACT_EDITOR="/usr/local/bin/code-insiders"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
@@ -193,11 +169,7 @@ _fzf_comprun() {
 # source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # source $(brew --prefix)/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
 . "$HOME/.cargo/env"
 
 # Added by Windsurf
 export PATH="/Users/jbuza/.codeium/windsurf/bin:$PATH"
-
