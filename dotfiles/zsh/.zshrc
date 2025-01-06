@@ -22,7 +22,6 @@ export PKG_CONFIG_PATH="/opt/homebrew/opt/postgresql@16/lib/pkgconfig"
 export PATH="$HOME/bin:$HOME/.local/bin:/opt/homebrew/bin:$PATH"
 
 # Tool-specific paths
-export PATH="$(yarn global bin):$PATH"
 export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 export PATH="$BUN_INSTALL/bin:$PATH"
