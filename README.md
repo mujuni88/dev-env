@@ -8,16 +8,16 @@ This repository contains my personal development environment setup, including:
 ## Documentation
 
 For detailed documentation about configurations and setup, see:
-- [Dotfiles Documentation](dotfiles/README.md)
-- [Nix Documentation](nix/README.md)
+- [Dotfiles Documentation](dotfiles/README.md) - Shell, editor, and tool configurations
+- [Nix Documentation](nix/README.md) - System configuration using nix-darwin
 
 ## Quick Start
 
 The main configuration files and directories are:
-- `dotfiles/` - Shell, editor, and tool configurations
-- `nix/` - System configuration using nix-darwin
+- `dotfiles/` - Managed with GNU Stow, contains all dotfile configurations
+- `nix/` - System packages and settings using nix-darwin
 
-For detailed setup instructions and available commands, please refer to the [Dotfiles Documentation](dotfiles/README.md)
+For detailed setup instructions and available commands, please refer to the documentation links above.
 
 ## Components
 
@@ -172,7 +172,7 @@ Note: Every time you run `nixswitch` or `nixup`, it automatically cleans up old 
 
 ## Contributing
 
-Feel free to fork this repository and customize it for your own use. If you have improvements that might benefit others, pull requests are welcome!
+Feel free to use this as inspiration for your own development environment. Issues and pull requests are welcome!
 
 ## License
 
