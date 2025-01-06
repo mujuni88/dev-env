@@ -97,6 +97,62 @@ stow -D -t ~ dotfiles
 
 Each tool's configuration can be customized by editing the respective files in their directories. After making changes, the symlinks will automatically reflect the updates.
 
+## Development Environment
+
+This repository contains both the dotfiles and nix configuration for managing my development environment.
+
+### Environment Variables
+- `MY_DEV` - Development environment root (`$HOME/dev-env`)
+- `MY_NIX` - Nix configuration directory (`$MY_DEV/nix`)
+
+### Aliases
+
+#### Development Environment
+- `devenv` - Navigate to the dev-env directory
+- `devedit` - Open dev-env in neovim
+
+#### Dotfiles
+- `dots` - Navigate to dotfiles and restow all configurations
+- `dotsedit` - Open dotfiles in neovim
+
+#### Nix Configuration
+- `nixswitch` - Rebuild and switch system configuration (automatically cleans up old generations)
+- `nixup` - Update flake inputs and rebuild system
+- `nixedit` - Open nix configuration in neovim
+
+## Nix Configuration
+
+This repository includes a Nix-based system configuration for macOS using [nix-darwin](https://github.com/LnL7/nix-darwin). The configuration is located in the `nix/` directory and uses the flakes feature for reproducible builds.
+
+### Structure
+- `nix/flake.nix` - Main configuration file
+- `nix/modules/` - Module configurations
+- `nix/flake.lock` - Dependency lockfile
+
+### Nix Aliases
+Quick access to common Nix operations:
+- `nixswitch` - Rebuild and switch system configuration (automatically cleans up old generations)
+- `nixup` - Update flake inputs and rebuild system
+- `nixedit` - Open nix configuration in neovim
+
+### Usage
+1. Edit the configuration:
+   ```bash
+   nixedit
+   ```
+
+2. Build and switch to the new configuration:
+   ```bash
+   nixswitch  # This will also clean up old generations
+   ```
+
+3. Update flake inputs and rebuild:
+   ```bash
+   nixup
+   ```
+
+Note: Every time you run `nixswitch` or `nixup`, it automatically cleans up old system generations while keeping the current one as a backup.
+
 ## Contributing
 
 Feel free to fork this repository and customize it for your own use. If you have improvements that might benefit others, pull requests are welcome!

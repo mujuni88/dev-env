@@ -6,10 +6,14 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # ----- Environment Variables -----
-export EDITOR='nvim'
-export VISUAL='nvim'
+# Custom paths
+export MY_DEV="$HOME/dev-env"                # Development environment root
+export MY_NIX="$MY_DEV/nix"                  # Nix configuration
+
+# System and application settings
+export EDITOR="nvim"
+export VISUAL="nvim"
 export WEZTERM_THEME="everforest"
-export MYNIX="$HOME/my-nix"
 export HOMEBREW_CASK_OPTS="--appdir=~/Applications --fontdir=/Library/Fonts"
 export REACT_EDITOR="/usr/local/bin/code-insiders"
 export BAT_THEME=tokyonight_night

@@ -103,16 +103,15 @@ alias pg='psql postgres'
 
 alias szsh="source /Users/jbuza/.dotfiles/homedir/.zshrc"
 
-#Nix
-alias nixswitch="darwin-rebuild switch --flake $MYNIX_CONFIG#macos"
-alias nixup="j $MYNIX_CONFIG; nix flake update; nixswitch"
-alias vnix="vim $MYNIX_CONFIG/flake.nix"
-alias vnixp="vim $MYNIX_CONFIG/packages.nix"
-alias vnixb="vim $MYNIX_CONFIG/homebrew.nix"
-alias vnixh="vim $MYNIX_CONFIG/home.nix"
-alias vnixs="vim $MYNIX_CONFIG/system.nix"
+# ----- Development Environment -----
+alias devenv="cd $MY_DEV"
+alias devedit="cd $MY_DEV && nvim ."
 
 # ----- Dotfiles -----
-alias dots='cd ~/dev-env/dotfiles && stow -R .'
-alias dotfiles='dots'  # alternative name
-alias linkdots='dots'  # alias to link dotfiles
+alias dots="cd $MY_DEV/dotfiles && stow -R ."
+alias dotsedit="cd $MY_DEV/dotfiles && nvim ."
+
+# ----- Nix -----
+alias nixswitch="darwin-rebuild switch --flake $MY_NIX#macos && nix-collect-garbage --delete-old"  # switch and clean
+alias nixup="cd $MY_NIX && nix flake update && nixswitch"                                         # update and switch
+alias nixedit="cd $MY_NIX && nvim ."                                                              # edit nix config
