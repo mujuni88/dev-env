@@ -19,7 +19,7 @@
       "/Applications/Claude.app"
       "/Applications/Visual Studio Code.app"
       "/Applications/Windsurf.app"
-      "/Applications/Ghostty.app"
+      "/Users/jbuza/Applications/Ghostty.app"
     ];
   };
 
