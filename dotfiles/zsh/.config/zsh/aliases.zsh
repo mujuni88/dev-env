@@ -33,7 +33,6 @@ alias dtf="$HOME/.dotfiles/"
 alias Netflix="Code && cd Netflix"
 alias auiroot="Netflix && cd ai-animation-ui"
 
-
 # Tmux
 alias tmn="tmux new-session -s"
 alias tma="tmux attach -t"
@@ -105,10 +104,15 @@ alias pg='psql postgres'
 alias szsh="source /Users/jbuza/.dotfiles/homedir/.zshrc"
 
 #Nix
-alias nixswitch="darwin-rebuild switch --flake $MYNIX_CONFIG#$(scutil --get LocalHostName)"
-alias nixup="j $MYNIX_CONFIG; nix flake update; nixswitch";
+alias nixswitch="darwin-rebuild switch --flake $MYNIX_CONFIG#macos"
+alias nixup="j $MYNIX_CONFIG; nix flake update; nixswitch"
 alias vnix="vim $MYNIX_CONFIG/flake.nix"
 alias vnixp="vim $MYNIX_CONFIG/packages.nix"
 alias vnixb="vim $MYNIX_CONFIG/homebrew.nix"
 alias vnixh="vim $MYNIX_CONFIG/home.nix"
 alias vnixs="vim $MYNIX_CONFIG/system.nix"
+
+# ----- Dotfiles -----
+alias dots='cd ~/dev-env/dotfiles && stow -R .'
+alias dotfiles='dots'  # alternative name
+alias linkdots='dots'  # alias to link dotfiles
