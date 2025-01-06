@@ -1,61 +1,79 @@
 # Dotfiles
 
-My personal dotfiles managed with GNU Stow.
+My personal dotfiles managed with GNU Stow. These configurations work in conjunction with my [Nix configuration](../nix/README.md) to create a complete development environment.
 
 ## Structure
 
 ```
 .
-├── bat/          # Bat (cat clone) configuration
-├── git/          # Git configuration
-├── nvim/         # Neovim configuration
-├── scripts/      # Custom shell scripts
-├── tmux/         # Tmux configuration
-├── wezterm/      # Wezterm configuration
-└── zsh/          # Zsh configuration
+├── bat/          # Syntax highlighting and paging configuration
+├── git/          # Git configuration and aliases
+├── karabiner/    # Keyboard customization for macOS
+├── nvim/         # Neovim configuration and plugins
+├── scripts/      # Custom shell scripts and utilities
+├── tmux/         # Terminal multiplexer configuration
+├── wezterm/      # Terminal emulator configuration
+└── zsh/          # Shell configuration and aliases
 ```
+
+## Prerequisites
+
+- GNU Stow (for managing symlinks)
+- Git
+- The specific tools you plan to use (nvim, tmux, etc.)
 
 ## Installation
 
-1. Clone this repository:
+1. Clone the repository if you haven't already:
+   ```bash
+   git clone https://github.com/yourusername/dev-env.git
+   cd dev-env/dotfiles
+   ```
+
+2. Stow specific configurations:
+   ```bash
+   # Individual tools
+   stow -v -t ~ nvim      # Neovim config
+   stow -v -t ~ wezterm   # Wezterm config
+   stow -v -t ~ git      # Git config
+   stow -v -t ~ zsh      # Zsh config
+   
+   # Or stow everything at once
+   cd ..
+   stow -v -t ~ dotfiles
+   ```
+
+## Managing Configurations
+
+### Adding New Configurations
 ```bash
-git clone git@github.com:mujuni88/dev-env.git ~/dev-env/dotfiles
+# Create new configuration directory
+mkdir -p new-tool/.config/new-tool
+# Add configuration files
+# Stow the new configuration
+stow -v -t ~ new-tool
 ```
 
-2. Install GNU Stow:
+### Removing Configurations
 ```bash
-brew install stow
+# Remove individual config
+stow -D -t ~ nvim     # Remove neovim config
+
+# Or remove everything
+cd ..
+stow -D -t ~ dotfiles
 ```
 
-3. Link the dotfiles:
+### Restowing After Changes
 ```bash
-cd ~/dev-env/dotfiles
-stow -R .
+# Restow individual config
+stow -R -t ~ nvim     # Restow neovim config
+
+# Or restow everything
+cd ..
+stow -R -t ~ dotfiles
 ```
 
-Alternatively, you can use any of these aliases (they do the same thing):
-- `dots`
-- `dotfiles`
-- `linkdots`
+## Tool-Specific Documentation
 
-## Components
-
-- **Zsh**: Shell configuration with organized modules in `~/.config/zsh/`
-  - Aliases
-  - Completion settings
-  - History configuration
-  - Key bindings
-  - Plugin management
-
-- **Neovim**: Modern Vim configuration with LSP support
-- **Tmux**: Terminal multiplexer configuration
-- **Wezterm**: Terminal emulator configuration
-- **Git**: Git configuration and commit template
-- **Bat**: Syntax highlighting configuration for bat
-- **Scripts**: Custom utility scripts
-
-## Notes
-
-- Configuration files are organized under `~/.config/` where possible, following the XDG Base Directory specification
-- Uses GNU Stow for managing symlinks
-- Includes custom aliases for common operations
+Each tool's directory contains its own configuration files and may include a README with tool-specific setup instructions and customizations.
