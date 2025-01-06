@@ -8,7 +8,7 @@ My personal dotfiles managed with GNU Stow. These configurations work in conjunc
 .
 ├── bat/          # Syntax highlighting and paging configuration
 ├── git/          # Git configuration and aliases
-├── karabiner/    # Keyboard customization for macOS
+├── karabiner/    # Keyboard customization for home row mode navigation
 ├── nvim/         # Neovim configuration and plugins
 ├── scripts/      # Custom shell scripts and utilities
 ├── tmux/         # Terminal multiplexer configuration
