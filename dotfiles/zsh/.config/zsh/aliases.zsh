@@ -97,7 +97,7 @@ alias pgstart="brew services start postgresql@16"
 alias pgstop="brew services stop postgresql@16"
 alias pg='psql postgres'
 
-alias szsh="source /Users/jbuza/.dotfiles/homedir/.zshrc"
+alias szsh="source ~/.zshrc"
 
 # ----- Development Environment -----
 alias devenv="cd $MY_DEV"
