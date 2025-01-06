@@ -1,179 +1,66 @@
 # Development Environment
 
-This repository contains my personal development environment setup, including:
-- Dotfiles (shell, vim, tmux, etc.)
-- Nix configuration (macOS system configuration)
-- Development tools and scripts
+My personal development environment for macOS, combining the power of Nix for system management with dotfiles for tool configurations.
 
-## Documentation
+## What's Inside
 
-For detailed documentation about configurations and setup, see:
-- [Dotfiles Documentation](dotfiles/README.md) - Shell, editor, and tool configurations
-- [Nix Documentation](nix/README.md) - System configuration using nix-darwin
+- **System Management** (`nix/`): Uses nix-darwin for declarative macOS system configuration
+  - Package management
+  - System preferences
+  - Service management
+  
+- **Tool Configurations** (`dotfiles/`): Managed with GNU Stow
+  - Terminal: WezTerm, Zsh, Tmux
+  - Development: Neovim, Git, and more
+  - Utilities: bat, fzf, ripgrep
 
 ## Quick Start
 
-The main configuration files and directories are:
-- `dotfiles/` - Managed with GNU Stow, contains all dotfile configurations
-- `nix/` - System packages and settings using nix-darwin
+1. **Prerequisites**
+   - macOS
+   - [Nix package manager](https://nixos.org/download.html)
+   - Git
 
-For detailed setup instructions and available commands, please refer to the documentation links above.
-
-## Components
-
-### Terminal & Shell
-- **[WezTerm](https://github.com/wez/wezterm)** (`wezterm/`) 
-- **[Zsh](https://github.com/zsh-users/zsh)** (`zsh/`) 
-- **[Tmux](https://github.com/tmux/tmux)** (`tmux/`) 
-
-### Development Tools
-- **[Neovim](https://github.com/neovim/neovim)** (`nvim/`): 
-  - Located in `.config/nvim/`
-  - Includes custom keybindings, plugins, and IDE-like features
-- **[Git](https://github.com/git/git)** (`git/`): 
-  - Global git settings and aliases
-  - Includes useful shortcuts and default configurations
-- **[Bat](https://github.com/sharkdp/bat)** (`bat/`): Cat clone with syntax highlighting
-  - Syntax highlighting and paging configuration
-  - Theme settings
-
-### Scripts
-- **Custom Scripts** (`scripts/`): Collection of utility scripts for development workflow
-
-## Structure
-
-```
-dev-env/
-└── dotfiles/
-    ├── nvim/
-    │   └── .config/nvim/      --> ~/.config/nvim/
-    ├── wezterm/
-    │   └── .config/wezterm/   --> ~/.config/wezterm/
-    ├── git/
-    │   └── .gitconfig         --> ~/.gitconfig
-    ├── zsh/
-    │   └── .zshrc            --> ~/.zshrc
-    ├── tmux/
-    │   └── .tmux.conf        --> ~/.tmux.conf
-    ├── bat/
-    │   └── .config/bat/      --> ~/.config/bat/
-    └── scripts/              --> ~/bin/
-```
-
-## Prerequisites
-
-- GNU Stow (for managing symlinks)
-- Git
-- Zsh
-- Other tools you plan to use (nvim, tmux, wezterm, bat)
-
-## Setup
-
-1. Clone this repository:
-```bash
-git clone git@github.com:yourusername/dev-env.git
-cd dev-env
-```
-
-2. Install GNU Stow:
-```bash
-# macOS
-brew install stow
-
-# Ubuntu/Debian
-sudo apt install stow
-```
-
-3. Create symlinks:
-```bash
-# Stow individual configs
-cd dotfiles
-stow -v -t ~ nvim      # Only neovim config
-stow -v -t ~ wezterm   # Only wezterm config
-stow -v -t ~ git       # Only git config
-stow -v -t ~ zsh       # Only zsh config
-
-# Or stow everything at once
-cd ..
-stow -v -t ~ dotfiles
-```
-
-## Remove Symlinks
-
-```bash
-# Remove individual configs
-cd dotfiles
-stow -D -t ~ nvim     # Remove neovim config
-
-# Or remove everything
-cd ..
-stow -D -t ~ dotfiles
-```
-
-## Customization
-
-Each tool's configuration can be customized by editing the respective files in their directories. After making changes, the symlinks will automatically reflect the updates.
-
-## Development Environment
-
-This repository contains both the dotfiles and nix configuration for managing my development environment.
-
-### Environment Variables
-- `MY_DEV` - Development environment root (`$HOME/dev-env`)
-- `MY_NIX` - Nix configuration directory (`$MY_DEV/nix`)
-
-### Aliases
-
-#### Development Environment
-- `devenv` - Navigate to the dev-env directory
-- `devedit` - Open dev-env in neovim
-
-#### Dotfiles
-- `dots` - Navigate to dotfiles and restow all configurations
-- `dotsedit` - Open dotfiles in neovim
-
-#### Nix Configuration
-- `nixswitch` - Rebuild and switch system configuration (automatically cleans up old generations)
-- `nixup` - Update flake inputs and rebuild system
-- `nixedit` - Open nix configuration in neovim
-
-## Nix Configuration
-
-This repository includes a Nix-based system configuration for macOS using [nix-darwin](https://github.com/LnL7/nix-darwin). The configuration is located in the `nix/` directory and uses the flakes feature for reproducible builds.
-
-### Structure
-- `nix/flake.nix` - Main configuration file
-- `nix/modules/` - Module configurations
-- `nix/flake.lock` - Dependency lockfile
-
-### Nix Aliases
-Quick access to common Nix operations:
-- `nixswitch` - Rebuild and switch system configuration (automatically cleans up old generations)
-- `nixup` - Update flake inputs and rebuild system
-- `nixedit` - Open nix configuration in neovim
-
-### Usage
-1. Edit the configuration:
+2. **Installation**
    ```bash
-   nixedit
+   # Clone the repository
+   git clone https://github.com/yourusername/dev-env.git
+   cd dev-env
+
+   # Set up environment variable
+   export MY_DEV=$(pwd)
    ```
 
-2. Build and switch to the new configuration:
-   ```bash
-   nixswitch  # This will also clean up old generations
-   ```
+3. **Choose Your Setup**
 
-3. Update flake inputs and rebuild:
-   ```bash
-   nixup
-   ```
+   - For full system configuration:
+     → Follow the [Nix Setup Guide](nix/README.md)
+   
+   - For tool configurations only:
+     → Follow the [Dotfiles Setup Guide](dotfiles/README.md)
 
-Note: Every time you run `nixswitch` or `nixup`, it automatically cleans up old system generations while keeping the current one as a backup.
+## Common Tasks
 
-## Contributing
+- **Update System**: `nixup` (updates and rebuilds Nix configuration)
+- **Apply Changes**: `nixswitch` (rebuilds and switches to new configuration)
+- **Edit Config**: `nixedit` (opens Nix configuration in Neovim)
 
-Feel free to use this as inspiration for your own development environment. Issues and pull requests are welcome!
+## Documentation
+
+- [Nix Configuration](nix/README.md)
+  - System packages and preferences
+  - Darwin configuration
+  - Flake management
+
+- [Dotfiles](dotfiles/README.md)
+  - Tool configurations
+  - Installation instructions
+  - Component-specific settings
 
 ## License
 
 This project is open source and available under the MIT License.
+
+## Contributing
+
+Feel free to use this as inspiration for your own development environment. Issues and pull requests are welcome!
