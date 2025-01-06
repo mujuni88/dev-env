@@ -30,18 +30,22 @@ My personal dotfiles managed with GNU Stow. These configurations work in conjunc
    cd dev-env/dotfiles
    ```
 
-2. Stow specific configurations:
+2. Stow configurations:
    ```bash
-   # Individual tools
-   stow -v -t ~ nvim      # Neovim config
-   stow -v -t ~ wezterm   # Wezterm config
-   stow -v -t ~ git      # Git config
-   stow -v -t ~ zsh      # Zsh config
+   # Stow individual packages
+   stow nvim      # Neovim config -> ~/.config/nvim
+   stow wezterm   # Wezterm config -> ~/.config/wezterm
+   stow git       # Git config -> ~/.gitconfig
+   stow zsh       # Zsh config -> ~/.zshrc
    
-   # Or stow everything at once
-   cd ..
-   stow -v -t ~ dotfiles
+   # Or stow everything at once (recommended)
+   stow */        # Stows all directories, using settings from .stowrc
    ```
+
+Note: The `.stowrc` file is configured to:
+- Target your home directory (`~`)
+- Ignore unnecessary files (`.DS_Store`, `.stowrc`, `README.md`)
+- Preserve the `.config` directory structure where needed
 
 ## Managing Configurations
 
@@ -51,27 +55,28 @@ My personal dotfiles managed with GNU Stow. These configurations work in conjunc
 mkdir -p new-tool/.config/new-tool
 # Add configuration files
 # Stow the new configuration
-stow -v -t ~ new-tool
+stow new-tool
 ```
 
 ### Removing Configurations
 ```bash
 # Remove individual config
-stow -D -t ~ nvim     # Remove neovim config
+stow -D nvim     # Remove neovim config
 
 # Or remove everything
-cd ..
-stow -D -t ~ dotfiles
+stow -D */
 ```
 
 ### Restowing After Changes
 ```bash
 # Restow individual config
-stow -R -t ~ nvim     # Restow neovim config
+stow -R nvim     # Restow neovim config
 
 # Or restow everything
-cd ..
-stow -R -t ~ dotfiles
+stow -R */       # Restow all configurations
+
+# You can also use the convenient alias:
+dots        # Restow all configurations
 ```
 
 ## Tool-Specific Documentation

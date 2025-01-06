@@ -13,7 +13,6 @@ alias path='echo -e ${PATH//:/\\n}'
 # Vim
 alias vi="nvim"
 alias vim="nvim"
-alias valias="vim $ZSH/custom/plugins/alias/alias.plugin.zsh"
 alias vsh="vim ~/.zshrc"
 alias vwez="vim $MYWEZ_CONFIG/config.lua"
 
@@ -28,8 +27,6 @@ alias vconf="vim $MYVIM_CONFIG/settings/config.vim"
 alias Code="cd ~/Code/"
 alias pr="Code && cd projects"
 alias tuts="Code && cd tutorials"
-alias aliases="$ZSH/custom/plugins/alias/"
-alias dtf="$HOME/.dotfiles/"
 alias Netflix="Code && cd Netflix"
 alias auiroot="Netflix && cd ai-animation-ui"
 
@@ -43,7 +40,6 @@ alias tmka="killall tmux"
 
 # ZSH Aliases
 alias zshconfig="vim ~/.zshrc"
-alias ohmyzsh="vim $ZSH"
 
 # Updated npm aliases
 alias nnpm="newt exec npm"
@@ -108,10 +104,15 @@ alias devenv="cd $MY_DEV"
 alias devedit="cd $MY_DEV && nvim ."
 
 # ----- Dotfiles -----
-alias dots="cd $MY_DEV/dotfiles && stow -R ."
+alias dots="cd $MY_DEV/dotfiles && stow -v -R */"
 alias dotsedit="cd $MY_DEV/dotfiles && nvim ."
 
 # ----- Nix -----
-alias nixswitch="darwin-rebuild switch --flake $MY_NIX#macos && nix-collect-garbage --delete-old"  # switch and clean
-alias nixup="cd $MY_NIX && nix flake update && nixswitch"                                         # update and switch
-alias nixedit="cd $MY_NIX && nvim ."                                                              # edit nix config
+# Rebuild and switch system configuration (automatically cleans up old generations)
+alias nixswitch="darwin-rebuild switch --flake $MY_NIX#macos && nix-collect-garbage --delete-old"
+
+# Update flake inputs and rebuild system
+alias nixup="cd $MY_NIX && nix flake update && nixswitch"
+
+# Open nix configuration in neovim
+alias nixedit="cd $MY_NIX && nvim ."

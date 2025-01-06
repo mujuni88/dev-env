@@ -1,3 +1,2 @@
-# Store dirs stack
-# See ~/.dotfiles/oh-my-zsh/plugins/dirspersist.plugin.zsh
+# Store directory stack on logout
 dirpersiststore
