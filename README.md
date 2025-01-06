@@ -10,7 +10,7 @@ My personal development environment for macOS, combining the power of Nix for sy
   - Service management
   
 - **Tool Configurations** (`dotfiles/`): Managed with GNU Stow
-  - Terminal: WezTerm, Zsh, Tmux
+  - Terminal: Ghostty, Zsh, Starship, Tmux
   - Development: Neovim, Git, and more
   - Utilities: bat, fzf, ripgrep
 
@@ -24,7 +24,7 @@ My personal development environment for macOS, combining the power of Nix for sy
 2. **Installation**
    ```bash
    # Clone the repository
-   git clone https://github.com/yourusername/dev-env.git
+   git clone <repository_url>
    cd dev-env
 
    # Set up environment variable

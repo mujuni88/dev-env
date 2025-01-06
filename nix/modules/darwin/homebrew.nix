@@ -43,7 +43,6 @@
 
   casks = [
     # Terminal and Shell Tools
-    "wezterm@nightly"
     "ghostty"
 
     # Code Editors and IDEs

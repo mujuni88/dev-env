@@ -8,11 +8,12 @@ My personal dotfiles managed with GNU Stow. These configurations work in conjunc
 .
 ├── bat/          # Syntax highlighting and paging configuration
 ├── git/          # Git configuration and aliases
+├── ghostty/      # Terminal emulator configuration
 ├── karabiner/    # Keyboard customization for home row mode navigation
 ├── nvim/         # Neovim configuration and plugins
 ├── scripts/      # Custom shell scripts and utilities
+├── starship/     # Cross-shell prompt configuration
 ├── tmux/         # Terminal multiplexer configuration
-├── wezterm/      # Terminal emulator configuration
 └── zsh/          # Shell configuration and aliases
 ```
 
@@ -26,7 +27,7 @@ My personal dotfiles managed with GNU Stow. These configurations work in conjunc
 
 1. Clone the repository if you haven't already:
    ```bash
-   git clone https://github.com/yourusername/dev-env.git
+   git clone <repository_url>
    cd dev-env/dotfiles
    ```
 
@@ -34,7 +35,8 @@ My personal dotfiles managed with GNU Stow. These configurations work in conjunc
    ```bash
    # Stow individual packages
    stow nvim      # Neovim config -> ~/.config/nvim
-   stow wezterm   # Wezterm config -> ~/.config/wezterm
+   stow ghostty   # Ghostty config -> ~/.config/ghostty
+   stow starship  # Starship config -> ~/.config/starship
    stow git       # Git config -> ~/.gitconfig
    stow zsh       # Zsh config -> ~/.zshrc
    
