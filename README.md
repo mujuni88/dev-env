@@ -1,6 +1,23 @@
 # Development Environment
 
-My dotfiles and development environment configuration managed with GNU Stow. This repository contains a curated set of configurations for various development tools, creating a powerful and consistent development environment.
+This repository contains my personal development environment setup, including:
+- Dotfiles (shell, vim, tmux, etc.)
+- Nix configuration (macOS system configuration)
+- Development tools and scripts
+
+## Documentation
+
+For detailed documentation about configurations and setup, see:
+- [Dotfiles Documentation](dotfiles/README.md)
+- [Nix Documentation](nix/README.md)
+
+## Quick Start
+
+The main configuration files and directories are:
+- `dotfiles/` - Shell, editor, and tool configurations
+- `nix/` - System configuration using nix-darwin
+
+For detailed setup instructions and available commands, please refer to the [Dotfiles Documentation](dotfiles/README.md)
 
 ## Components
 
