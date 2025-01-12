@@ -3,3 +3,5 @@ tmux/plugins/
 raycast
 fzf
 history.txt
+# Karabiner backups
+dotfiles/karabiner/.config/karabiner/automatic_backups/
