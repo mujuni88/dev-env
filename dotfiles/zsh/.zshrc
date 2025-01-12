@@ -10,7 +10,7 @@ export MY_NIX="$MY_DEV/nix"                  # Nix configuration
 export EDITOR="nvim"
 export VISUAL="nvim"
 export WEZTERM_THEME="everforest"
-export HOMEBREW_CASK_OPTS="--appdir=/Applications --fontdir=/Library/Fonts"
+export HOMEBREW_CASK_OPTS="--appdir=~/Applications --fontdir=/Library/Fonts"
 export REACT_EDITOR="/usr/local/bin/code-insiders"
 export BAT_THEME=tokyonight_night
 export SDKMAN_DIR="$HOME/.sdkman"
