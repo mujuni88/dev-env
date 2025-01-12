@@ -39,9 +39,20 @@
     "go"
     "tree"
     "fnm"
+    # Yazi and its dependencies
+    "yazi"
+    "ffmpeg"
+    "p7zip"
+    "jq"
+    "poppler"
+    "fd"
+    "imagemagick"
   ];
 
   casks = [
+    # Fonts for Yazi
+    "font-symbols-only-nerd-font"
+
     # Terminal and Shell Tools
     "ghostty"
 
