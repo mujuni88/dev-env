@@ -8,18 +8,17 @@
     tilesize = 48;
     persistent-apps = [
       "/System/Applications/iPhone Mirroring.app"
+      "/System/Applications/AppCleaner.app"
       "/System/Applications/Calendar.app"
       "/Applications/Spark.app"
       "/System/Applications/Messages.app"
       "/Applications/Slack.app"
       "/Applications/Arc.app"
-      "/Applications/Google Chrome.app"
       "/Applications/Notion.app"
       "/Applications/ChatGPT.app"
-      "/Applications/Claude.app"
-      "/Applications/Visual Studio Code.app"
       "/Applications/Windsurf.app"
-      "/Users/jbuza/Applications/Ghostty.app"
+      "/Applications/Cursor.app"
+      "/Applications/Ghostty.app"
     ];
   };
 
