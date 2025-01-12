@@ -8,17 +8,17 @@
     tilesize = 48;
     persistent-apps = [
       "/System/Applications/iPhone Mirroring.app"
-      "/System/Applications/AppCleaner.app"
+      "/Users/jbuza/Applications/AppCleaner.app"
       "/System/Applications/Calendar.app"
       "/Applications/Spark.app"
       "/System/Applications/Messages.app"
-      "/Applications/Slack.app"
-      "/Applications/Arc.app"
-      "/Applications/Notion.app"
-      "/Applications/ChatGPT.app"
-      "/Applications/Windsurf.app"
-      "/Applications/Cursor.app"
-      "/Applications/Ghostty.app"
+      "/Users/jbuza/Applications/Slack.app"
+      "/Users/jbuza/Applications/Arc.app"
+      "/Users/jbuza/Applications/Notion.app"
+      "/Users/jbuza/Applications/ChatGPT.app"
+      "/Users/jbuza/Applications/Windsurf.app"
+      "/Users/jbuza/Applications/Cursor.app"
+      "/Users/jbuza/Applications/Ghostty.app"
     ];
   };
 
