@@ -39,6 +39,7 @@
     "go"
     "tree"
     "fnm"
+    "nushell"
     # Yazi and its dependencies
     "yazi"
     "ffmpeg"

@@ -7,11 +7,10 @@ export MY_DEV="$HOME/dev-env"                # Development environment root
 export MY_NIX="$MY_DEV/nix"                  # Nix configuration
 
 # System and application settings
+export XDG_CONFIG_HOME="$HOME/.config"
 export EDITOR="cursor"
 export VISUAL="nvim"
-export WEZTERM_THEME="everforest"
-export HOMEBREW_CASK_OPTS="--appdir=~/Applications --fontdir=/Library/Fonts"
-export REACT_EDITOR="/usr/local/bin/code-insiders"
+export REACT_EDITOR="cursor"
 export BAT_THEME=tokyonight_night
 export SDKMAN_DIR="$HOME/.sdkman"
 export BUN_INSTALL="$HOME/.bun"
