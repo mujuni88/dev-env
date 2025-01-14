@@ -8,8 +8,12 @@
   # Upgrade installed packages to their latest versions on activation
   onActivation.upgrade = true;
 
-  # Disable macOS quarantine for apps installed via Homebrew casks (avoids "App can't be opened" warnings)
-  caskArgs.no_quarantine = true;
+  # Set installation directories and disable quarantine
+  caskArgs = {
+    appdir = "/Applications";
+    fontdir = "/Library/Fonts";
+    no_quarantine = true;
+  };
 
   # Use a global Brewfile to manage Homebrew dependencies across the system
   global.brewfile = true;
