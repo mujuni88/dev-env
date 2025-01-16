@@ -16,6 +16,7 @@
       "/Applications/Arc.app"
       "/Applications/Notion.app"
       "/Applications/ChatGPT.app"
+      "/Applications/Claude.app"
       "/Applications/Windsurf.app"
       "/Applications/Cursor.app"
       "/Users/jbuza/Applications/Ghostty.app"
