@@ -9,6 +9,7 @@
     persistent-apps = [
       "/System/Applications/iPhone Mirroring.app"
       "/Applications/AppCleaner.app"
+      "/Applications/Skitch.app"
       "/System/Applications/Calendar.app"
       "/Applications/Spark.app"
       "/System/Applications/Messages.app"

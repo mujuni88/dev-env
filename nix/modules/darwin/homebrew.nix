@@ -91,6 +91,7 @@
     "appcleaner"
     "cleanshot"
     "loom"
+    "skitch"
 
     # Security and Privacy
     "nordvpn"
