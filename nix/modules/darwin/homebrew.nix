@@ -55,6 +55,7 @@
     "fd"
     "imagemagick"
     "lazydocker"
+    "ollama"
   ];
 
   casks = [
