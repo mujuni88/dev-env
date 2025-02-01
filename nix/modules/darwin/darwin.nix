@@ -41,7 +41,7 @@ in {
 
   # Environment variables
   environment = {
-    # Add environment variables here if needed
+    systemPath = [ "/opt/homebrew/bin" ];
   };
 
   # Auto-upgrade Nix package and daemon service
@@ -52,11 +52,7 @@ in {
   nix.settings.experimental-features = "nix-command flakes";
 
   # Create /etc/zshrc that loads the nix-darwin environment
-  programs.zsh = {
-    enable = true;
-    enableCompletion = true;
-    enableBashCompletion = true;
-  };
+  programs.zsh.enable = true;
 
   # Platform configuration for Apple Silicon
   nixpkgs.hostPlatform = "aarch64-darwin";

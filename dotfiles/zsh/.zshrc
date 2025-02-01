@@ -15,9 +15,9 @@ export BAT_THEME=tokyonight_night
 export SDKMAN_DIR="$HOME/.sdkman"
 export BUN_INSTALL="$HOME/.bun"
 export PKG_CONFIG_PATH="/opt/homebrew/opt/postgresql@16/lib/pkgconfig"
-export HOMEBREW_CASK_OPTS="--appdir=/Applications --fontdir=/Library/Fonts"
+export HOMEBREW_CASK_OPTS="--appdir=~/Applications --fontdir=~/Library/Fonts"
 
-# ----- Path Configuration -----
+# ----- Pakh Configuration -----
 # Base PATH
 export PATH="$HOME/bin:$HOME/.local/bin:/opt/homebrew/bin:$PATH"
 
@@ -44,8 +44,10 @@ compinit
 unsetopt correct
 
 # ----- Version Control Info -----
+autoload -Uz add-zsh-hook
 autoload -Uz vcs_info
-precmd() { vcs_info }
+add-zsh-hook precmd vcs_info
+zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:git:*' formats '%b'
 
 # ----- Tool Configurations -----
@@ -74,9 +76,6 @@ add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
 # ----- Additional Tools -----
-# Ruby
-eval "$(rbenv init -)"
-
 # Jabba (Java Version Manager)
 [ -s "$HOME/.jabba/jabba.sh" ] && source "$HOME/.jabba/jabba.sh"
 

@@ -10,8 +10,8 @@
 
   # Set installation directories and disable quarantine
   caskArgs = {
-    appdir = "/Applications";
-    fontdir = "/Library/Fonts";
+    appdir = "~/Applications";
+    fontdir = "~/Library/Fonts";
     no_quarantine = true;
   };
 
@@ -19,10 +19,11 @@
   global.brewfile = true;
 
   # Cleanup Homebrew packages not in the config
-  # onActivation.cleanup = "uninstall";
+  onActivation.cleanup = "uninstall";
 
   brews = [
     "mas"
+    "zsh"
     "zsh-syntax-highlighting"
     "zsh-autocomplete"
     "stow"
@@ -40,6 +41,7 @@
     "docker"
     "rustup"
     "deno"
+    "eza"
     "go"
     "tree"
     "fnm"
@@ -52,12 +54,10 @@
     "poppler"
     "fd"
     "imagemagick"
+    "lazydocker"
   ];
 
   casks = [
-    # Fonts for Yazi
-    "font-symbols-only-nerd-font"
-
     # Terminal and Shell Tools
     "ghostty"
 
@@ -91,7 +91,6 @@
     "appcleaner"
     "cleanshot"
     "loom"
-    "skitch"
 
     # Security and Privacy
     "nordvpn"
@@ -106,7 +105,6 @@
 
   masApps = {
     "Yoink" = 457622435;
-    "EdisonMail" = 1489591003;
     "SparkMail" = 1176895641;
   };
 }
