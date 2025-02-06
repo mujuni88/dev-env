@@ -61,6 +61,7 @@
   casks = [
     # Terminal and Shell Tools
     "ghostty"
+    "warp"
 
     # Code Editors and IDEs
     "visual-studio-code"
