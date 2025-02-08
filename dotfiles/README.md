@@ -84,3 +84,20 @@ dots        # Restow all configurations
 ## Tool-Specific Documentation
 
 Each tool's directory contains its own configuration files and may include a README with tool-specific setup instructions and customizations.
+
+## AI Assistant Integration
+
+### Codeium Configuration
+
+[![Codeium](https://img.shields.io/badge/Codeium-AI%20Assistant-blue)](https://codeium.com)
+
+- **Keybindings**:
+  - `<C-g>` - Accept suggestion
+  - `<C-;>` - Next suggestion
+  - `<C-,>` - Previous suggestion
+  - `<C-x>` - Clear suggestion
+  
+- **Security**:
+  - API key stored in macOS Keychain
+  - Environment variable auto-loaded via zshrc
+  - Never stored in plain text

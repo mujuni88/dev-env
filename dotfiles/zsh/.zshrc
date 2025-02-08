@@ -17,6 +17,9 @@ export BUN_INSTALL="$HOME/.bun"
 export PKG_CONFIG_PATH="/opt/homebrew/opt/postgresql@16/lib/pkgconfig"
 export HOMEBREW_CASK_OPTS="--appdir=~/Applications --fontdir=~/Library/Fonts"
 
+# Codeium API Key
+export CODEIUM_API_KEY=$(security find-generic-password -s CODEIUM_API_KEY -w)
+
 # ----- Pakh Configuration -----
 # Base PATH
 export PATH="$HOME/bin:$HOME/.local/bin:/opt/homebrew/bin:$PATH"
