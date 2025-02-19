@@ -17,15 +17,15 @@ on-focus-changed = ["move-mouse window-lazy-center"]
 preset = "qwerty"
 
 [gaps]
-    [gaps.inner]
-    horizontal = 0
-    vertical = 0
+[gaps.inner]
+horizontal = 0
+vertical = 0
 
-    [gaps.outer]
-    left = 0
-    right = 0
-    top = 0
-    bottom = 0
+[gaps.outer]
+left = 0
+right = 0
+top = 0
+bottom = 0
 
 [mode.main.binding]
 alt-slash = "layout tiles horizontal vertical"
@@ -97,7 +97,7 @@ shift-down = ["volume set 0", "mode main"]
 B = "main"      # Browser on main monitor
 T = "secondary" # Terminal on secondary
 D = "main"      # Development on main
-A = "secondary" # AI tools on secondary
+A = "main"      # AI tools on secondary
 1 = 1           # First monitor from left
 2 = 2           # Second monitor from left
 
@@ -128,6 +128,10 @@ run = "move-node-to-workspace N"
 
 [[on-window-detected]]
 if.app-id = "com.mitchellh.ghostty"
+run = "move-node-to-workspace T"
+
+[[on-window-detected]]
+if.app-id = "dev.warp.Warp-Stable"
 run = "move-node-to-workspace T"
 
 [[on-window-detected]]

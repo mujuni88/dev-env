@@ -63,6 +63,8 @@
     # Terminal and Shell Tools
     "ghostty"
     "warp"
+    "amazon-q"
+
     # Window management
     "nikitabobko/tap/aerospace"
 
