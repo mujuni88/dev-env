@@ -1,19 +1,19 @@
 # Core settings
-after_login_command = []
-after_startup_command = ["workspace B"]
-start_at_login = true
-enable_normalization_flatten_containers = true
-enable_normalization_opposite_orientation_for_nested_containers = true
-accordion_padding = 30
-default_root_container_layout = "tiles"
-default_root_container_orientation = "auto"
-automatically_unhide_macos_hidden_apps = false
+after-login-command = []
+after-startup-command = ["workspace B"]
+start-at-login = true
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = true
+accordion-padding = 30
+default-root-container-layout = "tiles"
+default-root-container-orientation = "auto"
+automatically-unhide-macos-hidden-apps = false
 
 # Focus and mouse behavior
-on_focused_monitor_changed = ["move-mouse monitor-lazy-center"]
-on_focus_changed = ["move-mouse window-lazy-center"]
+on-focused-monitor-changed = ["move-mouse monitor-lazy-center"]
+on-focus-changed = ["move-mouse window-lazy-center"]
 
-[key_mapping]
+[key-mapping]
 preset = "qwerty"
 
 [gaps]
@@ -27,76 +27,73 @@ preset = "qwerty"
     top = 0
     bottom = 0
 
-[mode]
-    [mode.main]
-        [mode.main.binding]
-        alt-slash = "layout tiles horizontal vertical"
-        alt-comma = "layout accordion horizontal vertical"
-        alt-h = "focus left"
-        alt-j = "focus down"
-        alt-k = "focus up"
-        alt-l = "focus right"
-        alt-shift-h = "move left"
-        alt-shift-j = "move down"
-        alt-shift-k = "move up"
-        alt-shift-l = "move right"
-        alt-minus = "resize smart -50"
-        alt-equal = "resize smart +50"
-        alt-f = "layout floating tiling"
-        alt-r = "flatten-workspace-tree"
-        alt-shift-r = "reload-config"
-        
-        # Workspace bindings
-        alt-1 = "workspace 1"
-        alt-2 = "workspace 2"
-        alt-3 = "workspace 3"
-        alt-4 = "workspace 4"
-        alt-5 = "workspace 5"
-        alt-6 = "workspace 6"
-        alt-7 = "workspace 7"
-        alt-8 = "workspace 8"
-        alt-9 = "workspace 9"
-        alt-a = "workspace A"
-        alt-b = "workspace B"
-        alt-c = "workspace C"
-        alt-d = "workspace D"
-        alt-e = "workspace E"
-        alt-n = "workspace N"
-        alt-s = "workspace S"
-        alt-t = "workspace T"
-        alt-w = "workspace W"
-        
-        # Move to workspace bindings
-        alt-shift-1 = "move-node-to-workspace 1"
-        alt-shift-2 = "move-node-to-workspace 2"
-        alt-shift-3 = "move-node-to-workspace 3"
-        alt-shift-4 = "move-node-to-workspace 4"
-        alt-shift-5 = "move-node-to-workspace 5"
-        alt-shift-6 = "move-node-to-workspace 6"
-        alt-shift-7 = "move-node-to-workspace 7"
-        alt-shift-8 = "move-node-to-workspace 8"
-        alt-shift-9 = "move-node-to-workspace 9"
-        
-        # Navigation and monitor bindings
-        alt-tab = "workspace-back-and-forth"
-        alt-shift-tab = "move-workspace-to-monitor --wrap-around next"
-        alt-shift-semicolon = "mode service"
+[mode.main.binding]
+alt-slash = "layout tiles horizontal vertical"
+alt-comma = "layout accordion horizontal vertical"
+alt-h = "focus left"
+alt-j = "focus down"
+alt-k = "focus up"
+alt-l = "focus right"
+alt-shift-h = "move left"
+alt-shift-j = "move down"
+alt-shift-k = "move up"
+alt-shift-l = "move right"
+alt-minus = "resize smart -50"
+alt-equal = "resize smart +50"
+alt-f = "layout floating tiling"
+alt-r = "flatten-workspace-tree"
+alt-shift-r = "reload-config"
 
-    [mode.service]
-        [mode.service.binding]
-        esc = ["reload-config", "mode main"]
-        r = ["flatten-workspace-tree", "mode main"]
-        f = ["layout floating tiling", "mode main"]
-        backspace = ["close-all-windows-but-current", "mode main"]
-        alt-shift-h = ["join-with left", "mode main"]
-        alt-shift-j = ["join-with down", "mode main"]
-        alt-shift-k = ["join-with up", "mode main"]
-        alt-shift-l = ["join-with right", "mode main"]
-        down = "volume down"
-        up = "volume up"
-        shift-down = ["volume set 0", "mode main"]
+# Workspace bindings
+alt-1 = "workspace 1"
+alt-2 = "workspace 2"
+alt-3 = "workspace 3"
+alt-4 = "workspace 4"
+alt-5 = "workspace 5"
+alt-6 = "workspace 6"
+alt-7 = "workspace 7"
+alt-8 = "workspace 8"
+alt-9 = "workspace 9"
+alt-a = "workspace A"
+alt-b = "workspace B"
+alt-c = "workspace C"
+alt-d = "workspace D"
+alt-e = "workspace E"
+alt-n = "workspace N"
+alt-s = "workspace S"
+alt-t = "workspace T"
+alt-w = "workspace W"
 
-[workspace_to_monitor_force_assignment]
+# Move to workspace bindings
+alt-shift-1 = "move-node-to-workspace 1"
+alt-shift-2 = "move-node-to-workspace 2"
+alt-shift-3 = "move-node-to-workspace 3"
+alt-shift-4 = "move-node-to-workspace 4"
+alt-shift-5 = "move-node-to-workspace 5"
+alt-shift-6 = "move-node-to-workspace 6"
+alt-shift-7 = "move-node-to-workspace 7"
+alt-shift-8 = "move-node-to-workspace 8"
+alt-shift-9 = "move-node-to-workspace 9"
+
+# Navigation and monitor bindings
+alt-tab = "workspace-back-and-forth"
+alt-shift-tab = "move-workspace-to-monitor --wrap-around next"
+alt-shift-semicolon = "mode service"
+
+[mode.service.binding]
+esc = ["reload-config", "mode main"]
+r = ["flatten-workspace-tree", "mode main"]
+f = ["layout floating tiling", "mode main"]
+backspace = ["close-all-windows-but-current", "mode main"]
+alt-shift-h = ["join-with left", "mode main"]
+alt-shift-j = ["join-with down", "mode main"]
+alt-shift-k = ["join-with up", "mode main"]
+alt-shift-l = ["join-with right", "mode main"]
+down = "volume down"
+up = "volume up"
+shift-down = ["volume set 0", "mode main"]
+
+[workspace-to-monitor-force-assignment]
 B = "main"      # Browser on main monitor
 T = "secondary" # Terminal on secondary
 D = "main"      # Development on main
@@ -105,62 +102,59 @@ A = "secondary" # AI tools on secondary
 2 = 2           # Second monitor from left
 
 # Window detection rules
-[[on_window_detected]]
-if = { app_id = "company.thebrowser.Browser" }
+[[on-window-detected]]
+if.app-id = "company.thebrowser.Browser"
 run = "move-node-to-workspace B"
 
-[[on_window_detected]]
-if = { app_id = "com.openai.chat" }
+[[on-window-detected]]
+if.app-id = "com.openai.chat"
 run = "move-node-to-workspace A"
 
-[[on_window_detected]]
-if = { app_id = "com.anthropic.claudefordesktop" }
+[[on-window-detected]]
+if.app-id = "com.anthropic.claudefordesktop"
 run = "move-node-to-workspace A"
 
-[[on_window_detected]]
-if = { app_id = "com.exafunction.windsurf" }
+[[on-window-detected]]
+if.app-id = "com.exafunction.windsurf"
 run = "move-node-to-workspace D"
 
-[[on_window_detected]]
-if = { app-name-regex-substring = "Cursor" }
+[[on-window-detected]]
+if.app-id = "com.todesktop.230313mzl4w4u92"
 run = "move-node-to-workspace D"
 
-[[on_window_detected]]
-if = { app_id = "com.todesktop.230313mzl4w4u92" }
-run = "move-node-to-workspace D"
-
-[[on_window_detected]]
-if = { app_id = "notion.id" }
+[[on-window-detected]]
+if.app-id = "notion.id"
 run = "move-node-to-workspace N"
 
-[[on_window_detected]]
-if = { app_id = "com.mitchellh.ghostty" }
+[[on-window-detected]]
+if.app-id = "com.mitchellh.ghostty"
 run = "move-node-to-workspace T"
 
-[[on_window_detected]]
-if = { app_id = "com.tinyspeck.slackmacgap" }
-run = ["move-node-to-workspace C", "layout floating"]
+[[on-window-detected]]
+if.app-id = "com.tinyspeck.slackmacgap"
+run = ["layout floating", "move-node-to-workspace C"]
 
-[[on_window_detected]]
-if = { app_id = "com.readdle.smartemail-Mac" }
+[[on-window-detected]]
+if.app-id = "com.readdle.smartemail-Mac"
 run = "move-node-to-workspace E"
 
-[[on_window_detected]]
-if = { app_id = "com.skitch.skitch" }
-run = ["move-node-to-workspace U", "layout floating"]
+[[on-window-detected]]
+if.app-id = "com.skitch.skitch"
+run = ["layout floating", "move-node-to-workspace U"]
 
-[[on_window_detected]]
-if = { app_id = "com.apple.Preview" }
+[[on-window-detected]]
+if.app-id = "com.apple.Preview"
 run = "layout floating"
 
-[[on_window_detected]]
-if = { app_id = "com.apple.iCal" }
+[[on-window-detected]]
+if.app-id = "com.apple.iCal"
 run = "layout floating"
 
-[[on_window_detected]]
-if = { app_id = "com.microsoft.teams" }
+[[on-window-detected]]
+if.app-id = "com.microsoft.teams"
 run = "layout floating"
 
-[[on_window_detected]]
-if = { app_id = "com.google.Chrome", window_title_regex_substring = "DevTools" }
+[[on-window-detected]]
+if.app-id = "com.google.Chrome"
+if.window-title-regex-substring = "DevTools"
 run = "layout floating"
