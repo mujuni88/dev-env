@@ -140,7 +140,7 @@ run = "move-node-to-workspace E"
 
 [[on-window-detected]]
 if.app-id = "com.skitch.skitch"
-run = ["layout floating", "move-node-to-workspace U"]
+run = "layout floating"
 
 [[on-window-detected]]
 if.app-id = "com.apple.Preview"
