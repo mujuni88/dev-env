@@ -61,3 +61,7 @@
 # keybind = super+8=goto_tab:7
 # keybind = super+9=goto_tab:8
 # keybind = super+0=goto_tab:9
+keybind = ctrl+h=goto_split:left
+keybind = ctrl+l=goto_split:right
+keybind = ctrl+j=goto_split:bottom
+keybind = ctrl+k=goto_split:top

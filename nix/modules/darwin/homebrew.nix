@@ -22,6 +22,7 @@
   onActivation.cleanup = "uninstall";
 
   brews = [
+    "uv"
     "mas"
     "zsh"
     "zsh-syntax-highlighting"
@@ -62,6 +63,8 @@
     # Terminal and Shell Tools
     "ghostty"
     "warp"
+    # Window management
+    "nikitabobko/tap/aerospace"
 
     # Code Editors and IDEs
     "visual-studio-code"
