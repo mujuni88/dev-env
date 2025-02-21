@@ -1,7 +1,7 @@
 # Core settings
 after-login-command = []
 after-startup-command = ["workspace B"]
-start-at-login = true
+start-at-login = false
 enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
 accordion-padding = 30
@@ -10,8 +10,8 @@ default-root-container-orientation = "auto"
 automatically-unhide-macos-hidden-apps = false
 
 # Focus and mouse behavior
-on-focused-monitor-changed = ["move-mouse monitor-lazy-center"]
-on-focus-changed = ["move-mouse window-lazy-center"]
+# on-focused-monitor-changed = ["move-mouse monitor-lazy-center"]
+# on-focus-changed = ["move-mouse window-lazy-center"]
 
 [key-mapping]
 preset = "qwerty"
