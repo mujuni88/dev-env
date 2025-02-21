@@ -66,12 +66,13 @@
     "amazon-q"
 
     # Window management
-    "nikitabobko/tap/aerospace"
+    # "nikitabobko/tap/aerospace"
 
-    # Code Editors and IDEs
+    # Development
     "visual-studio-code"
     "sublime-text"
     "windsurf"
+    "ngrok"
 
     # Web Browsers
     "arc"
@@ -83,6 +84,7 @@
     "slack"
     "discord"
     "whatsapp"
+    "superwhisper"
 
     # Productivity Apps
     "notion"
@@ -104,10 +106,10 @@
 
     # Finance and Cryptocurrency
     "ledger-live"
-    "ngrok"
 
-    # Added Karabiner Elements
+    # Keyboard Management
     "karabiner-elements"
+    "homerow"
   ];
 
   masApps = {
