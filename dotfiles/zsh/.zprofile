@@ -1,3 +1,5 @@
+# Amazon Q pre block. Keep at the top of this file.
+[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zprofile.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zprofile.pre.zsh"
 ##############################################################################
 #Import the shell-agnostic (Bash or Zsh) environment config
 ##############################################################################
@@ -20,3 +22,6 @@ setopt    incappendhistory  #Immediately append to the history file, not just wh
 PATH="/Library/Frameworks/Python.framework/Versions/3.9/bin:${PATH}"
 export PATH
 eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Amazon Q post block. Keep at the bottom of this file.
+[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zprofile.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zprofile.post.zsh"

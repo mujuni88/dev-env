@@ -1,3 +1,5 @@
+# Amazon Q pre block. Keep at the top of this file.
+[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
 # Initialize Starship prompt
 eval "$(starship init zsh)"
 
@@ -40,11 +42,6 @@ setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_SPACE
 setopt HIST_VERIFY
 setopt HIST_EXPIRE_DUPS_FIRST
-
-# ----- Completion -----
-autoload -U compinit
-compinit
-unsetopt correct
 
 # ----- Version Control Info -----
 autoload -Uz add-zsh-hook
@@ -106,3 +103,6 @@ eval "$(zoxide init zsh)"
 for config_file (~/.config/zsh/*.zsh(N)); do
   source $config_file
 done
+
+# Amazon Q post block. Keep at the bottom of this file.
+[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"

@@ -46,6 +46,7 @@ alias speaktw="speakw run generate-types:watch"
 # Campaign Assistant UI
 alias camp="killuiport && caroot && nyarn install && newt develop"
 alias campgen="caroot && nyarn graphql:generate" 
+alias campstory="caroot && nyarn storybook" 
 alias campt="caroot && nyarn test:plugin campaigns"
 alias campts="caroot && nyarn workspace @netflix-console/campaign-assistant-components typecheck"
 alias camppts="caroot && nyarn workspace @netflix-console/plugin-campaigns typecheck"
