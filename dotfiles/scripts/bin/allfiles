@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 set -euo pipefail
 
 # Parse arguments
@@ -23,49 +22,48 @@ DEST_DIR="$2"
 # Ensure destination directory exists
 mkdir -p "$DEST_DIR"
 
-# Find and ignore full directories from .gitignore
-find "$SOURCE_DIR" -type d | while read -r dir; do
-    if git check-ignore -q "$dir"; then
-        echo "Skipping ignored directory: $dir"
+# Construct find command with exclusions
+find_cmd=(find "$SOURCE_DIR" -type f)
+
+# Append exclusions for file extensions
+for ext in "${IGNORE_EXTS[@]}"; do
+    find_cmd+=(! -name "*.$ext")
+done
+
+# Execute find and copy files
+"${find_cmd[@]}" | while read -r file; do
+    # Check if file is ignored by .gitignore
+    if git check-ignore -q "$file"; then
+        echo "Skipping ignored file: $file"
         continue
     fi
-
-    # Construct find command with exclusions
-    find_cmd=(find "$dir" -type f)
-
-    # Append exclusions for file extensions
-    for ext in "${IGNORE_EXTS[@]}"; do
-        find_cmd+=(! -name "*.$ext")
-    done
-
-    # Execute find and copy files
-    "${find_cmd[@]}" | while read -r file; do
-        # Check if file is ignored by .gitignore
-        if git check-ignore -q "$file"; then
-            echo "Skipping ignored file: $file"
-            continue
+    
+    # Skip if the containing directory is ignored by .gitignore
+    dir=$(dirname "$file")
+    if git check-ignore -q "$dir"; then
+        echo "Skipping file in ignored directory: $file"
+        continue
+    fi
+    
+    filename=$(basename "$file")
+    dest_path="$DEST_DIR/$filename"
+    
+    # Handle duplicate filenames
+    counter=1
+    while [ -e "$dest_path" ]; do
+        extension="${filename##*.}"
+        name="${filename%.*}"
+        if [ "$extension" != "$filename" ]; then
+            new_filename="${name}_${counter}.${extension}"
+        else
+            new_filename="${name}_${counter}"
         fi
-
-        filename=$(basename "$file")
-        dest_path="$DEST_DIR/$filename"
-
-        # Handle duplicate filenames
-        counter=1
-        while [ -e "$dest_path" ]; do
-            extension="${filename##*.}"
-            name="${filename%.*}"
-            if [ "$extension" != "$filename" ]; then
-                new_filename="${name}_${counter}.${extension}"
-            else
-                new_filename="${name}_${counter}"
-            fi
-            dest_path="$DEST_DIR/$new_filename"
-            ((counter++))
-        done
-
-        cp "$file" "$dest_path"
-        echo "Copied: $file -> $dest_path"
+        dest_path="$DEST_DIR/$new_filename"
+        ((counter++))
     done
+    
+    cp "$file" "$dest_path"
+    echo "Copied: $file -> $dest_path"
 done
 
 echo "All files have been copied to: $DEST_DIR"
