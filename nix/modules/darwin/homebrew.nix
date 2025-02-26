@@ -47,14 +47,17 @@
     "tree"
     "fnm"
     "nushell"
+
     # Yazi and its dependencies
     "yazi"
     "ffmpeg"
     "p7zip"
     "jq"
     "poppler"
-    "fd"
+    "fd" # A better alternative to find
     "imagemagick"
+    #--- Yazi
+
     "lazydocker"
     "ollama"
   ];
