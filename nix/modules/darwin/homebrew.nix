@@ -22,44 +22,58 @@
   onActivation.cleanup = "uninstall";
 
   brews = [
+    # Package manager and utilities
     "uv"
     "mas"
+    "stow"
+    "gnu-sed"
+    
+    # Shell and terminal enhancements
     "zsh"
     "zsh-syntax-highlighting"
     "zsh-autocomplete"
-    "stow"
-    "tmux"
-    "starship"
-    "zoxide"
-    "fzf"
-    "atuin"
-    "gnu-sed"
-    "bat"
-    "ripgrep"
-    "lazygit"
-    "neovim"
-    "git-delta"
-    "docker"
-    "rustup"
-    "deno"
-    "eza"
-    "go"
-    "tree"
-    "fnm"
-    "nushell"
-
-    # Yazi and its dependencies
-    "yazi"
-    "ffmpeg"
-    "p7zip"
-    "jq"
-    "poppler"
-    "fd" # A better alternative to find
-    "imagemagick"
-    #--- Yazi
-
-    "lazydocker"
-    "ollama"
+    "starship"   # Prompt customization
+    "zoxide"     # Smart directory jumping
+    "fzf"        # Fuzzy finder
+    "atuin"      # Shell history manager
+    "nushell"    # Modern shell alternative
+    
+    # Terminal multiplexers
+    "tmux"       # Terminal multiplexer
+    "zellij"     # Alternative terminal multiplexer with Rust
+    
+    # CLI tools and utilities
+    "bat"        # Better cat with syntax highlighting
+    "ripgrep"    # Fast text search
+    "eza"        # Modern ls replacement
+    "tree"       # Directory structure visualization
+    "fd"         # Better alternative to find
+    "jq"         # JSON processor
+    
+    # Development tools
+    "lazygit"    # Terminal UI for git
+    "neovim"     # Text editor
+    "git-delta"  # Better git diff
+    "docker"     # Containerization
+    "lazydocker" # Terminal UI for docker
+    
+    # Programming languages and runtimes
+    "rustup"     # Rust toolchain installer
+    "deno"       # JavaScript/TypeScript runtime
+    "go"         # Go programming language
+    "fnm"        # Fast Node version manager
+    
+    # AI tools
+    "ollama"     # Local LLMs
+    
+    # File management
+    "yazi"       # Terminal file manager
+    
+    # Yazi dependencies
+    "ffmpeg"     # Media processing
+    "p7zip"      # Archive handling
+    "poppler"    # PDF rendering
+    "imagemagick" # Image processing
   ];
 
   casks = [

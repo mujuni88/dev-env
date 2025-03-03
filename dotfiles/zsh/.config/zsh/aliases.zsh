@@ -60,6 +60,7 @@ alias tml="tmux ls"
 alias tmk="tmux kill-session -t"
 alias tmd="tmux detach -a"
 alias tmka="killall tmux"
+alias tmuxedit="nvim ~/tmux/.config/tmux/.tmux.conf"
 
 alias killvpn="sudo kill -SEGV $(ps auwx | grep dsAccessService | grep Ss | awk '{print $2}')"
 
