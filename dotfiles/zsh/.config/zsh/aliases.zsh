@@ -58,9 +58,18 @@ alias tmn="tmux new-session -s"
 alias tma="tmux attach -t"
 alias tml="tmux ls"
 alias tmk="tmux kill-session -t"
-alias tmd="tmux detach -a"
+alias tmd="tmux detach"
 alias tmka="killall tmux"
 alias tmuxedit="nvim ~/tmux/.config/tmux/.tmux.conf"
+
+# Zellij
+alias zjn="zellij attach -c"
+alias zja="zellij attach"
+alias zjl="zellij list-sessions"
+alias zjk="zellij kill-session"
+alias zjd="zellij detach"
+alias zjka="killall zellij"
+alias zjedit="nvim ~/.config/zellij/config.kdl"
 
 alias killvpn="sudo kill -SEGV $(ps auwx | grep dsAccessService | grep Ss | awk '{print $2}')"
 

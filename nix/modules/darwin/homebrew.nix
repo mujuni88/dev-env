@@ -117,6 +117,7 @@
     "appcleaner"
     "cleanshot"
     "loom"
+    "muzzle"
 
     # Security and Privacy
     "nordvpn"
