@@ -52,6 +52,7 @@
     
     # Development tools
     "lazygit"    # Terminal UI for git
+    "gh"         # Github CLI
     "neovim"     # Text editor
     "git-delta"  # Better git diff
     "docker"     # Containerization
