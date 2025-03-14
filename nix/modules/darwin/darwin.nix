@@ -44,10 +44,6 @@ in {
     systemPath = [ "/opt/homebrew/bin" ];
   };
 
-  # Auto-upgrade Nix package and daemon service
-  services.nix-daemon.enable = true;
-  security.pam.enableSudoTouchIdAuth = true;
-
   # Nix flakes settings
   nix.settings.experimental-features = "nix-command flakes";
 
