@@ -6,6 +6,7 @@ alias rm="rm -i"
 alias cp="cp -i"
 alias cd="z"
 alias j="z"
+alias lg="lazygit"
 
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
@@ -17,13 +18,13 @@ alias vsh="vim ~/.zshrc"
 
 
 # Project Paths
-alias Code="cd ~/Code/"
+alias Code="cd $MY_CODE"
 alias pr="Code && cd projects"
 alias tuts="Code && cd tutorials"
 
 # ----- Netflix Development -----
 # Directory Navigation
-alias Netflix="Code && cd Netflix"
+alias Netflix="cd $MY_NETFLIX"
 alias auiroot="Netflix && cd ai-animation-ui"
 alias caroot="Netflix && cd pxd-spotlight-ui"
 
@@ -68,7 +69,7 @@ alias zja="zellij attach"
 alias zjl="zellij list-sessions"
 alias zjk="zellij kill-session"
 alias zjd="zellij detach"
-alias zjka="killall zellij"
+alias zjka="zellij kill-all-sessions"
 alias zjedit="nvim ~/.config/zellij/config.kdl"
 
 alias killvpn="sudo kill -SEGV $(ps auwx | grep dsAccessService | grep Ss | awk '{print $2}')"

@@ -7,6 +7,9 @@ eval "$(starship init zsh)"
 # Custom paths
 export MY_DEV="$HOME/dev-env"                # Development environment root
 export MY_NIX="$MY_DEV/nix"                  # Nix configuration
+export MY_CODE="$HOME/Code"
+export MY_NETFLIX="$MY_CODE/Netflix"
+export MY_CAMPAIGN_SCRIPTS="$MY_NETFLIX/campaign-scripts"
 
 # System and application settings
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -24,7 +27,7 @@ export CODEIUM_API_KEY=$(security find-generic-password -s CODEIUM_API_KEY -w)
 
 # ----- Pakh Configuration -----
 # Base PATH
-export PATH="$HOME/bin:$HOME/.local/bin:/opt/homebrew/bin:$PATH"
+export PATH="$HOME/bin:$HOME/.local/bin:/opt/homebrew/bin:$MY_CAMPAIGN_SCRIPTS/bin:$PATH"
 
 # Tool-specific paths
 export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
