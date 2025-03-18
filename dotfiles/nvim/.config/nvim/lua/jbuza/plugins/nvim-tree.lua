@@ -52,6 +52,23 @@ return {
     keymap.set("n", "<leader>ef", "<cmd>NvimTreeFocus<CR>", { desc = "Focus file explorer" })
     keymap.set("n", "<leader>ec", "<cmd>NvimTreeCollapse<CR>", { desc = "Collapse file explorer" })
     keymap.set("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>", { desc = "Refresh file explorer" })
+    
+    -- Quick toggle between tree and buffer
+    keymap.set("n", "<leader>e<leader>", function()
+      local nvim_tree_view = require("nvim-tree.view")
+      if nvim_tree_view.is_visible() then
+        if vim.api.nvim_get_current_win() == nvim_tree_view.get_win_id() then
+          -- If we're in the tree, move to the next window
+          vim.cmd("wincmd l")
+        else
+          -- If we're in a buffer, focus the tree
+          require("nvim-tree.api").tree.focus()
+        end
+      else
+        -- If tree is not visible, open it
+        require("nvim-tree.api").tree.toggle()
+      end
+    end, { desc = "Toggle between tree and buffer" })
 
     -- Window navigation keymaps (these will work in any window including nvim-tree)
     keymap.set("n", "<C-h>", "<C-w>h", { desc = "Navigate to left window" })

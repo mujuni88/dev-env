@@ -64,6 +64,8 @@
     "deno"       # JavaScript/TypeScript runtime
     "go"         # Go programming language
     "fnm"        # Fast Node version manager
+    "node"       # Node.js runtime (needed for LSP servers)
+    "python"     # Python runtime (needed for some LSP servers)
     
     # AI tools
     "ollama"     # Local LLMs
@@ -90,6 +92,7 @@
     # Development
     "visual-studio-code"
     "sublime-text"
+    "cursor"     # Cursor IDE
     "windsurf"
     "ngrok"
 

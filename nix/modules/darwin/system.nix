@@ -18,9 +18,8 @@
       "/Users/jbuza/Applications/ChatGPT.app"
       "/Users/jbuza/Applications/Claude.app"
       "/Users/jbuza/Applications/Windsurf.app"
-      "/Applications/Cursor.app"
+      "/Users/jbuza/Applications/Cursor.app"
       "/Users/jbuza/Applications/Ghostty.app"
-      "/Users/jbuza/Applications/Warp.app"
     ];
   };
 

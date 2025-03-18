@@ -22,9 +22,6 @@ export BUN_INSTALL="$HOME/.bun"
 export PKG_CONFIG_PATH="/opt/homebrew/opt/postgresql@16/lib/pkgconfig"
 export HOMEBREW_CASK_OPTS="--appdir=~/Applications --fontdir=~/Library/Fonts"
 
-# Codeium API Key
-export CODEIUM_API_KEY=$(security find-generic-password -s CODEIUM_API_KEY -w)
-
 # ----- Pakh Configuration -----
 # Base PATH
 export PATH="$HOME/bin:$HOME/.local/bin:/opt/homebrew/bin:$MY_CAMPAIGN_SCRIPTS/bin:$PATH"
@@ -54,31 +51,6 @@ zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:git:*' formats '%b'
 
 # ----- Tool Configurations -----
-# NVM Configuration
-source ~/.nvm/nvm.sh
-autoload -U add-zsh-hook
-
-load-nvmrc() {
-  local node_version="$(nvm version)"
-  local nvmrc_path="$(nvm_find_nvmrc)"
-
-  if [ -n "$nvmrc_path" ]; then
-    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
-    if [ "$nvmrc_node_version" = "N/A" ]; then
-      nvm install
-    elif [ "$nvmrc_node_version" != "$node_version" ]; then
-      nvm use
-    fi
-  elif [ "$node_version" != "$(nvm version default)" ]; then
-    echo "Reverting to nvm default version"
-    nvm use default
-  fi
-}
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
-
-# ----- Additional Tools -----
 # Jabba (Java Version Manager)
 [ -s "$HOME/.jabba/jabba.sh" ] && source "$HOME/.jabba/jabba.sh"
 
@@ -98,9 +70,6 @@ fi
 # Zoxide
 eval "$(zoxide init zsh)"
 
-# Cargo
-. "$HOME/.cargo/env"
-
 # ----- Load Additional Configs -----
 # Load all zsh config files eg. aliases.zsh
 for config_file (~/.config/zsh/*.zsh(N)); do
@@ -109,4 +78,3 @@ done
 
 # Amazon Q post block. Keep at the bottom of this file.
 [[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"
-
