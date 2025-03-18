@@ -18,7 +18,7 @@ My personal development environment for macOS, combining the power of Nix for sy
 
 1. **Prerequisites**
    - macOS
-   - [Nix package manager](https://github.com/DeterminateSystems/nix-installer?tab=readme-ov-file#determinate-nix-installer)
+   - [Nix package manager](nix/README.md)
    - Git
 
 2. **Installation**
