@@ -1,6 +1,14 @@
 # Nix Configuration
 
-This directory contains my Nix-based system configuration for macOS using [nix-darwin](https://github.com/LnL7/nix-darwin). It uses the flakes feature for reproducible builds.
+This directory contains my Nix-based system configuration for macOS using [nix-darwin](https://docs.determinate.systems/getting-started/individuals/). It uses the flakes feature for reproducible builds.
+```bash
+# cd inside nix directory
+cd dev-env/nix
+
+# Run inside nix directory
+nix run nix-darwin/master#darwin-rebuild -- switch 
+```
+
 
 ## Structure
 
