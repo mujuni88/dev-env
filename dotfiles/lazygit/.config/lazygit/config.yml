@@ -1,0 +1,55 @@
+git:
+  paging:
+    colorArg: always
+    pager: delta --dark --paging=never --24-bit-color=never
+  disableForcePushing: true
+  parseEmoji: true
+  disableStartupPopups: true
+  showRandomTip: false
+  showFileTree: true
+  showListHeader: false
+  showCommandLog: true
+  showBottomLine: true
+  showPanelJumps: true
+  showBranchCommitHash: true
+  showFileIcons: true
+  showUntrackedFiles: true
+  showIncompleteTodos: false
+  showCommitLength: true
+  showStashCount: true
+  showLineNumbers: true
+  showChangedFiles: true
+  autoFetch: true
+  autoRefresh: true
+  fetchAll: true
+  branchLogCmd: "git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium --oneline {{branchName}} --"
+  allBranchesLogCmd: "git log --graph --all --color=always --abbrev-commit --decorate --date=relative  --pretty=medium"
+  overrideGpg: false
+  mainBranches: ['master', 'main']
+  skipHookPrefix: WIP
+  commitPrefixes: {}
+  tags:
+    enabled: false
+
+gui:
+  showIcons: true
+  theme:
+    lightTheme: false
+    activeBorderColor:
+      - "#3d59a1"
+      - bold
+    inactiveBorderColor:
+      - "#a0a8b7"
+    selectedLineBgColor:
+      - "#444b71"
+
+os:
+  editPreset: "nvim"
+
+customCommands:
+  - key: "C"
+    command: "git cz"
+    description: "commit with commitizen"
+    context: "files"
+    loadingText: "opening commitizen commit tool"
+    subprocess: true

@@ -52,6 +52,7 @@
     
     # Development tools
     "lazygit"    # Terminal UI for git
+    "commitizen" # Git commit conventions tool
     "gh"         # Github CLI
     "neovim"     # Text editor
     "git-delta"  # Better git diff
