@@ -1,10 +1,9 @@
 # Nix Configuration
 
 This directory contains my Nix-based system configuration for macOS using [nix-darwin](https://github.com/LnL7/nix-darwin?tab=readme-ov-file). It uses the flakes feature for reproducible builds.
-1. Install [Nix](https://github.com/DeterminateSystems/nix-installer?tab=readme-ov-file#determinate-nix-installer). Choose vanilla option without `--determinate` flag. 
+1. Install [Nix](https://nixos.org/download/)
 ```bash
-curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | \
-  sh -s -- install
+sh <(curl -L https://nixos.org/nix/install)
 ```
 
 2. Buld your flake
@@ -13,7 +12,7 @@ curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix 
 cd dev-env/nix
 
 # Run inside nix directory
-nix run nix-darwin/master#darwin-rebuild -- switch 
+nix --extra-experimental-features "nix-command flakes" run nix-darwin/master#darwin-rebuild -- switch 
 ```
 
 
