@@ -1,6 +1,13 @@
 # Nix Configuration
 
-This directory contains my Nix-based system configuration for macOS using [nix-darwin](https://docs.determinate.systems/getting-started/individuals/). It uses the flakes feature for reproducible builds.
+This directory contains my Nix-based system configuration for macOS using [nix-darwin](https://github.com/LnL7/nix-darwin?tab=readme-ov-file). It uses the flakes feature for reproducible builds.
+1. Install [Nix](https://github.com/DeterminateSystems/nix-installer?tab=readme-ov-file#determinate-nix-installer). Choose vanilla option without `--determinate` flag. 
+```bash
+curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | \
+  sh -s -- install
+```
+
+2. Buld your flake
 ```bash
 # cd inside nix directory
 cd dev-env/nix
