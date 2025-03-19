@@ -44,6 +44,13 @@ in {
     systemPath = [ "/opt/homebrew/bin" ];
   };
 
+  security.pam.services.sudo_local = {
+    enable = true;
+    reattach = true;
+    touchIdAuth = true;
+    watchIdAuth = true;
+  };
+
   # Nix flakes settings
   nix.settings.experimental-features = "nix-command flakes";
 
