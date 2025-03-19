@@ -86,9 +86,6 @@
     "warp"
     "amazon-q"
 
-    # Window management
-    # "nikitabobko/tap/aerospace"
-
     # Development
     "visual-studio-code"
     "sublime-text"
@@ -117,6 +114,7 @@
     # Media and Entertainment
     "spotify"
     "iina"
+    "notunes"
 
     # Utility Applications
     "appcleaner"
