@@ -25,6 +25,7 @@
 
   # Finder settings
   finder = {
+    AppleShowAllFiles = true;
     AppleShowAllExtensions = true;
     ShowPathbar = true;
     FXEnableExtensionChangeWarning = false;
