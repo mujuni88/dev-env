@@ -133,7 +133,7 @@
     # Finance and Cryptocurrency
     "ledger-live"
 
-    # Keyboard Management
+    # Keyboard/Navigation Management
     "karabiner-elements"
     "homerow"
   ];
