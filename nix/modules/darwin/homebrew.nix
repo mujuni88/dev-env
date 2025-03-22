@@ -126,6 +126,7 @@
     "cleanshot"
     "loom"
     "muzzle"
+    "canva"
 
     # Security and Privacy
     "nordvpn"
