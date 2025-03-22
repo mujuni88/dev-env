@@ -42,6 +42,7 @@ return {
         "query",
         "vimdoc",
         "c",
+        "kdl",
       },
       incremental_selection = {
         enable = true,
@@ -52,6 +53,10 @@ return {
           node_decremental = "<bs>",
         },
       },
+      modules = {},
+      sync_install = false,
+      ignore_install = {},
+      auto_install = true,
     })
   end,
 }
