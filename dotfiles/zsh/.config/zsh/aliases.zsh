@@ -38,12 +38,6 @@ alias nyarnx="newt exec yarn dlx"
 alias mtr="metatron refresh"
 alias killuiport="killport 8180 && killport 8080 && killport 3000"
 
-# Speakeasy (AI Animation UI)
-alias speakw="nnpm --workspace=@animation-ui/speakeasy"
-alias speaks="killuiport && auiroot && nnpm install && newt develop --app speakeasy"
-alias speakt="speakw run generate-types"
-alias speaktw="speakw run generate-types:watch"
-
 # Campaign Assistant UI
 alias camp="killuiport && caroot && nyarn install && newt develop"
 alias campgen="caroot && nyarn graphql:generate" 
@@ -64,12 +58,14 @@ alias tmka="killall tmux"
 alias tmuxedit="nvim ~/tmux/.config/tmux/.tmux.conf"
 
 # Zellij
-alias zjn="zellij attach -c"
-alias zja="zellij attach"
+alias zj="zellij"
+alias zja="zellij attach -c"
+alias zjd="zellij detach"
 alias zjl="zellij list-sessions"
 alias zjk="zellij kill-session"
-alias zjd="zellij detach"
 alias zjka="zellij kill-all-sessions"
+alias zjd="zellij delete-session"
+alias zjda="zellij delete-all-sessions"
 alias zjedit="nvim ~/.config/zellij/config.kdl"
 
 alias killvpn="sudo kill -SEGV $(ps auwx | grep dsAccessService | grep Ss | awk '{print $2}')"
@@ -83,7 +79,6 @@ alias szsh="source ~/.zshrc"
 # ----- Development Environment -----
 alias devenv="cd $MY_DEV"
 alias devedit="cd $MY_DEV && nvim ."
-alias aeroedit="cd $MY_DEV/dotfiles/aerospace/.config/aerospace/ && nvim aerospace.toml"
 
 # ----- Dotfiles -----
 alias dots="cd $MY_DEV/dotfiles && stow -v -R */"
