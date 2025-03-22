@@ -2,11 +2,17 @@
   # Enable Homebrew support in the Nix configuration
   enable = true;
 
-  # Automatically update Homebrew formulas on activation (when Nix configuration is applied)
-  onActivation.autoUpdate = true;
+  # Configure Homebrew activation behavior
+  onActivation = {
+    # Automatically update Homebrew formulas on activation
+    autoUpdate = true;
 
-  # Upgrade installed packages to their latest versions on activation
-  onActivation.upgrade = true;
+    # Upgrade installed packages to their latest versions
+    upgrade = true;
+
+    # Cleanup Homebrew packages not in the config
+    cleanup = "uninstall";
+  };
 
   # Set installation directories and disable quarantine
   caskArgs = {
@@ -16,10 +22,7 @@
   };
 
   # Use a global Brewfile to manage Homebrew dependencies across the system
-  global.brewfile = true;
-
-  # Cleanup Homebrew packages not in the config
-  onActivation.cleanup = "uninstall";
+  global.brewfile = false;
 
   brews = [
     # Package manager and utilities
@@ -27,56 +30,58 @@
     "mas"
     "stow"
     "gnu-sed"
-    
+    "homebrew-bundle" # Enable brew bundle command
+
     # Shell and terminal enhancements
     "zsh"
     "zsh-syntax-highlighting"
     "zsh-autocomplete"
-    "starship"   # Prompt customization
-    "zoxide"     # Smart directory jumping
-    "fzf"        # Fuzzy finder
-    "atuin"      # Shell history manager
-    "nushell"    # Modern shell alternative
-    
+    "starship" # Prompt customization
+    "zoxide" # Smart directory jumping
+    "fzf" # Fuzzy finder
+    "atuin" # Shell history manager
+    "nushell" # Modern shell alternative
+
     # Terminal multiplexers
-    "tmux"       # Terminal multiplexer
-    "zellij"     # Alternative terminal multiplexer with Rust
-    
+    "tmux" # Terminal multiplexer
+    "zellij" # Alternative terminal multiplexer with Rust
+
     # CLI tools and utilities
-    "bat"        # Better cat with syntax highlighting
-    "ripgrep"    # Fast text search
-    "eza"        # Modern ls replacement
-    "tree"       # Directory structure visualization
-    "fd"         # Better alternative to find
-    "jq"         # JSON processor
-    
+    "bat" # Better cat with syntax highlighting
+    "ripgrep" # Fast text search
+    "eza" # Modern ls replacement
+    "tree" # Directory structure visualization
+    "fd" # Better alternative to find
+    "jq" # JSON processor
+    "wget" # Command-line tool for downloading files
+
     # Development tools
-    "lazygit"    # Terminal UI for git
+    "lazygit" # Terminal UI for git
     "commitizen" # Git commit conventions tool
-    "gh"         # Github CLI
-    "neovim"     # Text editor
-    "git-delta"  # Better git diff
-    "docker"     # Containerization
+    "gh" # Github CLI
+    "neovim" # Text editor
+    "git-delta" # Better git diff
+    "docker" # Containerization
     "lazydocker" # Terminal UI for docker
-    
+
     # Programming languages and runtimes
-    "rustup"     # Rust toolchain installer
-    "deno"       # JavaScript/TypeScript runtime
-    "go"         # Go programming language
-    "fnm"        # Fast Node version manager
-    "node"       # Node.js runtime (needed for LSP servers)
-    "python"     # Python runtime (needed for some LSP servers)
-    
+    "rustup" # Rust toolchain installer
+    "deno" # JavaScript/TypeScript runtime
+    "go" # Go programming language
+    "fnm" # Fast Node version manager
+    "node" # Node.js runtime (needed for LSP servers)
+    "python" # Python runtime (needed for some LSP servers)
+
     # AI tools
-    "ollama"     # Local LLMs
-    
+    "ollama" # Local LLMs
+
     # File management
-    "yazi"       # Terminal file manager
-    
+    "yazi" # Terminal file manager
+
     # Yazi dependencies
-    "ffmpeg"     # Media processing
-    "p7zip"      # Archive handling
-    "poppler"    # PDF rendering
+    "ffmpeg" # Media processing
+    "p7zip" # Archive handling
+    "poppler" # PDF rendering
     "imagemagick" # Image processing
   ];
 
@@ -89,7 +94,7 @@
     # Development
     "visual-studio-code"
     "sublime-text"
-    "cursor"     # Cursor IDE
+    "cursor" # Cursor IDE
     "windsurf"
     "ngrok"
 
@@ -134,7 +139,7 @@
   ];
 
   masApps = {
-    "PastePal" = 1503446680; 
+    "PastePal" = 1503446680;
     "Yoink" = 457622435;
     "SparkMail" = 1176895641;
   };
