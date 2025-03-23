@@ -30,7 +30,6 @@
     "mas"
     "stow"
     "gnu-sed"
-    "homebrew-bundle" # Enable brew bundle command
 
     # Shell and terminal enhancements
     "zsh"
