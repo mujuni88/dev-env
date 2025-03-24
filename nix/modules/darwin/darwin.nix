@@ -4,7 +4,6 @@
 
   # Import system packages and homebrew configurations
   packages = import ./packages.nix {inherit pkgs;};
-  systemConfig = import ./system.nix;
   homebrewConfig = import ./homebrew.nix;
 in {
   nixpkgs.config.allowUnfree = true;
@@ -15,8 +14,8 @@ in {
 
   # System configurations
   system = {
-    stateVersion = 5;  # Match the version in system.nix
-    
+    stateVersion = 5; # Match the version in system.nix
+
     # Configure trackpad behavior
     activationScripts.postActivation.text = ''
       # Load trackpad settings
@@ -25,7 +24,53 @@ in {
     '';
 
     # Import system defaults from system.nix
-    defaults = systemConfig;
+    defaults = {
+      # Dock settings
+      dock = {
+        autohide = true;
+        autohide-delay = 0.0;
+        autohide-time-modifier = 1.0;
+        orientation = "bottom";
+        show-recents = false;
+        launchanim = true;
+        tilesize = 48;
+        persistent-apps = [
+          "/System/Applications/iPhone Mirroring.app"
+          "/Users/jbuza/Applications/AppCleaner.app"
+          "/Applications/Spark.app"
+          "/System/Applications/Calendar.app"
+          "/System/Applications/Messages.app"
+          "/Users/jbuza/Applications/Slack.app"
+          "/Users/jbuza/Applications/Arc.app"
+          "/Users/jbuza/Applications/Notion.app"
+          "/Users/jbuza/Applications/ChatGPT.app"
+          "/Users/jbuza/Applications/Claude.app"
+          "/Users/jbuza/Applications/Windsurf.app"
+          "/Users/jbuza/Applications/Cursor.app"
+          "/Users/jbuza/Applications/Ghostty.app"
+        ];
+      };
+
+      # Finder settings
+      finder = {
+        AppleShowAllFiles = true;
+        AppleShowAllExtensions = true;
+        ShowPathbar = true;
+        FXEnableExtensionChangeWarning = false;
+        FXPreferredViewStyle = "clmv";
+      };
+
+      # Screensaver settings
+      screensaver = {
+        askForPasswordDelay = 10;
+      };
+
+      # Global macOS settings
+      NSGlobalDomain = {
+        AppleInterfaceStyle = "Dark";
+        KeyRepeat = 3;
+      };
+    };
 
     # Keyboard settings
     keyboard = {
@@ -41,7 +86,7 @@ in {
 
   # Environment variables
   environment = {
-    systemPath = [ "/opt/homebrew/bin" ];
+    systemPath = ["/opt/homebrew/bin"];
   };
 
   security.pam.services.sudo_local = {
