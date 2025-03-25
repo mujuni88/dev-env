@@ -68,20 +68,20 @@ keybinds clear-defaults=true {
         bind "l" { Resize "Increase right"; }
         bind "Ctrl n" { SwitchToMode "normal"; }
     }
-    // move {
-    //     bind "left" { MovePane "left"; }
-    //     bind "down" { MovePane "down"; }
-    //     bind "up" { MovePane "up"; }
-    //     bind "right" { MovePane "right"; }
-    //     bind "h" { MovePane "left"; }
-    //     bind "Ctrl h" { SwitchToMode "normal"; }
-    //     bind "j" { MovePane "down"; }
-    //     bind "k" { MovePane "up"; }
-    //     bind "l" { MovePane "right"; }
-    //     bind "n" { MovePane; }
-    //     bind "p" { MovePaneBackwards; }
-    //     bind "tab" { MovePane; }
-    // }
+    move {
+        bind "left" { MovePane "left"; }
+        bind "down" { MovePane "down"; }
+        bind "up" { MovePane "up"; }
+        bind "right" { MovePane "right"; }
+        bind "h" { MovePane "left"; }
+        bind "Ctrl m" { SwitchToMode "normal"; }
+        bind "j" { MovePane "down"; }
+        bind "k" { MovePane "up"; }
+        bind "l" { MovePane "right"; }
+        bind "n" { MovePane; }
+        bind "p" { MovePaneBackwards; }
+        bind "tab" { MovePane; }
+    }
     scroll {
         bind "Alt left" { MoveFocusOrTab "left"; SwitchToMode "normal"; }
         bind "Alt down" { MoveFocus "down"; SwitchToMode "normal"; }
@@ -139,7 +139,7 @@ keybinds clear-defaults=true {
         bind "Ctrl q" { Quit; }
     }
     shared_except "locked" "move" {
-        // Removed Ctrl-h binding
+        bind "Ctrl m" { SwitchToMode "move"; }
     }
     shared_except "locked" "session" {
         bind "Ctrl o" { SwitchToMode "session"; }
