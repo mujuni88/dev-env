@@ -21,6 +21,7 @@ return {
 				lua = { "stylua" },
 				python = { "isort", "black" },
 				nix = { "alejandra" },
+				kdl = { "kdlfmt" },
 			},
 			format_on_save = {
 				lsp_fallback = true,
