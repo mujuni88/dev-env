@@ -45,7 +45,7 @@ alias campstory="caroot && nyarn storybook"
 alias campt="caroot && nyarn test:plugin campaigns"
 alias campts="caroot && nyarn workspace @netflix-console/campaign-assistant-components typecheck"
 alias camppts="caroot && nyarn workspace @netflix-console/plugin-campaigns typecheck"
-
+alias campnew='createcampaign "Joe Test" "Test" jbuza'
 # ----- End Netflix Development -----
 
 # Tmux
