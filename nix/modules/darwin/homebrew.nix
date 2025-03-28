@@ -126,6 +126,7 @@
     "loom"
     "muzzle"
     "canva"
+    "grammarly-desktop"
 
     # Security and Privacy
     "nordvpn"
