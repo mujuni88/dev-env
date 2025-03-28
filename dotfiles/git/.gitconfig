@@ -2,7 +2,7 @@
 # Do not remove the above line. The metatron CLI uses it to update this file.
 # Set git proxy configuration (must be the first directive in this file)
 [include]
-    path = /Users/jbuza/.gitconfig-proxy
+  path = /Users/jbuza/.gitconfig-proxy
 # Do not remove the below line. The metatron CLI uses it to update this file.
 ##### END METATRON AUTOCONFIG
 [user]
@@ -76,23 +76,24 @@
 [difftool]
   prompt = false
 [github]
- user = mujuni88
+  user = mujuni88
 [rerere]
- enabled = true
+  enabled = true
 [submodule]
- recurse = true
+  recurse = true
 [pull]
-	rebase = true
+  rebase = true
 [rebase]
-	updateRefs = true
+  autosquash = true
+  updateRefs = true
 [init]
-	defaultBranch = main
+  defaultBranch = main
 [core]
   editor = nvim
   pager = delta --features "$(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo default || echo GitHub)"
 
 [interactive]
-    diffFilter = delta --color-only
+  diffFilter = delta --color-only
 [delta]
   features = DarkNeon
   navigate = true    # use n and N to move between diff sections
