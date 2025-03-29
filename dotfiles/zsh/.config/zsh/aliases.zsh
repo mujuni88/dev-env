@@ -14,8 +14,8 @@ alias path='echo -e ${PATH//:/\\n}'
 # Vim
 alias vi="nvim"
 alias vim="nvim"
-alias vsh="vim ~/.zshrc"
-
+alias zshedit="vim ~/.zshrc"
+alias vimedit="cd ~/.config/nvim && nvim ."
 
 # Project Paths
 alias Code="cd $MY_CODE"
