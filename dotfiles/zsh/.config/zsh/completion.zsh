@@ -15,6 +15,9 @@ if type brew &>/dev/null; then
     source $(brew --prefix)/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 fi
 
+# Docker completions
+fpath=(/Users/jbuza/.docker/completions $fpath)
+
 # Completion settings
 zstyle ':completion:*' menu select  # Enable menu-style completion
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'  # Case-insensitive completion
