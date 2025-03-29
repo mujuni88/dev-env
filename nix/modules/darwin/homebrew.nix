@@ -62,6 +62,9 @@
     "git-delta" # Better git diff
     "docker" # Containerization
     "lazydocker" # Terminal UI for docker
+    "docker-compose" # Docker Compose for multi-container apps
+    "docker-credential-helper" # Docker credential helper
+    "docker-buildx" # Docker BuildKit CLI
 
     # Programming languages and runtimes
     "rustup" # Rust toolchain installer
@@ -96,6 +99,7 @@
     "cursor" # Cursor IDE
     "windsurf"
     "ngrok"
+    "docker" # Docker Desktop for macOS
 
     # Web Browsers
     "arc"
