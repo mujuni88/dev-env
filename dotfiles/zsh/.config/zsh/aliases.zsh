@@ -93,3 +93,5 @@ alias nixup="cd $MY_NIX && nix flake update && nixswitch"
 
 # Open nix configuration in neovim
 alias nixedit="cd $MY_NIX && nvim ."
+# ----- Nix -----
+

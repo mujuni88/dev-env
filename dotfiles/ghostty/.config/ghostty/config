@@ -14,9 +14,14 @@
 # cursor-style-blink = false
 
 # # Color scheme (Tokyo Night)
-background = "#1a1b26"
-foreground = "#c0caf5"
-cursor-color = "#c0caf5"
+# theme = ultradark
+# theme = cyberdream
+# theme = catppuccin-mocha
+# theme = gruvbox-material
+# theme = gruvboxdark
+# theme = gruvboxdarkhard
+theme = "Everforest Dark - Hard"
+# theme = "Kanagawa Wave"
 
 # # Normal colors
 # palette = 0=#15161e

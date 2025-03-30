@@ -1,3 +1,5 @@
+// theme "gruvbox-dark"
+theme "kanagawa"
 keybinds clear-defaults=true {
     locked {
         bind "Ctrl g" {
