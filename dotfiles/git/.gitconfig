@@ -2,7 +2,7 @@
 # Do not remove the above line. The metatron CLI uses it to update this file.
 # Set git proxy configuration (must be the first directive in this file)
 [include]
-  path = /Users/jbuza/.gitconfig-proxy
+    path = /Users/jbuza/.gitconfig-proxy
 # Do not remove the below line. The metatron CLI uses it to update this file.
 ##### END METATRON AUTOCONFIG
 [user]
