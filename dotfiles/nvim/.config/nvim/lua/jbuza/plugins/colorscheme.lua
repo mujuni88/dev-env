@@ -5,14 +5,15 @@
   "catppuccin/nvim" -> catppuccin-mocha
   "neanias/everforest-nvim" -> everforest
   "rebelot/kanagawa.nvim" -> kanagawa-wave
+  "dasupradyumna/midnight.nvim" -> midnight
+	"rebelot/kanagawa.nvim" -> kanagawa-wave
 ]]
 
 return {
-	"rebelot/kanagawa.nvim",
-	version = false,
+	"dasupradyumna/midnight.nvim",
 	lazy = false,
 	priority = 1000,
 	config = function()
-		vim.cmd("colorscheme kanagawa-wave")
+		vim.cmd("colorscheme midnight")
 	end,
 }
