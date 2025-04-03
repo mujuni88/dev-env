@@ -12,7 +12,15 @@ done
 shift $((OPTIND - 1))
 
 if [ $# -ne 2 ]; then
-  echo "Usage: getfiles [-e extension to be ignored] <source_dir> <dest_dir>"
+  echo "Usage: getfiles [-e extension] <source_dir> <dest_dir>"
+  echo "  -e: File extension to ignore (can be specified multiple times)"
+  echo "  source_dir: Directory to copy files from"
+  echo "  dest_dir: Directory to copy files to"
+  echo ""
+  echo "Examples:"
+  echo "  getfiles src/ dist/                    # Copy all files except common images"
+  echo "  getfiles -e pdf -e doc src/ dist/      # Copy files excluding PDFs and docs"
+  echo "  getfiles -e png -e jpg src/ dist/      # Copy files excluding PNGs and JPGs"
   exit 1
 fi
 
@@ -24,6 +32,11 @@ mkdir -p "$DEST_DIR"
 
 # Construct find command with exclusions
 find_cmd=(find "$SOURCE_DIR" -type f)
+
+# If no extensions provided, ignore common image formats
+if [ ${#IGNORE_EXTS[@]} -eq 0 ]; then
+    IGNORE_EXTS=("png" "svg" "jpg")
+fi
 
 # Append exclusions for file extensions
 for ext in "${IGNORE_EXTS[@]}"; do
