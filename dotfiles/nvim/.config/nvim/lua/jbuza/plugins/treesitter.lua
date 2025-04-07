@@ -16,6 +16,8 @@ return {
       },
       -- enable indentation
       indent = { enable = true },
+      -- enable folding
+      fold = { enable = true },
       -- enable autotagging (w/ nvim-ts-autotag plugin)
       autotag = {
         enable = true,
@@ -58,5 +60,11 @@ return {
       ignore_install = {},
       auto_install = true,
     })
+
+    -- Set folding options
+    vim.opt.foldmethod = "expr"
+    vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+    vim.opt.foldenable = true
+    vim.opt.foldlevel = 99 -- Start with all folds open
   end,
 }
