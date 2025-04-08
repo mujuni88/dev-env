@@ -143,6 +143,7 @@
     "PastePal" = 1503446680;
     "Yoink" = 457622435;
     "SparkMail" = 1176895641;
+    "SparkMailAI" = 6445813049;
     "Skitch" = 425955336;
   };
 }
