@@ -3,17 +3,16 @@
   "scottmckendry/cyberdream.nvim" -> cyberdream  
   "olimorris/onedarkpro.nvim" -> onedark
   "catppuccin/nvim" -> catppuccin-mocha
-  "neanias/everforest-nvim" -> everforest
+  "sainnhe/everforest" -> everforest
   "rebelot/kanagawa.nvim" -> kanagawa-wave
   "dasupradyumna/midnight.nvim" -> midnight
-	"rebelot/kanagawa.nvim" -> kanagawa-wave
 ]]
 
 return {
-	"dasupradyumna/midnight.nvim",
+	"sainnhe/everforest",
 	lazy = false,
 	priority = 1000,
 	config = function()
-		vim.cmd("colorscheme midnight")
+		vim.cmd("colorscheme everforest")
 	end,
 }
