@@ -35,7 +35,7 @@ alias nnode="newt exec node"
 alias nnpmr="newt exec npm run"
 alias nyarn="newt exec yarn"
 alias nyarnx="newt exec yarn dlx"
-alias mtr="metatron refresh"
+alias mtr="metatron enroll"
 alias killuiport="killport 8180 && killport 8080 && killport 3000"
 
 # Campaign Assistant UI
