@@ -69,6 +69,7 @@
     "fnm" # Fast Node version manager
     "node" # Node.js runtime (needed for LSP servers)
     "python" # Python runtime (needed for some LSP servers)
+    "luarocks" # Lua package manager
 
     # AI tools
     "ollama" # Local LLMs
@@ -95,6 +96,7 @@
     "cursor" # Cursor IDE
     "windsurf"
     "ngrok"
+    "openjdk" # Java Development Kit
     "docker" # Docker Desktop for macOS
 
     # Web Browsers
