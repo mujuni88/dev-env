@@ -96,7 +96,7 @@
     "cursor" # Cursor IDE
     "windsurf"
     "ngrok"
-    "openjdk" # Java Development Kit
+    "temurin" # Eclipse Temurin OpenJDK distribution
     "docker" # Docker Desktop for macOS
 
     # Web Browsers
