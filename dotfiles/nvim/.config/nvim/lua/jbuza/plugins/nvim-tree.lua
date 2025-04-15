@@ -52,6 +52,13 @@ return {
 		keymap.set("n", "<leader>ef", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "Focus file explorer" })
 		keymap.set("n", "<leader>ec", "<cmd>NvimTreeCollapse<CR>", { desc = "Collapse file explorer" })
 		keymap.set("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>", { desc = "Refresh file explorer" })
+		keymap.set("n", "<leader>er", function()
+			local api = require("nvim-tree.api")
+			local node = api.tree.get_node_under_cursor()
+			if node and node.absolute_path then
+				vim.fn.jobstart({ "open", "-R", node.absolute_path }, { detach = true })
+			end
+		end, { desc = "Reveal in Finder" })
 
 		keymap.set("n", "<C-h>", "<C-w>h", { desc = "Navigate to left window" })
 		keymap.set("n", "<C-l>", "<C-w>l", { desc = "Navigate to right window" })
