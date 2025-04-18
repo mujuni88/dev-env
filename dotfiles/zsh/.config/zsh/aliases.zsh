@@ -43,8 +43,8 @@ alias camp="killuiport && caroot && nyarn install && newt develop"
 alias campgen="caroot && nyarn graphql:generate" 
 alias campstory="caroot && nyarn storybook" 
 alias campt="caroot && nyarn test:plugin campaigns"
-alias campty="caroot && nyarn workspace @netflix-console/plugin-campaigns typecheck"
-alias casty="caroot && nyarn workspace @netflix-console/campaign-assistant-components typecheck"
+alias campts="caroot && nyarn workspace @netflix-console/plugin-campaigns typecheck"
+alias casts="caroot && nyarn workspace @netflix-console/campaign-assistant-components typecheck"
 alias cast="caroot && nyarn workspace @netflix-console/campaign-assistant-components test"
 
 alias campnew='createcampaign "Joe Test" "Test" jbuza'
