@@ -38,14 +38,15 @@ alias nyarnx="newt exec yarn dlx"
 alias mtr="metatron enroll"
 alias killuiport="killport 8180 && killport 8080 && killport 3000"
 
-# Campaign Assistant UI
+# Campaign UI
 alias camp="killuiport && caroot && nyarn install && newt develop"
 alias campgen="caroot && nyarn graphql:generate" 
 alias campstory="caroot && nyarn storybook" 
 alias campt="caroot && nyarn test:plugin campaigns"
-alias campts="caroot && nyarn workspace @netflix-console/campaign-assistant-components typecheck"
-alias campat="caroot && nyarn workspace @netflix-console/campaign-assistant-components test"
-alias camppts="caroot && nyarn workspace @netflix-console/plugin-campaigns typecheck"
+alias campty="caroot && nyarn workspace @netflix-console/plugin-campaigns typecheck"
+alias casty="caroot && nyarn workspace @netflix-console/campaign-assistant-components typecheck"
+alias cast="caroot && nyarn workspace @netflix-console/campaign-assistant-components test"
+
 alias campnew='createcampaign "Joe Test" "Test" jbuza'
 # ----- End Netflix Development -----
 
