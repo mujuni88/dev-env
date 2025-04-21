@@ -139,6 +139,7 @@
     # Keyboard/Navigation Management
     "karabiner-elements"
     "homerow"
+    "bazecor" # Dygma Keyboard Configurator
   ];
 
   masApps = {
