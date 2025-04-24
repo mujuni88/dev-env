@@ -28,3 +28,6 @@ alias gri='git rebase -i HEAD~'
 alias gbnew='git br-new'
 alias gbold='git br-old'
 alias gm='git co main'
+
+# Add alias for getting recent branches (useful for quick reference)
+alias gbr='git for-each-ref --sort=-committerdate refs/heads/ --format="%(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) (%(color:green)%(committerdate:relative)%(color:reset))" | head -n 10'

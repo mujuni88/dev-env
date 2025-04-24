@@ -8,12 +8,21 @@ if type brew &>/dev/null; then
     FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
     FPATH="$(brew --prefix)/share/zsh-completions:${FPATH}"
     
-    # Initialize zsh-syntax-highlighting
+    # Initialize zsh-autosuggestions
+    source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    
+    # Initialize zsh-syntax-highlighting (must be after other plugins)
     source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     
-    # Initialize zsh-autocomplete
+    # Initialize zsh-autocomplete (must be last)
     source $(brew --prefix)/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 fi
+
+# Autosuggestions configuration
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
+bindkey '^[[Z' autosuggest-accept  # Shift + Tab to accept suggestion
 
 # Docker completions
 fpath=(/Users/jbuza/.docker/completions $fpath)
