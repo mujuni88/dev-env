@@ -314,14 +314,14 @@ keybinds clear-defaults=true {
         }
     }
     session {
+        bind "Alt s" {
+            SwitchToMode "normal"
+        }
         bind "c" {
             LaunchOrFocusPlugin "configuration" {
                 floating true
                 move_to_focused_tab true
             }
-            SwitchToMode "normal"
-        }
-        bind "Ctrl o" {
             SwitchToMode "normal"
         }
         bind "p" {
@@ -358,6 +358,9 @@ keybinds clear-defaults=true {
         bind "Alt f" {
             ToggleFloatingPanes
         }
+        bind "Alt x" {
+            CloseFocus
+        }
         bind "Ctrl g" {
             SwitchToMode "locked"
         }
@@ -380,7 +383,7 @@ keybinds clear-defaults=true {
         }
     }
     shared_except "locked" "session" {
-        bind "Ctrl o" {
+        bind "Alt s" {
             SwitchToMode "session"
         }
     }
@@ -408,11 +411,6 @@ keybinds clear-defaults=true {
         }
         bind "Alt l" {
             MoveFocusOrTab "right"
-        }
-    }
-    shared_except "locked" "scroll" "search" "tmux" {
-        bind "Ctrl b" {
-            SwitchToMode "tmux"
         }
     }
     shared_except "locked" "scroll" "search" {
@@ -445,7 +443,7 @@ keybinds clear-defaults=true {
             SwitchToMode "normal"
         }
     }
-    shared_among "pane" "tmux" {
+    shared_among "pane" {
         bind "x" {
             CloseFocus
             SwitchToMode "normal"
@@ -530,83 +528,9 @@ keybinds clear-defaults=true {
             SwitchToMode "pane"
         }
     }
-    shared_among "session" "tmux" {
+    session {
         bind "d" {
             Detach
-        }
-    }
-    tmux {
-        bind "left" {
-            MoveFocus "left"
-            SwitchToMode "normal"
-        }
-        bind "down" {
-            MoveFocus "down"
-            SwitchToMode "normal"
-        }
-        bind "up" {
-            MoveFocus "up"
-            SwitchToMode "normal"
-        }
-        bind "right" {
-            MoveFocus "right"
-            SwitchToMode "normal"
-        }
-        bind "space" {
-            NextSwapLayout
-        }
-        bind "\"" {
-            NewPane "down"
-            SwitchToMode "normal"
-        }
-        bind "%" {
-            NewPane "right"
-            SwitchToMode "normal"
-        }
-        bind "," {
-            SwitchToMode "renametab"
-        }
-        bind "[" {
-            SwitchToMode "scroll"
-        }
-        bind "Ctrl b" {
-            Write 2
-            SwitchToMode "normal"
-        }
-        bind "c" {
-            NewTab
-            SwitchToMode "normal"
-        }
-        bind "h" {
-            MoveFocus "left"
-            SwitchToMode "normal"
-        }
-        bind "j" {
-            MoveFocus "down"
-            SwitchToMode "normal"
-        }
-        bind "k" {
-            MoveFocus "up"
-            SwitchToMode "normal"
-        }
-        bind "l" {
-            MoveFocus "right"
-            SwitchToMode "normal"
-        }
-        bind "n" {
-            GoToNextTab
-            SwitchToMode "normal"
-        }
-        bind "o" {
-            FocusNextPane
-        }
-        bind "p" {
-            GoToPreviousTab
-            SwitchToMode "normal"
-        }
-        bind "z" {
-            ToggleFocusFullscreen
-            SwitchToMode "normal"
         }
     }
 }
