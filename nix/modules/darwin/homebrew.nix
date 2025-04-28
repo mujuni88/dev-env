@@ -65,6 +65,7 @@
     # Programming languages and runtimes
     "rustup" # Rust toolchain installer
     "deno" # JavaScript/TypeScript runtime
+    "oven-sh/bun/bun" # JavaScript/TypeScript runtime
     "go" # Go programming language
     "fnm" # Fast Node version manager
     "node" # Node.js runtime (needed for LSP servers)
