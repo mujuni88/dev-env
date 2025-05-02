@@ -55,6 +55,7 @@
     "wget" # Command-line tool for downloading files
 
     # Development tools
+    "jj" # A more improved Git
     "lazygit" # Terminal UI for git
     "commitizen" # Git commit conventions tool
     "gh" # Github CLI
