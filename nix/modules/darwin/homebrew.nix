@@ -34,6 +34,7 @@
     # Shell and terminal enhancements
     "zsh"
     "zsh-syntax-highlighting"
+    "zsh-autosuggestions"
     "zsh-autocomplete"
     "carapace" # autcomplete
     "starship" # Prompt customization
