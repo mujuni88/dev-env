@@ -35,6 +35,7 @@
     "zsh"
     "zsh-syntax-highlighting"
     "zsh-autocomplete"
+    "carapace" # autcomplete
     "starship" # Prompt customization
     "zoxide" # Smart directory jumping
     "fzf" # Fuzzy finder
