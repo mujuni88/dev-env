@@ -15,4 +15,7 @@
 # Also see `help config env` for more options.
 #
 # You can remove these comments if you want or leave
-# them for future reference.
+
+$env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
+mkdir ~/.cache/carapace
+carapace _carapace nushell | save --force ~/.cache/carapace/init.nu them for future reference.
