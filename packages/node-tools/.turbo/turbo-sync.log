@@ -1,0 +1,2 @@
+
+[0m[2m[35m$[0m [2m[1mnpm install -g $(jq -r '.dependencies | keys | join(" ")' package.json)[0m

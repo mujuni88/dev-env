@@ -1,0 +1,6 @@
+
+[0m[2m[35m$[0m [2m[1mdarwin-rebuild switch --flake .#macos && nix-collect-garbage --delete-old[0m
+building the system configuration...
+[0m[K[K[35;1mwarning:[0m Git tree '/Users/jbuza/dev-env' is dirty[0m
+evaluating derivation 'git+file:///Users/jbuza/dev-env?dir=packages/nix#darwinCo[0m[Kcopying '/Users/jbuza/dev-env/Users/jbuza/dev-env/' to the store[0m[K[K[31;1merror:[0m path '[35;1m/nix/store/3nw0bg90swzxjnjkbansjs0gm2iia34x-source/packages/nix/flake.nix[0m' does not exist
+[0m[31merror[0m[2m:[0m script [1m"sync"[0m exited with code 1[0m

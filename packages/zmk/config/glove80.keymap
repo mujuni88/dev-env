@@ -1,0 +1,303 @@
+/*
+ * Copyright (c) 2020 The ZMK Contributors
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/ext_power.h>
+#include <dt-bindings/zmk/outputs.h>
+#include <dt-bindings/zmk/rgb.h>
+
+#define HYPER LC(LS(LG(LALT)))
+
+// layers
+#define DEFAULT 0
+#define LOWER 1
+#define MAGIC 2
+#define NUMS 3
+#define ARROWS 4
+
+// Timing parameters for home row mods
+#define TYPING_STREAK_TERM 175
+#define KEY_REPEATING_TERM 300
+#define REGISTER_MODS_TERM 250
+#define THUMB_TAPPING_TERM 200
+#define INDEX_SHIFT_TAPPING_TERM 200
+
+// Key positions for hold-tap triggers
+#define LEFT_HAND_KEYS      \
+          0  1  2  3  4         \
+         10 11 12 13 14 15      \
+         22 23 24 25 26 27      \
+         34 35 36 37 38 39      \
+         46 47 48 49 50 51      \
+         64 65 66 67 68
+#define RIGHT_HAND_KEYS     \
+                                           5  6  7  8  9 \
+                                       16 17 18 19 20 21 \
+                                       28 29 30 31 32 33 \
+                                       40 41 42 43 44 45 \
+                                       58 59 60 61 62 63 \
+                                          75 76 77 78 79
+#define THUMB_KEYS          \
+                        69 52       57 74                \
+                         70 53     56 73                 \
+                          71 54   55 72
+
+/ {
+    behaviors {
+        // Home row mods with balanced flavor
+        homey_left: miryoku_home_row_mods_left_hand {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOME_ROW_MODS_LEFT_HAND";
+            flavor = "balanced";
+            hold-trigger-key-positions = <RIGHT_HAND_KEYS THUMB_KEYS>;
+            hold-trigger-on-release;
+            tapping-term-ms = <REGISTER_MODS_TERM>;
+            quick-tap-ms = <KEY_REPEATING_TERM>;
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+        };
+
+        homey_right: miryoku_home_row_mods_right_hand {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOME_ROW_MODS_RIGHT_HAND";
+            flavor = "balanced";
+            hold-trigger-key-positions = <LEFT_HAND_KEYS THUMB_KEYS>;
+            hold-trigger-on-release;
+            tapping-term-ms = <REGISTER_MODS_TERM>;
+            quick-tap-ms = <KEY_REPEATING_TERM>;
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+        };
+
+        // Special handling for index finger shifts
+        index_left: miryoku_home_row_mods_left_index_shift {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOME_ROW_MODS_LEFT_INDEX_SHIFT";
+            flavor = "balanced";
+            hold-trigger-key-positions = <RIGHT_HAND_KEYS THUMB_KEYS>;
+            tapping-term-ms = <INDEX_SHIFT_TAPPING_TERM>;
+            quick-tap-ms = <KEY_REPEATING_TERM>;
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+        };
+
+        index_right: miryoku_home_row_mods_right_index_shift {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOME_ROW_MODS_RIGHT_INDEX_SHIFT";
+            flavor = "balanced";
+            hold-trigger-key-positions = <LEFT_HAND_KEYS THUMB_KEYS>;
+            tapping-term-ms = <INDEX_SHIFT_TAPPING_TERM>;
+            quick-tap-ms = <KEY_REPEATING_TERM>;
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+        };
+
+        // Thumb layer switching with repeat
+        thumb: miryoku_thumb_layer {
+            compatible = "zmk,behavior-hold-tap";
+            label = "MIRYOKU_LAYER_TAP_WITH_REPEAT";
+            flavor = "balanced";
+            tapping-term-ms = <THUMB_TAPPING_TERM>;
+            quick-tap-ms = <KEY_REPEATING_TERM>;
+            #binding-cells = <2>;
+            bindings = <&mo>, <&kp>;
+        };
+
+        // Layer tap dance
+        layer_td: tap_dance_0 {
+            compatible = "zmk,behavior-tap-dance";
+            label = "LAYER_TAP_DANCE";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&mo LOWER>, <&to LOWER>;
+        };
+
+        magic: magic_hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "MAGIC_HOLD_TAP";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&mo>, <&rgb_ug_status_macro>;
+        };
+
+        // Tap-dance for brackets/braces
+        td_lbrace_rbrace: tap_dance_lbrace_rbrace {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_LBRACE_RBRACE";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp LS(LBKT)>, <&kp LS(RBKT)>;
+        };
+
+        td_lbrack_rbrack: tap_dance_lbrack_rbrack {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_LBRACK_RBRACK";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp LBKT>, <&kp RBKT>;
+        };
+
+        td_rbrace_lbrace: tap_dance_rbrace_lbrace {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_RBRACE_LBRACE";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp LS(RBKT)>, <&kp LS(LBKT)>;
+        };
+
+        td_rbrack_lbrack: tap_dance_rbrack_lbrack {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_RBRACK_LBRACK";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp RBKT>, <&kp LBKT>;
+        };
+
+        // Tap dance for backspace (single tap: backspace, double tap: alt+backspace)
+        td_backspace: tap_dance_backspace {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_BACKSPACE";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp BSPC>, <&del_word>;
+        };
+
+        // Tap dance for parentheses: ( )
+        td_lpar_rpar: tap_dance_lpar_rpar {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_LPAR_RPAR";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp LS(N9)>, <&kp LS(N0)>;
+        };
+
+        // Tap dance for parentheses: ) (
+        td_rpar_lpar: tap_dance_rpar_lpar {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_RPAR_LPAR";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp LS(N0)>, <&kp LS(N9)>;
+        };
+    };
+
+    macros {
+        rgb_ug_status_macro: rgb_ug_status_macro_0 {
+            label = "RGB_UG_STATUS";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&rgb_ug RGB_STATUS>;
+        };
+
+        bt_0: bt_profile_macro_0 {
+            label = "BT_0";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&out OUT_BLE>,
+                  <&bt BT_SEL 0>;
+        };
+
+        bt_1: bt_profile_macro_1 {
+            label = "BT_1";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&out OUT_BLE>,
+                  <&bt BT_SEL 1>;
+        };
+
+        bt_2: bt_profile_macro_2 {
+            label = "BT_2";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&out OUT_BLE>,
+                  <&bt BT_SEL 2>;
+        };
+
+        bt_3: bt_profile_macro_3 {
+            label = "BT_3";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&out OUT_BLE>,
+                  <&bt BT_SEL 3>;
+        };
+
+        del_word: macro_del_word {
+            compatible = "zmk,behavior-macro";
+            label = "MACRO_DEL_WORD";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&macro_press &kp LALT>, <&macro_tap &kp BSPC>, <&macro_release &kp LALT>;
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        default_layer {
+            bindings = <
+            &kp C_BRI_DN         &kp C_BRI_UP              &kp F3            &kp C_FF             &kp C_FF                                                                                                                 &kp C_PP           &kp C_MUTE         &kp C_VOL_DN             &kp C_VOL_UP  &kp GLOBE
+               &trans               &kp N1              &kp N2              &kp N3               &kp N4  &kp N5                                                                                     &kp N6                &kp N7               &kp N8               &kp N9                   &kp N0   &kp BSLH
+           &caps_word                &kp Q               &kp W               &kp E                &kp R   &kp T                                                                                      &kp Y                 &kp U                &kp I                &kp O                    &kp P  &kp EQUAL
+            &lt ARROWS TAB  &homey_left LCTRL A  &homey_left LALT S  &homey_left LGUI D  &index_left LSHFT F   &kp G                                                                                      &kp H  &index_right RSHFT J  &homey_right LGUI K  &homey_right RALT L  &homey_right RCTRL SEMI    &kp SQT
+            &kp LSHFT                &kp Z               &kp X               &kp C                &kp V   &kp B    &trans     &trans    &trans    &trans                         &trans     &trans   &kp N                 &kp M            &kp COMMA              &kp DOT                 &kp FSLH  &kp MINUS
+ &magic MAGIC 0            &kp GRAVE          &kp LS(N9)          &kp LS(N0)              &kp DEL          &kp BSPC  &lt NUMS ESC  &kp LALT  &kp RALT  &mt LG(LG(LA(LS(LCTRL)))) RET  &mt LSHFT SPACE                  &kp LS(LBKT)         &kp LS(RBKT)             &kp LBKT                 &kp RBKT     &trans
+            >;
+        };
+
+        lower_layer {
+            bindings = <
+                &to DEFAULT  &trans  &trans  &trans  &trans                                                                             &trans     &trans    &trans    &trans  &trans
+               &trans  &trans  &trans  &trans  &trans  &trans                                                          &trans     &trans     &trans    &trans    &trans  &trans
+               &trans  &trans  &trans  &trans  &trans  &trans                                                       &kp TILDE   &kp AMPS   &kp STAR  &kp HASH  &kp PLUS  &trans
+               &trans  &trans  &trans  &trans  &trans  &trans                                                       &kp CARET  &kp EQUAL  &kp MINUS  &kp DLLR    &trans  &trans
+               &trans  &trans  &trans  &trans  &trans  &trans     &trans    &trans  &trans  &trans  &trans  &trans     &kp LT   &kp EXCL  &kp UNDER    &kp GT    &trans  &trans
+ &magic MAGIC 0  &trans  &trans  &trans  &trans          &kp LCTRL  &kp LGUI  &trans  &trans  &trans  &trans              &kp LPAR   &kp RPAR  &kp LBKT  &kp RBKT  &trans
+            >;
+        };
+
+        magic_layer {
+            bindings = <
+            &bt BT_CLR        &none               &none           &none           &none                                                                                                           &none      &none      &none      &none      &bt BT_CLR_ALL
+            &none             &none               &none           &none           &none           &none                                                                                &none      &none      &none      &none      &none      &none
+            &none             &rgb_ug RGB_SPI     &rgb_ug RGB_SAI &rgb_ug RGB_HUI &rgb_ug RGB_BRI &rgb_ug RGB_TOG                                                                      &none      &none      &none      &none      &none      &none
+            &bootloader       &rgb_ug RGB_SPD     &rgb_ug RGB_SAD &rgb_ug RGB_HUD &rgb_ug RGB_BRD &rgb_ug RGB_EFF                                                                      &none      &none      &none      &none      &none      &bootloader
+            &sys_reset        &none               &none           &none           &none           &none           &bt_2     &bt_3     &none            &none     &none     &none       &none      &none      &none      &none      &none      &sys_reset
+            &none             &none               &none           &none           &none                           &bt_0     &bt_1     &out OUT_USB     &none     &none     &none                  &none      &none      &none      &none      &none
+            >;
+        };
+
+        nums_layer {
+            bindings = <
+  &to DEFAULT     &trans    &trans    &trans     &trans                                                                              &trans      &trans   &trans        &kp F10       &kp F11
+ &trans     &kp F1    &kp F2    &kp F3     &kp F4  &kp F5                                                          &kp F6      &kp F7      &kp F8   &kp F9      &kp PSCRN       &kp F12
+ &trans     &trans    &trans    &trans     &trans  &trans                                                   &kp LS(GRAVE)      &kp N7      &kp N8   &kp N9       &kp BSLH  &kp LS(BSLH)
+ &trans  &kp LCTRL  &kp LALT  &kp LGUI  &kp LSHFT  &trans                                                   &kp LS(EQUAL)      &kp N4      &kp N5   &kp N6      &kp MINUS     &kp GRAVE
+ &trans     &trans    &trans    &trans     &trans  &trans  &trans  &trans  &trans  &trans   &trans  &trans      &kp EQUAL      &kp N1      &kp N2   &kp N3  &kp LS(MINUS)        &trans
+ &trans     &trans    &trans    &trans     &trans          &trans  &trans  &trans  &trans  &kp RET  &kp N0                 &kp LS(N9)  &kp LS(N0)  &kp DOT         &trans        &trans
+            >;
+        };
+
+        arrows_layer {
+            bindings = <
+  &to DEFAULT  &trans  &trans  &trans  &trans                                                                        &trans        &trans     &trans         &trans        &trans
+ &trans  &trans  &trans  &trans  &trans  &trans                                                    &trans      &trans        &trans     &trans         &trans        &trans
+ &trans  &trans  &trans  &trans  &trans  &trans                                                    &trans  &td_lpar_rpar  &td_lbrace_rbrace   &td_lbrack_rbrack  &kp LS(GRAVE)  &kp LS(BSLH)
+ &trans  &trans  &trans  &trans  &trans  &trans                                                  &kp LEFT    &kp DOWN        &kp UP  &kp RIGHT      &kp MINUS     &kp GRAVE
+ &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans    &trans  &td_rpar_lpar  &td_rbrace_lbrace   &td_rbrack_lbrack      &kp UNDER        &trans
+ &trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans  &trans  &trans  &trans             &kp PG_UP     &kp PG_DN     &trans         &trans        &trans
+            >;
+        };
+    };
+};

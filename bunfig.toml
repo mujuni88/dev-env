@@ -1,0 +1,8 @@
+[install]
+exact = true
+peer = true
+
+[install.cache]
+dir = "node_modules/.cache/bun"
+
+

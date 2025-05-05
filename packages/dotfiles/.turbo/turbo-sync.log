@@ -1,0 +1,18 @@
+
+[0m[2m[35m$[0m [2m[1mstow --verbose --restow --dir=. --target=$HOME .[0m
+LINK: .turbo/turbo-sync.log => ../dev-env/packages/dotfiles/.turbo/turbo-sync.log
+LINK: aerospace => dev-env/packages/dotfiles/aerospace
+LINK: bat => dev-env/packages/dotfiles/bat
+LINK: ghostty => dev-env/packages/dotfiles/ghostty
+LINK: git => dev-env/packages/dotfiles/git
+LINK: karabiner => dev-env/packages/dotfiles/karabiner
+LINK: lazygit => dev-env/packages/dotfiles/lazygit
+LINK: nushell => dev-env/packages/dotfiles/nushell
+LINK: nvim => dev-env/packages/dotfiles/nvim
+LINK: package.json => dev-env/packages/dotfiles/package.json
+LINK: scripts => dev-env/packages/dotfiles/scripts
+LINK: starship => dev-env/packages/dotfiles/starship
+LINK: tmux => dev-env/packages/dotfiles/tmux
+LINK: yazi => dev-env/packages/dotfiles/yazi
+LINK: zellij => dev-env/packages/dotfiles/zellij
+LINK: zsh => dev-env/packages/dotfiles/zsh

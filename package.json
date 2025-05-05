@@ -1,0 +1,22 @@
+{
+  "name": "dev-env",
+  "version": "0.0.1",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "bun run turbo build",
+    "sync": "bun run turbo sync",
+    "setup": "bun install && bun run sync"
+  },
+  "devDependencies": {
+    "turbo": "latest"
+  },
+  "trustedDependencies": ["turbo"],
+  "engines": {
+    "bun": ">=1.0.0"
+  },
+  "packageManager": "bun@1.0.25"
+}

@@ -1,0 +1,9 @@
+
+[0m[2m[35m$[0m [2m[1mbun run build[0m
+[0m[2m[35m$[0m [2m[1m./build.sh[0m
+failed to fetch metadata: signal: interrupt
+
+DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+

@@ -1,0 +1,12 @@
+{
+  "name": "node-tools",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "@anthropic-ai/claude-code": "latest",
+    "@openai/codex": "latest"
+  },
+  "scripts": {
+    "sync": "./sync.sh"
+  }
+}

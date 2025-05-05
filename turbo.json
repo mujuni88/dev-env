@@ -1,0 +1,12 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "tasks": {
+    "sync": {
+      "cache": false,
+      "outputs": []
+    },
+    "build": {
+      "outputs": ["dist/**"]
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "zmk-config",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "build": "./build.sh"
+  }
+}

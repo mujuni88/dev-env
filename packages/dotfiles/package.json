@@ -1,0 +1,8 @@
+{
+  "name": "dotfiles",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "sync": "./sync.sh"
+  }
+}

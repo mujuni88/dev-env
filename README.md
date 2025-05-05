@@ -4,22 +4,35 @@ My personal development environment for macOS, combining the power of Nix for sy
 
 ## What's Inside
 
-- **System Management** (`nix/`): Uses nix-darwin for declarative macOS system configuration
+## Monorepo Structure
+
+This repository is organized as a monorepo using Turborepo for efficient build orchestration:
+
+### Packages
+
+- **System Management** (`packages/nix`): Uses nix-darwin for declarative macOS system configuration
   - Package management
   - System preferences
   - Service management
   
-- **Tool Configurations** (`dotfiles/`): Managed with GNU Stow
+- **Tool Configurations** (`packages/dotfiles`): Managed with GNU Stow
   - Terminal: Ghostty, Zsh, Starship, Tmux
   - Development: Neovim, Git, and more
   - Utilities: bat, fzf, ripgrep
+
+- **Keyboard Firmware** (`packages/zmk`): ZMK firmware configuration
+
+- **Dygma Configuration** (`packages/dygma`): Dygma keyboard configuration
+
+- **Node Tools** (`packages/node-tools`): Globally installed Node.js utilities
 
 ## Quick Start
 
 1. **Prerequisites**
    - macOS
-   - [Nix package manager](nix/README.md)
+   - [Nix package manager](packages/nix/README.md)
    - Git
+   - [Bun](https://bun.sh) (for both runtime and package management)
 
 2. **Installation**
    ```bash
@@ -29,17 +42,29 @@ My personal development environment for macOS, combining the power of Nix for sy
 
    # Set up environment variable
    export MY_DEV=$(pwd)
+   
+   # Install dependencies
+   bun install
    ```
 
 3. **Choose Your Setup**
 
    - For full system configuration:
-     → Follow the [Nix Setup Guide](nix/README.md)
+     → Follow the [Nix Setup Guide](packages/nix/README.md)
    
    - For tool configurations only:
-     → Follow the [Dotfiles Setup Guide](dotfiles/README.md)
+     → Follow the [Dotfiles Setup Guide](packages/dotfiles/README.md)
 
 ## Common Tasks
+
+### Monorepo Commands
+
+- **Build all packages**: `bun run build`
+- **Development mode**: `bun run dev`
+- **Lint packages**: `bun run lint`
+- **Clean all packages**: `bun run clean`
+
+### Nix Commands
 
 - **Update System**: `nixup` (updates and rebuilds Nix configuration)
 - **Apply Changes**: `nixswitch` (rebuilds and switches to new configuration)
@@ -47,15 +72,21 @@ My personal development environment for macOS, combining the power of Nix for sy
 
 ## Documentation
 
-- [Nix Configuration](nix/README.md)
+- [Nix Configuration](packages/nix/README.md)
   - System packages and preferences
   - Darwin configuration
   - Flake management
 
-- [Dotfiles](dotfiles/README.md)
+- [Dotfiles](packages/dotfiles/README.md)
   - Tool configurations
   - Installation instructions
   - Component-specific settings
+
+- [ZMK Firmware](packages/zmk/README.md)
+  - Keyboard firmware configuration
+
+- [Dygma Configuration](packages/dygma/README.md)
+  - Dygma keyboard settings
 
 ## License
 

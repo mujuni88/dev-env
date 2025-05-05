@@ -5,3 +5,5 @@ fzf
 history.txt
 # Karabiner backups
 dotfiles/karabiner/.config/karabiner/automatic_backups/
+
+**/.claude/settings.local.json
