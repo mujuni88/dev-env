@@ -7,14 +7,16 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "bun run turbo build",
-    "sync": "bun run turbo sync",
+    "build": "turbo build",
+    "sync": "turbo sync",
     "setup": "bun install && bun run sync"
   },
   "devDependencies": {
     "turbo": "latest"
   },
-  "trustedDependencies": ["turbo"],
+  "trustedDependencies": [
+    "turbo"
+  ],
   "engines": {
     "bun": ">=1.0.0"
   },

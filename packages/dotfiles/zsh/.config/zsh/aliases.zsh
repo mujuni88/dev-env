@@ -81,6 +81,7 @@ alias szsh="source ~/.zshrc"
 # ----- Development Environment -----
 alias devenv="cd $MY_DEV"
 alias devedit="cd $MY_DEV && nvim ."
+alias devsetup="cd $MY_DEV && bun run setup"
 
 # ----- Dotfiles -----
 alias dots="cd $MY_DEV/dotfiles && stow -v -R */"
