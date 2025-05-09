@@ -41,7 +41,7 @@ alias killuiport="killport 8180 && killport 8080 && killport 3000"
 # Campaign UI
 alias camp="killuiport && caroot && nyarn install && newt develop"
 alias campgen="caroot && nyarn graphql:generate" 
-alias campstory="caroot && nyarn storybook" 
+alias campstory="killport 6006 && caroot && nyarn storybook" 
 alias campt="caroot && nyarn test:plugin campaigns"
 alias campts="caroot && nyarn workspace @netflix-console/plugin-campaigns typecheck"
 alias casts="caroot && nyarn workspace @netflix-console/campaign-assistant-components typecheck"
