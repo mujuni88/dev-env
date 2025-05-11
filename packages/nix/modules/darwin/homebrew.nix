@@ -134,6 +134,7 @@
     "muzzle"
     "canva"
     "grammarly-desktop"
+    "clop"
 
     # Security and Privacy
     "nordvpn"
