@@ -1,10 +1,8 @@
 # File management
-alias ls="eza --color=always --long --git --icons=always --no-time --no-user --all --tree --level=1 --git-ignore"
-alias cat="bat"
+alias ll="eza --color=always --long --git --icons=always --no-time --no-user --all --tree --level=1 --git-ignore"
 alias df="df -h"
 alias rm="rm -i"
 alias cp="cp -i"
-alias cd="z"
 alias j="z"
 alias lg="lazygit"
 
