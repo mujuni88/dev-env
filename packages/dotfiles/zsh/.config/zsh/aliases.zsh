@@ -5,6 +5,7 @@ alias rm="rm -i"
 alias cp="cp -i"
 alias j="z"
 alias lg="lazygit"
+alias cat="bat"
 
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
