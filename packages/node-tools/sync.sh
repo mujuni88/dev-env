@@ -19,9 +19,9 @@ else
     echo "📋 Found dependencies: $DEPS"
     
     # Install global npm packages from dependencies
-    echo "📥 Installing global npm packages..."
-    npm install -g $DEPS
-    
+    echo "📥 Installing global npm packages forcefully (bypassing cache)..."
+    npm install -g --force $DEPS
+
     if [ $? -ne 0 ]; then
         echo "❌ Error: Failed to install some packages"
         exit 1
