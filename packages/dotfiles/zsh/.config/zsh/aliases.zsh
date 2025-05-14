@@ -97,3 +97,7 @@ alias nixup="cd $MY_NIX && nix flake update && nixswitch"
 alias nixedit="cd $MY_NIX && nvim ."
 # ----- Nix -----
 
+# ----- System Utils -----
+# Kill LogiOptions when it gets stuck
+alias logikill="kill -9 74159"
+
