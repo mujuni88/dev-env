@@ -80,11 +80,12 @@ alias szsh="source ~/.zshrc"
 # ----- Development Environment -----
 alias devenv="cd $MY_DEV"
 alias devedit="cd $MY_DEV && nvim ."
-alias devsetup="cd $MY_DEV && bun run setup"
+# Run setup and then explicitly run nixswitch in interactive shell
+alias devsetup="cd $MY_DEV && TURBO_CI=1 bun run setup && nixswitch"
 
 # ----- Dotfiles -----
-alias dots="cd $MY_DEV/dotfiles && stow -v -R */"
-alias dotsedit="cd $MY_DEV/dotfiles && nvim ."
+alias dots="cd $MY_DEV/packages/dotfiles && stow -v -R */"
+alias dotsedit="cd $MY_DEV/packages/dotfiles && nvim ."
 
 # ----- Nix -----
 # Rebuild and switch system configuration (automatically cleans up old generations)
