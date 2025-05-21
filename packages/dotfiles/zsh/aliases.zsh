@@ -88,7 +88,7 @@ alias dotsedit="cd $MY_DEV/packages/dotfiles && nvim ."
 
 # ----- Nix -----
 # Rebuild and switch system configuration (automatically cleans up old generations)
-alias nixswitch="darwin-rebuild switch --flake $MY_NIX#macos && nix-collect-garbage --delete-old"
+alias nixswitch="sudo darwin-rebuild switch --flake $MY_NIX#macos && nix-collect-garbage --delete-old"
 
 # Update flake inputs and rebuild system
 alias nixup="cd $MY_NIX && nix flake update && nixswitch"

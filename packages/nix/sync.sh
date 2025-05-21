@@ -40,7 +40,7 @@ if [ -t 1 ] && [ -z "$TURBO_INVOCATION_DIR" ]; then
   
   # Rebuild and switch
   echo "Rebuilding and switching..."
-  darwin-rebuild switch --flake "$MY_NIX#macos" || {
+  sudo darwin-rebuild switch --flake "$MY_NIX#macos" || {
     echo "Warning: darwin-rebuild failed, this may be expected in certain environments"
     # Exit with success to prevent turbo from failing the entire build
     exit 0
@@ -51,7 +51,7 @@ elif [ -n "$TURBO_INVOCATION_DIR" ]; then
   echo "🔐 Nix needs sudo access in an interactive shell"
   echo "📋 Please run one of these commands in your terminal:"
   echo ""
-  echo "    darwin-rebuild switch --flake \"$MY_NIX#macos\" && nix-collect-garbage --delete-old"
+  echo "    sudo darwin-rebuild switch --flake \"$MY_NIX#macos\" && nix-collect-garbage --delete-old"
   echo ""
   echo "Using NIX_PATH: $MY_NIX"
   echo ""

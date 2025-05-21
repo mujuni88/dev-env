@@ -41,7 +41,7 @@ nix --extra-experimental-features "nix-command flakes" run nix-darwin/master#dar
 
 2. Build and switch to the new configuration:
    ```bash
-   nixswitch  # Alias for: darwin-rebuild switch --flake $MY_NIX#macos && nix-collect-garbage --delete-old
+   nixswitch  # Alias for: sudo darwin-rebuild switch --flake $MY_NIX#macos && nix-collect-garbage --delete-old
    ```
 
 3. Update flake inputs and rebuild:
@@ -73,7 +73,7 @@ If you encounter issues:
 2. Verify that your changes in `flake.nix` are properly formatted
 3. Try running `nixup` to ensure you have the latest package versions
 4. Make sure `system.primaryUser` is set correctly in your configuration
-5. If needed, you can roll back to the previous generation using `darwin-rebuild switch --rollback` (note: this is not aliased)
+5. If needed, you can roll back to the previous generation using `sudo darwin-rebuild switch --rollback` (note: this is not aliased)
 
 ### Required Configuration
 
