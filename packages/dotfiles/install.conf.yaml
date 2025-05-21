@@ -17,18 +17,18 @@
     ~/.git-commit-template.txt: git/.git-commit-template.txt
     
     # Config files in .config directory
-    ~/.config/karabiner: karabiner/.config/karabiner
-    ~/.config/lazygit: lazygit/.config/lazygit
-    ~/.config/nushell: nushell/.config/nushell
-    ~/.config/nvim: nvim/.config/nvim
-    ~/.config/starship.toml: starship/.config/starship.toml
-    ~/.config/tmux: tmux/.config/tmux
-    ~/.config/yazi: yazi/.config/yazi
-    ~/.config/zellij: zellij/.config/zellij
-    ~/.config/zsh: zsh/.config/zsh
-    ~/.config/bat: bat/.config/bat
-    ~/.config/ghostty: ghostty/.config/ghostty
-    ~/.config/aerospace: aerospace/.config/aerospace
+    ~/.config/karabiner: karabiner
+    ~/.config/lazygit: lazygit
+    ~/.config/nushell: nushell
+    ~/.config/nvim: nvim
+    ~/.config/starship.toml: starship/starship.toml
+    ~/.config/tmux: tmux
+    ~/.config/yazi: yazi
+    ~/.config/zellij: zellij
+    ~/.config/zsh: zsh
+    ~/.config/bat: bat
+    ~/.config/ghostty: ghostty
+    ~/.config/aerospace: aerospace
     
     # ZSH configuration
     ~/.zshrc: zsh/.zshrc
