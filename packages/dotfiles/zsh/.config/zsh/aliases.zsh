@@ -80,11 +80,11 @@ alias szsh="source ~/.zshrc"
 # ----- Development Environment -----
 alias devenv="cd $MY_DEV"
 alias devedit="cd $MY_DEV && nvim ."
-# Run setup and then explicitly run nixswitch in interactive shell
-alias devsetup="cd $MY_DEV && TURBO_CI=1 bun run setup && nixswitch"
+# One command to update and set up the entire development environment
+# Run nix sync directly from script to ensure it gets executed in interactive shell
+alias devsetup="cd $MY_DEV && ($MY_NIX/sync.sh || true) && bun run setup"
 
 # ----- Dotfiles -----
-alias dots="cd $MY_DEV/packages/dotfiles && stow -v -R */"
 alias dotsedit="cd $MY_DEV/packages/dotfiles && nvim ."
 
 # ----- Nix -----

@@ -59,6 +59,9 @@
   cleanup = !git-both-merged
   pullall = '!git pull && git submodule update --init --recursive'
   rebasemain= pull origin main -r
+  clone-with-submodules = clone --recurse-submodules
+  sub-update = submodule update --init --recursive
+  sub-pull = "!git pullall"
 
 [push]
   default = matching
@@ -81,6 +84,8 @@
   enabled = true
 [submodule]
   recurse = true
+  fetchJobs = 8
+  update = true
 [pull]
   rebase = true
 [rebase]

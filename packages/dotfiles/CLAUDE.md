@@ -44,5 +44,5 @@ This file provides global guidance to Claude Code (claude.ai/code) when working 
 - Sync packages: `bun run sync`
 
 ### Environment Management
-- Stow dotfiles: `stow .` (in dotfiles directory)
-- Restow dotfiles: `stow -R .` or `dots` alias
+- Install dotfiles: `./install` (in dotfiles directory)
+- Update dotfiles: `bun run sync` (from project root)

@@ -1,6 +1,6 @@
 # Dotfiles
 
-My personal dotfiles managed with GNU Stow. These configurations work in conjunction with my [Nix configuration](../nix/README.md) to create a complete development environment.
+My personal dotfiles managed with Dotbot. These configurations work in conjunction with my [Nix configuration](../nix/README.md) to create a complete development environment.
 
 ## Structure
 
@@ -19,7 +19,6 @@ My personal dotfiles managed with GNU Stow. These configurations work in conjunc
 
 ## Prerequisites
 
-- GNU Stow (for managing symlinks)
 - Git
 - The specific tools you plan to use (nvim, tmux, etc.)
 
@@ -28,26 +27,28 @@ My personal dotfiles managed with GNU Stow. These configurations work in conjunc
 1. Clone the repository if you haven't already:
    ```bash
    git clone <repository_url>
-   cd dev-env/dotfiles
+   cd dev-env/packages/dotfiles
    ```
 
-2. Stow configurations:
+2. Install dotfiles:
    ```bash
-   # Stow individual packages
-   stow nvim      # Neovim config -> ~/.config/nvim
-   stow ghostty   # Ghostty config -> ~/.config/ghostty
-   stow starship  # Starship config -> ~/.config/starship
-   stow git       # Git config -> ~/.gitconfig
-   stow zsh       # Zsh config -> ~/.zshrc
+   # Run the installation script
+   ./install
    
-   # Or stow everything at once (recommended)
-   stow */        # Stows all directories, using settings from .stowrc
+   # Or use the bun script (recommended)
+   bun run sync
    ```
 
-Note: The `.stowrc` file is configured to:
-- Target your home directory (`~`)
-- Ignore unnecessary files (`.DS_Store`, `.stowrc`, `README.md`)
-- Preserve the `.config` directory structure where needed
+If you're using npm/bun:
+```bash
+# Install dotfiles
+bun run sync
+
+# Upgrade dotbot to latest version
+bun run upgrade
+```
+
+The `install.conf.yaml` file controls which files are symlinked where. This setup uses [Dotbot](https://github.com/anishathalye/dotbot) to manage symlinks and installation.
 
 ## Managing Configurations
 
@@ -55,30 +56,44 @@ Note: The `.stowrc` file is configured to:
 ```bash
 # Create new configuration directory
 mkdir -p new-tool/.config/new-tool
-# Add configuration files
-# Stow the new configuration
-stow new-tool
+
+# Add configuration files to the directory
+
+# Update install.conf.yaml to include the new configuration
+# For example:
+# - link:
+#     ~/.config/new-tool: new-tool/.config/new-tool
+
+# Run the install script to apply changes
+./install
+
+# Or use the bun script
+bun run sync
 ```
 
 ### Removing Configurations
-```bash
-# Remove individual config
-stow -D nvim     # Remove neovim config
+To remove configurations, either:
+1. Comment out or remove the corresponding entries in `install.conf.yaml`
+2. Run `./install` or `bun run sync` to apply changes
 
-# Or remove everything
-stow -D */
+### Updating After Changes
+Whenever you make changes to your dotfiles:
+```bash
+# Run the install script
+./install
+
+# Or using bun
+bun run sync
 ```
 
-### Restowing After Changes
+### Upgrading Dotbot
+To update the dotbot installation to the latest version:
 ```bash
-# Restow individual config
-stow -R nvim     # Restow neovim config
+# Run the upgrade script
+./upgrade-dotbot.sh
 
-# Or restow everything
-stow -R */       # Restow all configurations
-
-# You can also use the convenient alias:
-dots        # Restow all configurations
+# Or using npm/bun
+bun run upgrade
 ```
 
 ## Tool-Specific Documentation

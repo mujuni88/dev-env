@@ -28,7 +28,6 @@
     # Package manager and utilities
     "uv"
     "mas"
-    "stow"
     "gnu-sed"
 
     # Shell and terminal enhancements
@@ -64,6 +63,7 @@
     "neovim" # Text editor
     "git-delta" # Better git diff
     "lazydocker" # Terminal UI for docker
+    "dotbot" # Dotfiles manager
 
     # Programming languages and runtimes
     "rustup" # Rust toolchain installer

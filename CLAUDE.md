@@ -25,10 +25,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ### Dotfiles Management
 
-- Stow all dotfiles: `stow */` (in the dotfiles directory)
-- Restow dotfiles after changes: `dots` (alias for `stow -R */`)
-- Stow individual config: `stow [tool]` (e.g., `stow nvim`)
-- Remove stowed config: `stow -D [tool]` (e.g., `stow -D nvim`)
+- Install all dotfiles: `./install` (in the dotfiles directory)
+- Update dotfiles after changes: `bun run sync` (from project root)
+- Update individual package: `cd packages/dotfiles && ./install`
 
 ### Environment Variables
 
@@ -46,7 +45,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Turborepo manages the monorepo with packages in `packages/` and `apps/`
 - Key packages:
   - `packages/nix`: macOS system configuration using nix-darwin
-  - `packages/dotfiles`: Tool configurations managed with GNU Stow
+  - `packages/dotfiles`: Tool configurations managed with Dotbot
   - `packages/zmk`: ZMK firmware configuration for Glove80 keyboard
   - `packages/dygma`: Dygma keyboard configuration
   - `packages/node-tools`: Globally installed Node.js utilities
@@ -66,9 +65,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ### Dotfiles System
 
-- Uses GNU Stow for symlink management
+- Uses Dotbot for symlink management
 - Each tool has its own directory with configurations
-- `.stowrc` configures targeting and ignores
+- `install.conf.yaml` controls symlink creation
 - Common tools: nvim, git, ghostty, zsh, tmux, starship
 
 ## Code Guidelines
