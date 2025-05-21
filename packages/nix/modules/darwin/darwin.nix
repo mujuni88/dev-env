@@ -14,6 +14,7 @@ in {
 
   # System configurations
   system = {
+    primaryUser = user; # Set the primary user for nix-darwin
     stateVersion = 5; # Match the version in system.nix
 
     # Configure trackpad behavior
@@ -95,6 +96,10 @@ in {
     touchIdAuth = true;
     watchIdAuth = true;
   };
+
+  security.sudo.extraConfig = ''
+    jbuza ALL=(ALL) NOPASSWD: ALL
+  '';
 
   # Nix flakes settings
   nix.settings.experimental-features = "nix-command flakes";
