@@ -13,33 +13,33 @@
 
 - link:
     # Git configuration
-    ~/.gitconfig: git/.gitconfig
-    ~/.git-commit-template.txt: git/.git-commit-template.txt
+    ~/.gitconfig: /Users/jbuza/dev-env/packages/dotfiles/git/.gitconfig
+    ~/.git-commit-template.txt: /Users/jbuza/dev-env/packages/dotfiles/git/.git-commit-template.txt
     
     # Config files in .config directory
-    ~/.config/karabiner: karabiner
-    ~/.config/lazygit: lazygit
-    ~/.config/nushell: nushell
-    ~/.config/nvim: nvim
-    ~/.config/starship.toml: starship/starship.toml
-    ~/.config/tmux: tmux
-    ~/.config/yazi: yazi
-    ~/.config/zellij: zellij
-    ~/.config/zsh: zsh
-    ~/.config/bat: bat
-    ~/.config/ghostty: ghostty
-    ~/.config/aerospace: aerospace
+    ~/.config/karabiner: /Users/jbuza/dev-env/packages/dotfiles/karabiner
+    ~/.config/lazygit: /Users/jbuza/dev-env/packages/dotfiles/lazygit
+    ~/.config/nushell: /Users/jbuza/dev-env/packages/dotfiles/nushell
+    ~/.config/nvim: /Users/jbuza/dev-env/packages/dotfiles/nvim
+    ~/.config/starship.toml: /Users/jbuza/dev-env/packages/dotfiles/starship/starship.toml
+    ~/.config/tmux: /Users/jbuza/dev-env/packages/dotfiles/tmux
+    ~/.config/yazi: /Users/jbuza/dev-env/packages/dotfiles/yazi
+    ~/.config/zellij: /Users/jbuza/dev-env/packages/dotfiles/zellij
+    ~/.config/zsh: /Users/jbuza/dev-env/packages/dotfiles/zsh
+    ~/.config/bat: /Users/jbuza/dev-env/packages/dotfiles/bat
+    ~/.config/ghostty: /Users/jbuza/dev-env/packages/dotfiles/ghostty
+    ~/.config/aerospace: /Users/jbuza/dev-env/packages/dotfiles/aerospace
     
     # ZSH configuration
-    ~/.zshrc: zsh/.zshrc
-    ~/.zlogout: zsh/.zlogout
-    ~/.zprofile: zsh/.zprofile
-    ~/.zshenv: zsh/.zshenv
+    ~/.zshrc: /Users/jbuza/dev-env/packages/dotfiles/zsh/.zshrc
+    ~/.zlogout: /Users/jbuza/dev-env/packages/dotfiles/zsh/.zlogout
+    ~/.zprofile: /Users/jbuza/dev-env/packages/dotfiles/zsh/.zprofile
+    ~/.zshenv: /Users/jbuza/dev-env/packages/dotfiles/zsh/.zshenv
     
     # Scripts directory
     ~/.local/bin/:
       glob: true
-      path: scripts/bin/*
+      path: /Users/jbuza/dev-env/packages/dotfiles/scripts/bin/*
       create: true
 
 - shell:

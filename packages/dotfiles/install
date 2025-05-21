@@ -7,6 +7,18 @@ BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 cd "${BASEDIR}"
 
+# First, remove existing symlinks to avoid conflicts
+echo "Removing existing symlinks..."
+rm -f "${HOME}/.gitconfig" "${HOME}/.git-commit-template.txt"
+rm -f "${HOME}/.zshrc" "${HOME}/.zlogout" "${HOME}/.zprofile" "${HOME}/.zshenv"
+rm -rf "${HOME}/.config/karabiner" "${HOME}/.config/lazygit" "${HOME}/.config/nushell"
+rm -rf "${HOME}/.config/nvim" "${HOME}/.config/starship.toml" "${HOME}/.config/tmux"
+rm -rf "${HOME}/.config/yazi" "${HOME}/.config/zellij" "${HOME}/.config/zsh"
+rm -rf "${HOME}/.config/bat" "${HOME}/.config/ghostty" "${HOME}/.config/aerospace"
+
+# Make sure .config directory exists
+mkdir -p "${HOME}/.config"
+
 # Find dotbot command - we use Homebrew to install dotbot
 DOTBOT_CMD=$(which dotbot)
 if [ -z "$DOTBOT_CMD" ]; then
