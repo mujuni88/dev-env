@@ -81,7 +81,6 @@ alias szsh="source ~/.zshrc"
 alias devenv="cd $MY_DEV"
 alias devedit="cd $MY_DEV && nvim ."
 # One command to update and set up the entire development environment
-# Run nix sync directly from script to ensure it gets executed in interactive shell
 alias devsetup="cd $MY_DEV && ($MY_NIX/sync.sh || true) && bun run setup"
 
 # ----- Dotfiles -----
@@ -97,8 +96,3 @@ alias nixup="cd $MY_NIX && nix flake update && nixswitch"
 # Open nix configuration in neovim
 alias nixedit="cd $MY_NIX && nvim ."
 # ----- Nix -----
-
-# ----- System Utils -----
-# Kill LogiOptions when it gets stuck
-alias logikill="kill -9 74159"
-
