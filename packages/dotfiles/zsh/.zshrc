@@ -21,7 +21,7 @@ export HOMEBREW_CASK_OPTS="--appdir=~/Applications --fontdir=~/Library/Fonts"
 
 # ----- Path Configuration -----
 # Base PATH
-export PATH="$HOME/bin:$HOME/.local/bin:/opt/homebrew/bin:$MY_CAMPAIGN_SCRIPTS/bin:$PATH"
+export PATH="$HOME/.local/bin:/opt/homebrew/bin:$MY_CAMPAIGN_SCRIPTS/bin:$PATH"
 
 # Tool-specific paths
 export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
