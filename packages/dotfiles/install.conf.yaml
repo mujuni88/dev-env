@@ -9,6 +9,8 @@
       force: false  # Only remove symlinks created by dotbot
 
 - clean:
+    - '~'       # Clean dead links in home directory
+    - '~/.config' # Clean dead links in config directory 
     - '~/.local/bin'
 
 - link:
