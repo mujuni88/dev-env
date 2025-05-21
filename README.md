@@ -15,7 +15,7 @@ This repository is organized as a monorepo using Turborepo for efficient build o
   - System preferences
   - Service management
   
-- **Tool Configurations** (`packages/dotfiles`): Managed with GNU Stow
+- **Tool Configurations** (`packages/dotfiles`): Managed with Dotbot
   - Terminal: Ghostty, Zsh, Starship, Tmux
   - Development: Neovim, Git, and more
   - Utilities: bat, fzf, ripgrep
@@ -63,12 +63,15 @@ This repository is organized as a monorepo using Turborepo for efficient build o
 - **Development mode**: `bun run dev`
 - **Lint packages**: `bun run lint`
 - **Clean all packages**: `bun run clean`
+- **Full setup**: `bun run setup` (installs deps and runs sync)
+- **Sync all packages**: `bun run sync`
 
 ### Nix Commands
 
 - **Update System**: `nixup` (updates and rebuilds Nix configuration)
 - **Apply Changes**: `nixswitch` (rebuilds and switches to new configuration)
 - **Edit Config**: `nixedit` (opens Nix configuration in Neovim)
+- **Complete Setup**: `devsetup` (runs nixswitch and then full setup)
 
 ## Documentation
 

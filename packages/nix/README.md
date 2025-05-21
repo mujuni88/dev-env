@@ -72,4 +72,18 @@ If you encounter issues:
 1. Check the error messages in the build output
 2. Verify that your changes in `flake.nix` are properly formatted
 3. Try running `nixup` to ensure you have the latest package versions
-4. If needed, you can roll back to the previous generation using `darwin-rebuild switch --rollback` (note: this is not aliased)
+4. Make sure `system.primaryUser` is set correctly in your configuration
+5. If needed, you can roll back to the previous generation using `darwin-rebuild switch --rollback` (note: this is not aliased)
+
+### Required Configuration
+
+Starting with nix-darwin's recent updates, you must specify a primary user for user-specific settings:
+
+```nix
+system = {
+  primaryUser = "yourusername"; # Required for homebrew, user defaults, etc.
+  # ...other settings...
+};
+```
+
+This is required for features like Homebrew integration and system defaults.
