@@ -7,6 +7,6 @@
     "@openai/codex": "latest"
   },
   "scripts": {
-    "sync": "./sync.sh"
+    "install": "./install.sh"
   }
 }

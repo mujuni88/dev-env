@@ -81,7 +81,7 @@ alias szsh="source ~/.zshrc"
 alias devenv="cd $MY_DEV"
 alias devedit="cd $MY_DEV && nvim ."
 # One command to update and set up the entire development environment
-alias devsetup="cd $MY_DEV && ($MY_NIX/sync.sh || true) && bun run setup"
+alias devsetup="cd $MY_DEV && TURBO_CI=1 bun run setup"
 
 # ----- Dotfiles -----
 alias dotsedit="cd $MY_DEV/packages/dotfiles && nvim ."

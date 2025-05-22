@@ -1,11 +1,13 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "tasks": {
-    "sync": {
+    "install": {
+      "dependsOn": ["^build"],
       "cache": false,
       "outputs": []
     },
     "build": {
+      "cache": false,
       "outputs": ["dist/**"]
     }
   }

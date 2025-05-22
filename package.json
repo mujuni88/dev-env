@@ -8,8 +8,8 @@
   ],
   "scripts": {
     "build": "turbo build",
-    "sync": "turbo sync",
-    "setup": "bun install && bun run sync"
+    "install-tools": "turbo install",
+    "setup": "bun install && bun run install-tools"
   },
   "devDependencies": {
     "turbo": "latest"
