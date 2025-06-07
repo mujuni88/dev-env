@@ -2,8 +2,6 @@
 
 This file provides global guidance to Claude Code (claude.ai/code) when working in any repository.
 
-> **Important**: Do not ignore dotfiles (files/folders starting with `.`) inside the `packages/dotfiles/` directory, as they are configuration files that need to be managed.
-
 ## Global Guidelines
 
 ### Project Instructions

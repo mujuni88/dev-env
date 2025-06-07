@@ -11,10 +11,16 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ### Build and Development
 
 - Install dependencies: `bun install`
-- Build all packages: `bun run build`
-- Run setup script: `bun run setup` (installs deps and runs sync)
-- Sync packages: `bun run sync`
-- For nix sync, use: `export TURBO_CI=1 && bun run setup`
+- Complete setup: `bun run setup` - Install system dependencies, global tools, and configure dotfiles
+- System dependencies: `bun run system-install` - Install apps and tools via Nix
+- Global tools: `bun run global-install` - Install global npm packages and CLI tools
+- Dotfiles setup: `bun run dotfiles-install` - Configure dotfiles and shell settings
+- Update configs: `bun run update` - Sync existing configurations
+
+### TypeScript Native Preview (tsgo)
+
+- Run TypeScript compiler with native preview: `npx tsgo --project ./path/to/tsconfig.json`
+- Install tsgo globally: included in `packages/node-tools`
 
 ### Nix Commands
 
@@ -25,9 +31,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ### Dotfiles Management
 
-- Install all dotfiles: `./install` (in the dotfiles directory)
-- Update dotfiles after changes: `bun run sync` (from project root)
-- Update individual package: `cd packages/dotfiles && ./install`
+- Install all dotfiles: `bun run dotfiles-install` (from project root)
+- Update dotfiles after changes: `bun run update` (from project root)
+- Direct install: `cd packages/dotfiles && ./install` (for debugging)
 
 ### Environment Variables
 
@@ -48,7 +54,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
   - `packages/dotfiles`: Tool configurations managed with Dotbot
   - `packages/zmk`: ZMK firmware configuration for Glove80 keyboard
   - `packages/dygma`: Dygma keyboard configuration
-  - `packages/node-tools`: Globally installed Node.js utilities
+  - `packages/node-tools`: Global Node.js package management (installs dependencies globally via npm)
 
 ### Build System
 
@@ -93,4 +99,3 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - ZMK firmware management for Glove80 keyboard
 - Dygma keyboard management for Defy keyboard
 - Changes require rebuilding firmware files
-

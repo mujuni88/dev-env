@@ -4,9 +4,10 @@
   "private": true,
   "dependencies": {
     "@anthropic-ai/claude-code": "latest",
-    "@openai/codex": "latest"
+    "@openai/codex": "latest",
+    "@typescript/native-preview": "latest"
   },
   "scripts": {
-    "install": "./install.sh"
+    "global-install": "./install.sh"
   }
 }

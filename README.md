@@ -57,14 +57,13 @@ This repository is organized as a monorepo using Turborepo for efficient build o
 
 ## Common Tasks
 
-### Monorepo Commands
+### Development Environment Setup
 
-- **Build all packages**: `bun run build`
-- **Development mode**: `bun run dev`
-- **Lint packages**: `bun run lint`
-- **Clean all packages**: `bun run clean`
-- **Full setup**: `bun run setup` (installs deps and runs sync)
-- **Sync all packages**: `bun run sync`
+- **Complete setup**: `bun run setup` - Install system dependencies, global tools, and configure dotfiles
+- **System dependencies**: `bun run system-install` - Install apps and tools via Nix
+- **Global tools**: `bun run global-install` - Install global npm packages and CLI tools
+- **Dotfiles only**: `bun run dotfiles-install` - Configure dotfiles and shell settings
+- **Update configs**: `bun run update` - Sync existing configurations
 
 ### Nix Commands
 

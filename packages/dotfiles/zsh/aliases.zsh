@@ -46,7 +46,7 @@ alias campts="caroot && nyarn workspace @netflix-console/plugin-campaigns typech
 alias casts="caroot && nyarn workspace @netflix-console/campaign-assistant-components typecheck"
 alias cast="caroot && nyarn workspace @netflix-console/campaign-assistant-components test"
 
-alias campnew='createcampaign "Joe Test" "Test" jbuza'
+alias campnew='create_full_campaign "Joe Test Campaign" "Test campaign for Joe" jbuza SERVICE test'
 # ----- End Netflix Development -----
 
 # Tmux
@@ -81,7 +81,7 @@ alias szsh="source ~/.zshrc"
 alias devenv="cd $MY_DEV"
 alias devedit="cd $MY_DEV && nvim ."
 # One command to update and set up the entire development environment
-alias devsetup="cd $MY_DEV && TURBO_CI=1 bun run setup"
+alias devsetup="cd $MY_DEV && bun run setup"
 
 # ----- Dotfiles -----
 alias dotsedit="cd $MY_DEV/packages/dotfiles && nvim ."

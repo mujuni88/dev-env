@@ -1,14 +1,30 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "tasks": {
-    "install": {
-      "dependsOn": ["^build"],
+    "setup": {
+      "dependsOn": ["system-install", "global-install", "dotfiles-install"],
       "cache": false,
       "outputs": []
     },
-    "build": {
+    "system-install": {
       "cache": false,
-      "outputs": ["dist/**"]
+      "outputs": []
+    },
+    "global-install": {
+      "dependsOn": ["^system-install"],
+      "cache": false,
+      "outputs": []
+    },
+    "dotfiles-install": {
+      "dependsOn": ["^system-install", "^global-install"],
+      "cache": false,
+      "outputs": []
+    },
+    "sync": {
+      "cache": false
+    },
+    "build": {
+      "cache": false
     }
   }
 }

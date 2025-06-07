@@ -27,26 +27,20 @@ My personal dotfiles managed with Dotbot. These configurations work in conjuncti
 1. Clone the repository if you haven't already:
    ```bash
    git clone <repository_url>
-   cd dev-env/packages/dotfiles
+   cd dev-env
    ```
 
 2. Install dotfiles:
    ```bash
-   # Run the installation script
-   ./install
+   # Complete setup (recommended - includes system dependencies)
+   bun run setup
    
-   # Or use the bun script (recommended)
-   bun run sync
+   # Dotfiles only
+   bun run dotfiles-install
+   
+   # Direct install (for debugging)
+   cd packages/dotfiles && ./install
    ```
-
-If you're using npm/bun:
-```bash
-# Install dotfiles
-bun run sync
-
-# Upgrade dotbot to latest version
-bun run upgrade
-```
 
 The `install.conf.yaml` file controls which files are symlinked where. This setup uses [Dotbot](https://github.com/anishathalye/dotbot) to manage symlinks and installation.
 
