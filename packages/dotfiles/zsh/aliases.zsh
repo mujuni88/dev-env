@@ -36,6 +36,7 @@ alias nyarn="newt exec yarn"
 alias nyarnx="newt exec yarn dlx"
 alias mtr="metatron enroll"
 alias killuiport="killport 8180 && killport 8080 && killport 3000"
+alias claude="newt --app-type=java-project claude"
 
 # Campaign UI
 alias camp="killuiport && caroot && nyarn install && newt develop"
