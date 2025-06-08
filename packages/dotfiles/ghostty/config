@@ -66,3 +66,4 @@ theme = "Everforest Dark - Hard"
 # keybind = super+8=goto_tab:7
 # keybind = super+9=goto_tab:8
 # keybind = super+0=goto_tab:9
+keybind = shift+enter=text:\n
