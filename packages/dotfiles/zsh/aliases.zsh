@@ -44,8 +44,8 @@ alias campgen="caroot && nyarn graphql:generate"
 alias campstory="killport 6006 && caroot && nyarn storybook" 
 alias campt="caroot && nyarn test:plugin campaigns"
 alias campts="caroot && nyarn workspace @netflix-console/plugin-campaigns typecheck"
-alias casts="caroot && nyarn workspace @netflix-console/campaign-assistant-components typecheck"
-alias cast="caroot && nyarn workspace @netflix-console/campaign-assistant-components test"
+alias casts="caroot && nyarn workspace @netflix-console/plugin-common-campaigns typecheck"
+alias cast="caroot && nyarn workspace @netflix-console/plugin-common-campaigns test"
 
 alias campnew='create_full_campaign "Joe Test Campaign" "Test campaign for Joe" jbuza SERVICE test'
 # ----- End Netflix Development -----
