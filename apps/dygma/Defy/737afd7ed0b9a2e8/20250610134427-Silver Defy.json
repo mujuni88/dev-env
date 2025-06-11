@@ -853,7 +853,7 @@
     },
     {
       "command": "qukeys.minimumHoldTime",
-      "data": "80"
+      "data": "50"
     },
     {
       "command": "qukeys.minimumPriorInterval",
