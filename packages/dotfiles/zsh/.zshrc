@@ -8,6 +8,9 @@ export MY_NIX="$MY_DEV/packages/nix"                  # Nix configuration
 export MY_CODE="$HOME/Code"
 export MY_NETFLIX="$MY_CODE/Netflix"
 export MY_CAMPAIGN_SCRIPTS="$MY_NETFLIX/campaign-scripts"
+export HAWKINS_COMPONENTS_PATH="$MY_NETFLIX/netflix-libs/node_modules/@hawkins/components"
+export HAWKINS_TABLE_PATH="$MY_NETFLIX/netflix-libs/node_modules/@hawkins/table"
+export HAWKINS_FORMS_PATH="$MY_NETFLIX/netflix-libs/node_modules/@hawkins/forms"
 
 # System and application settings
 export XDG_CONFIG_HOME="$HOME/.config"
