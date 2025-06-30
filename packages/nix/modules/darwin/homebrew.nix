@@ -86,7 +86,10 @@
     "p7zip" # Archive handling
     "poppler" # PDF rendering
     "imagemagick" # Image processing
+
+    # AI Terminal Apps
     "sst/tap/opencode" # Opencode
+    "gemini-cli" # Gemini Cli
   ];
 
   casks = [
