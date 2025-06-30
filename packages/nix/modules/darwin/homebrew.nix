@@ -86,6 +86,7 @@
     "p7zip" # Archive handling
     "poppler" # PDF rendering
     "imagemagick" # Image processing
+    "sst/tap/opencode" # Opencode
   ];
 
   casks = [
