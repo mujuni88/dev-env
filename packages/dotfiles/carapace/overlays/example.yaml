@@ -1,0 +1,13 @@
+# Example carapace overlay file
+# This file demonstrates how to add custom completions
+# See: https://carapace-sh.github.io/carapace-bin/overlay.html
+
+# Uncomment and customize as needed:
+# name: example-command
+# description: Custom completion for example command
+# completion:
+#   flag:
+#     "--help": Show help information
+#     "--version": Show version information
+#   positional:
+#     - ["arg1", "arg2", "arg3"]

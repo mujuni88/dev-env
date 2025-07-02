@@ -31,6 +31,8 @@
     ~/.config/bat: bat
     ~/.config/ghostty: ghostty
     ~/.config/aerospace: aerospace
+    ~/.config/mcp: mcp
+    ~/.config/carapace: carapace
     
     # ZSH configuration
     ~/.zshrc: zsh/.zshrc
