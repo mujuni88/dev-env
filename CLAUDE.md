@@ -78,6 +78,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Code Guidelines
 
+### Security Requirements
+
+- **NEVER commit authentication tokens, API keys, or secrets to the repository**
+- Always use environment variables for sensitive configuration values
+- Replace hardcoded tokens with `$VARIABLE_NAME` references in configuration files
+- Store actual tokens in shell configuration files (`.zshrc`) that are managed separately
+
 ### Style Conventions
 
 - Follow existing code style in each package
