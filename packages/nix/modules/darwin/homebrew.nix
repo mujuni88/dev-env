@@ -113,6 +113,7 @@
     "google-chrome"
     "firefox"
     "brave-browser"
+    "thebrowsercompany-dia"
 
     # Communication Apps
     "slack"
