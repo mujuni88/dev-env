@@ -34,6 +34,9 @@
     ~/.config/mcp: mcp
     ~/.config/carapace: carapace
     
+    # NPM configuration
+    ~/.npmrc: .npmrc
+    
     # ZSH configuration
     ~/.zshrc: zsh/.zshrc
     ~/.zlogout: zsh/.zlogout
