@@ -107,6 +107,7 @@
     "temurin" # Eclipse Temurin OpenJDK distribution
     "docker" # Docker Desktop for macOS
     "repo-prompt"
+    "figma"
 
     # Web Browsers
     "arc"
