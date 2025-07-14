@@ -42,7 +42,7 @@ in {
           "/System/Applications/Calendar.app"
           "/System/Applications/Messages.app"
           "/Users/jbuza/Applications/Slack.app"
-          "/Users/jbuza/Applications/Arc.app"
+          # "/Users/jbuza/Applications/Arc.app"
           "/Users/jbuza/Applications/Dia.app"
           "/Users/jbuza/Applications/Notion.app"
           "/Users/jbuza/Applications/Cursor.app"
