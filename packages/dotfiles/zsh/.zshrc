@@ -12,9 +12,6 @@ export HAWKINS_COMPONENTS_PATH="$MY_NETFLIX/netflix-libs/node_modules/@hawkins/c
 export HAWKINS_TABLE_PATH="$MY_NETFLIX/netflix-libs/node_modules/@hawkins/table"
 export HAWKINS_FORMS_PATH="$MY_NETFLIX/netflix-libs/node_modules/@hawkins/forms"
 
-# API tokens
-export NOTION_TOKEN="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"
-
 # System and application settings
 export XDG_CONFIG_HOME="$HOME/.config"
 export EDITOR="nvim"
