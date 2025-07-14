@@ -127,6 +127,7 @@
     "raycast"
     "chatgpt"
     "claude"
+    "jordanbaird-ice"
 
     # Media and Entertainment
     "spotify"
