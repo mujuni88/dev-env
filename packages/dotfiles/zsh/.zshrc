@@ -75,3 +75,4 @@ eval "$(zoxide init zsh)"
 for config_file (~/.config/zsh/*.zsh(N)); do
   source $config_file
 done
+
