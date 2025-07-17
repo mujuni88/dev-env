@@ -57,6 +57,7 @@ keymap = [
 
 	# Spotting
 	{ on = "<Tab>", run = "spot", desc = "Spot hovered file" },
+	{ on = "i",     run = "spot", desc = "Spot hovered file" },
 
 	# Operation
 	{ on = "o",         run = "open",                        desc = "Open selected files" },
