@@ -185,6 +185,17 @@
             tapping-term-ms = <200>;
             bindings = <&kp LS(N0)>, <&kp LS(N9)>;
         };
+
+        // Fast space bar with shift mod-tap
+        space_mt: space_mod_tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "SPACE_MOD_TAP";
+            flavor = "tap-preferred";
+            tapping-term-ms = <150>;
+            quick-tap-ms = <100>;
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+        };
     };
 
     macros {
@@ -252,7 +263,7 @@
            &caps_word                &kp Q               &kp W               &kp E                &kp R   &kp T                                                                                      &kp Y                 &kp U                &kp I                &kp O                    &kp P  &kp EQUAL
             &lt ARROWS TAB  &homey_left LCTRL A  &homey_left LALT S  &homey_left LGUI D  &index_left LSHFT F   &kp G                                                                                      &kp H  &index_right RSHFT J  &homey_right LGUI K  &homey_right RALT L  &homey_right RCTRL SEMI    &kp SQT
             &kp LSHFT                &kp Z               &kp X               &kp C                &kp V   &kp B    &trans     &trans    &trans    &trans                         &trans     &trans   &kp N                 &kp M            &kp COMMA              &kp DOT                 &kp FSLH  &kp MINUS
- &magic MAGIC 0            &kp GRAVE          &kp LS(N9)          &kp LS(N0)              &kp DEL          &kp BSPC  &lt NUMS ESC  &kp LALT  &kp RALT  &mt LG(LG(LA(LS(LCTRL)))) RET  &mt LSHFT SPACE                  &kp LS(LBKT)         &kp LS(RBKT)             &kp LBKT                 &kp RBKT     &trans
+ &magic MAGIC 0            &kp GRAVE          &kp LS(N9)          &kp LS(N0)              &kp DEL          &kp BSPC  &lt NUMS ESC  &kp LALT  &kp RALT  &mt LG(LG(LA(LS(LCTRL)))) RET  &kp SPACE                  &kp LS(LBKT)         &kp LS(RBKT)             &kp LBKT                 &kp RBKT     &trans
             >;
         };
 
