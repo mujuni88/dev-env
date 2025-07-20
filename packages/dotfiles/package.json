@@ -3,6 +3,6 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dotfiles-install": "./install -v"
+    "dotfiles-install": "./install.sh -v"
   }
 }
