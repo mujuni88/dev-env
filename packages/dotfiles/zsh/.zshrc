@@ -22,6 +22,10 @@ export BUN_INSTALL="$HOME/.bun"
 export PKG_CONFIG_PATH="/opt/homebrew/opt/postgresql@16/lib/pkgconfig"
 export HOMEBREW_CASK_OPTS="--appdir=~/Applications --fontdir=~/Library/Fonts"
 
+# AI
+export CLAUDE_CODE_MAX_OUTPUT_TOKENS=4096
+export MAX_THINKING_TOKENS=1024
+
 # ----- Path Configuration -----
 # Base PATH
 export PATH="$HOME/.local/bin:/opt/homebrew/bin:$MY_CAMPAIGN_SCRIPTS/bin:$PATH"
