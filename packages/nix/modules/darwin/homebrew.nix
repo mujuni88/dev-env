@@ -121,7 +121,6 @@
     "discord"
     "whatsapp"
     "superwhisper"
-    "zoom"
 
     # Productivity Apps
     "notion"

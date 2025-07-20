@@ -101,4 +101,4 @@ alias nixedit="cd $MY_NIX && nvim ."
 # ----- Nix -----#
 
 # AI
-alias claude="/Users/jbuza/.claude/local/claude --dangerously-skip-permissions"
+alias cld="/Users/jbuza/.claude/local/claude --dangerously-skip-permissions"
