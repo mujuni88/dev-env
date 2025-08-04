@@ -3,6 +3,7 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
+    "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
     { "antosha417/nvim-lsp-file-operations", config = true },
     { "folke/neodev.nvim",                   opts = {} },
@@ -73,12 +74,21 @@ return {
 
     -- Change the Diagnostic symbols in the sign column (gutter)
     -- (not in youtube nvim video)
-    local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
-    for type, icon in pairs(signs) do
-      local hl = "DiagnosticSign" .. type
-      vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-    end
+    -- Configure diagnostic symbols using the new API
+    vim.diagnostic.config({
+      signs = {
+        text = {
+          [vim.diagnostic.severity.ERROR] = " ",
+          [vim.diagnostic.severity.WARN] = " ",
+          [vim.diagnostic.severity.HINT] = "󰠠 ",
+          [vim.diagnostic.severity.INFO] = " ",
+        }
+      }
+    })
+    -- initialize mason-lspconfig (servers are installed via mason.lua)
+    mason_lspconfig.setup()
 
+    -- auto-setup LSP servers
     mason_lspconfig.setup_handlers({
       -- default handler for installed servers
       function(server_name)
@@ -130,6 +140,24 @@ return {
               },
             },
           },
+        })
+      end,
+      ["pyright"] = function()
+        -- configure pyright language server
+        lspconfig["pyright"].setup({
+          capabilities = capabilities,
+        })
+      end,
+      ["rust_analyzer"] = function()
+        -- configure rust analyzer
+        lspconfig["rust_analyzer"].setup({
+          capabilities = capabilities,
+        })
+      end,
+      ["nil_ls"] = function()
+        -- configure nix language server
+        lspconfig["nil_ls"].setup({
+          capabilities = capabilities,
         })
       end,
     })
