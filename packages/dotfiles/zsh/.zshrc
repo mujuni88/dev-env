@@ -23,8 +23,8 @@ export PKG_CONFIG_PATH="/opt/homebrew/opt/postgresql@16/lib/pkgconfig"
 export HOMEBREW_CASK_OPTS="--appdir=~/Applications --fontdir=~/Library/Fonts"
 
 # AI
-export CLAUDE_CODE_MAX_OUTPUT_TOKENS=4096
-export MAX_THINKING_TOKENS=1024
+# export CLAUDE_CODE_MAX_OUTPUT_TOKENS=4096
+# export MAX_THINKING_TOKENS=1024
 
 # ----- Path Configuration -----
 # Base PATH
