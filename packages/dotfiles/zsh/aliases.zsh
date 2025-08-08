@@ -16,6 +16,7 @@ alias vim="nvim"
 alias zshedit="vim ~/.zshrc"
 alias vimedit="cd ~/.config/nvim && nvim ."
 alias claudemcp="nvim ~/Library/Application\ Support/Claude/claude_desktop_config.json"
+alias claudeconfig="nvim /Users/jbuza/.claude.json"
 
 # Project Paths
 alias Code="cd $MY_CODE"
