@@ -26,6 +26,9 @@ export HOMEBREW_CASK_OPTS="--appdir=~/Applications --fontdir=~/Library/Fonts"
 # export CLAUDE_CODE_MAX_OUTPUT_TOKENS=4096
 # export MAX_THINKING_TOKENS=1024
 
+# ni - Package manager selector configuration
+export NI_CONFIG_FILE="$HOME/.config/ni/.nirc"
+
 # ----- Path Configuration -----
 # Base PATH
 export PATH="$HOME/.local/bin:/opt/homebrew/bin:$MY_CAMPAIGN_SCRIPTS/bin:$PATH"

@@ -33,6 +33,7 @@
     ~/.config/aerospace: aerospace
     ~/.config/mcp: mcp
     ~/.config/carapace: carapace
+    ~/.config/ni: ni
     
     # NPM configuration
     ~/.npmrc: .npmrc

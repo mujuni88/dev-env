@@ -1,0 +1,10 @@
+; ni configuration file
+; See: https://github.com/antfu-collective/ni
+
+; Default agent when no lock file is found
+; Uses bun to match your project's package manager preference
+defaultAgent=bun
+
+; Global agent for installing global packages
+; Uses npm for compatibility with Netflix registry configuration
+globalAgent=npm
