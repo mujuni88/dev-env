@@ -99,14 +99,13 @@
     "amazon-q"
 
     # Development
-    "visual-studio-code"
-    "sublime-text"
+    "visual-studio-code" # IDE
+    "sublime-text" # Text editor
     "cursor" # Cursor IDE
-    "windsurf"
+    "zed" # IDE
     "ngrok"
     "temurin" # Eclipse Temurin OpenJDK distribution
     "docker" # Docker Desktop for macOS
-    "repo-prompt"
     "figma"
 
     # Web Browsers
