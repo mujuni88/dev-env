@@ -1,0 +1,103 @@
+[
+  // Exit insert mode with jj (like your nvim config)
+  {
+    "context": "vim_mode == insert",
+    "bindings": {
+      "j j": "vim::NormalBefore"
+    }
+  },
+
+  // Window management (based on your nvim <leader>s* bindings)
+  {
+    "context": "vim_mode == normal",
+    "bindings": {
+      "space s v": "pane::SplitRight",
+      "space s h": "pane::SplitDown",
+      "space s x": "pane::CloseActiveItem"
+    }
+  },
+
+  // Tab management (based on your nvim <leader>t* bindings)
+  {
+    "context": "vim_mode == normal",
+    "bindings": {
+      "space t o": "workspace::NewFile",
+      "space t x": "pane::CloseActiveItem",
+      "space t n": "pane::ActivateNextItem",
+      "space t p": "pane::ActivatePreviousItem"
+    }
+  },
+
+  // Clear search highlights (based on your nvim <leader>nh binding)
+  {
+    "context": "vim_mode == normal",
+    "bindings": {
+      "space n h": "buffer_search::Dismiss"
+    }
+  },
+
+  // File finder (similar to telescope)
+  {
+    "context": "vim_mode == normal",
+    "bindings": {
+      "space f f": "file_finder::Toggle",
+      "space f g": "project_search::ToggleFocus"
+    }
+  },
+
+  // Git navigation and actions
+  {
+    "context": "vim_mode == normal",
+    "bindings": {
+      "space g g": "workspace::ToggleBottomDock",
+      "] c": "editor::GoToDiagnostic",
+      "[ c": "editor::GoToPreviousDiagnostic"
+    }
+  },
+
+  // Enhanced window navigation (vim-like)
+  {
+    "context": "vim_mode == normal",
+    "bindings": {
+      "ctrl-w h": "workspace::ActivatePaneLeft",
+      "ctrl-w l": "workspace::ActivatePaneRight",
+      "ctrl-w k": "workspace::ActivatePaneUp",
+      "ctrl-w j": "workspace::ActivatePaneDown"
+    }
+  },
+
+  // LSP actions
+  {
+    "context": "vim_mode == normal",
+    "bindings": {
+      "g d": "editor::GoToDefinition",
+      "g r": "editor::FindAllReferences",
+      "K": "editor::Hover",
+      "space c a": "editor::ToggleCodeActions"
+    }
+  },
+
+  // Project panel toggle
+  {
+    "context": "vim_mode == normal",
+    "bindings": {
+      "space e": "workspace::ToggleLeftDock"
+    }
+  },
+
+  // Terminal toggle
+  {
+    "context": "vim_mode == normal",
+    "bindings": {
+      "space t t": "workspace::ToggleBottomDock"
+    }
+  },
+
+  // AI assistant
+  {
+    "context": "vim_mode == normal || insert",
+    "bindings": {
+      "space a i": "agent::ToggleFocus"
+    }
+  }
+]

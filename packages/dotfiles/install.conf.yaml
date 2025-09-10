@@ -2,22 +2,22 @@
     link:
       relink: true
       create: true
-      force: true  # Always overwrite existing files to ensure correct state
+      force: true # Always overwrite existing files to ensure correct state
 
 - defaults:
     clean:
-      force: false  # Only remove symlinks created by dotbot
+      force: false # Only remove symlinks created by dotbot
 
 - clean:
-    - '~'       # Clean dead links in home directory
-    - '~/.config' # Clean dead links in config directory 
-    - '~/.local/bin'
+    - "~" # Clean dead links in home directory
+    - "~/.config" # Clean dead links in config directory
+    - "~/.local/bin"
 
 - link:
     # Git configuration
     ~/.gitconfig: git/.gitconfig
     ~/.git-commit-template.txt: git/.git-commit-template.txt
-    
+
     # Config files in .config directory
     ~/.config/karabiner: karabiner
     ~/.config/lazygit: lazygit
@@ -34,16 +34,17 @@
     ~/.config/mcp: mcp
     ~/.config/carapace: carapace
     ~/.config/ni: ni
-    
+    ~/.config/zed: zed
+
     # NPM configuration
     ~/.npmrc: .npmrc
-    
+
     # ZSH configuration
     ~/.zshrc: zsh/.zshrc
     ~/.zlogout: zsh/.zlogout
     ~/.zprofile: zsh/.zprofile
     ~/.zshenv: zsh/.zshenv
-    
+
     # Scripts directory
     ~/.local/bin/:
       glob: true
@@ -51,5 +52,6 @@
       create: true
 
 - shell:
-  - [chmod +x scripts/bin/*, Making scripts executable]
-  - [echo "✅ Dotfiles installation complete!", Finishing up]
+    - [chmod +x scripts/bin/*, Making scripts executable]
+    - [echo "✅ Dotfiles installation complete!", Finishing up]
+
