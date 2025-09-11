@@ -23,17 +23,6 @@
       ],
       "env": {}
     },
-    "playwright": {
-      "command": "/opt/homebrew/bin/npx",
-      "args": [
-        "@playwright/mcp",
-        "--headless=false",
-        "--no-default-browser-check=true"
-      ],
-      "env": {
-        "PLAYWRIGHT_HEADLESS": "false"
-      }
-    },
     "MCP_DOCKER": {
       "command": "docker",
       "args": [
@@ -48,16 +37,30 @@
       ]
     },
     "hawkins-scraper": {
-      "command": "npx",
       "args": [
         "-y",
         "@netflix-internal/mcp-server-hawkins-scraper"
       ],
+      "command": "npx",
       "env": {
+        "HAWKINS_ASSETS_PATH": "/Users/jbuza/Code/Netflix/netflix-libs/node_modules/@hawkins/assets/",
         "HAWKINS_COMPONENTS_PATH": "/Users/jbuza/Code/Netflix/netflix-libs/node_modules/@hawkins/components",
+        "HAWKINS_FORMS_PATH": "/Users/jbuza/Code/Netflix/netflix-libs/node_modules/@hawkins/forms",
+        "HAWKINS_HELPERS_PATH": "/Users/jbuza/Code/Netflix/netflix-libs/node_modules/@hawkins/helpers/",
+        "HAWKINS_ICONS_PATH": "/Users/jbuza/Code/Netflix/netflix-libs/node_modules/@hawkins/icons/",
+        "HAWKINS_SEARCH_PATH": "/Users/jbuza/Code/Netflix/netflix-libs/node_modules/@hawkins/search/",
+        "HAWKINS_STYLES_PATH": "/Users/jbuza/Code/Netflix/netflix-libs/node_modules/@hawkins/styles/",
         "HAWKINS_TABLE_PATH": "/Users/jbuza/Code/Netflix/netflix-libs/node_modules/@hawkins/table",
-        "HAWKINS_FORMS_PATH": "/Users/jbuza/Code/Netflix/netflix-libs/node_modules/@hawkins/forms"
+        "HAWKINS_VARIABLES_PATH": "/Users/jbuza/Code/Netflix/netflix-libs/node_modules/@hawkins/variables/"
       }
+    },
+    "playwright": {
+      "args": [
+        "@playwright/mcp@latest"
+      ],
+      "command": "npx",
+      "env": {},
+      "type": "stdio"
     }
   }
 }

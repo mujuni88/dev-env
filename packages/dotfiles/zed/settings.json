@@ -7,14 +7,55 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "context_servers": {
+    "mcp-server-context7": {
+      "source": "extension",
+      "enabled": true,
+      "settings": {
+        "default_minimum_tokens": "10000"
+      }
+    },
+    "hawkins-scraper": {
+      "source": "custom",
+      "enabled": true,
+      "args": [
+        "-y",
+        "@netflix-internal/mcp-server-hawkins-scraper"
+      ],
+      "command": "npx",
+      "env": {
+        "HAWKINS_ASSETS_PATH": "/Users/jbuza/Code/Netflix/netflix-libs/node_modules/@hawkins/assets/",
+        "HAWKINS_COMPONENTS_PATH": "/Users/jbuza/Code/Netflix/netflix-libs/node_modules/@hawkins/components",
+        "HAWKINS_FORMS_PATH": "/Users/jbuza/Code/Netflix/netflix-libs/node_modules/@hawkins/forms",
+        "HAWKINS_HELPERS_PATH": "/Users/jbuza/Code/Netflix/netflix-libs/node_modules/@hawkins/helpers/",
+        "HAWKINS_ICONS_PATH": "/Users/jbuza/Code/Netflix/netflix-libs/node_modules/@hawkins/icons/",
+        "HAWKINS_SEARCH_PATH": "/Users/jbuza/Code/Netflix/netflix-libs/node_modules/@hawkins/search/",
+        "HAWKINS_STYLES_PATH": "/Users/jbuza/Code/Netflix/netflix-libs/node_modules/@hawkins/styles/",
+        "HAWKINS_TABLE_PATH": "/Users/jbuza/Code/Netflix/netflix-libs/node_modules/@hawkins/table",
+        "HAWKINS_VARIABLES_PATH": "/Users/jbuza/Code/Netflix/netflix-libs/node_modules/@hawkins/variables/"
+      }
+    },
+    "playwright": {
+      "source": "custom",
+      "enabled": true,
+      "args": [
+        "@playwright/mcp@latest"
+      ],
+      "command": "npx",
+      "env": {}
+    }
+  },
+  "icon_theme": "Colored Zed Icons Theme Dark",
   "vim_mode": true,
   "base_keymap": "Cursor",
-  "ui_font_size": 16,
-  "buffer_font_size": 15,
+  "ui_font_size": 15,
+  "buffer_font_size": 14,
+  "ui_font_family": "Menlo",
+  "buffer_font_family": "JetBrainsMono Nerd Font Mono",
   "theme": {
     "mode": "system",
     "light": "Ayu Light",
-    "dark": "Gruvbox Dark Hard"
+    "dark": "Gruvbox Dark"
   },
   "vim": {
     "default_mode": "normal",
@@ -30,6 +71,6 @@
     "enabled": true
   },
   "terminal": {
-    "dock": "bottom"
+    "dock": "right"
   }
 }
