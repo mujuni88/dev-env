@@ -54,6 +54,7 @@
     "fd" # Better alternative to find
     "jq" # JSON processor
     "wget" # Command-line tool for downloading files
+    "dashlane/tap/dashlane-cli" # dashlane api
 
     # Development tools
     "jj" # A more improved Git
