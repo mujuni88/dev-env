@@ -89,7 +89,8 @@ return {
     mason_lspconfig.setup()
 
     -- auto-setup LSP servers
-    mason_lspconfig.setup_handlers({
+    mason_lspconfig.setup({
+      handlers = {
       -- default handler for installed servers
       function(server_name)
         lspconfig[server_name].setup({
@@ -160,6 +161,7 @@ return {
           capabilities = capabilities,
         })
       end,
+      }
     })
   end,
 }
