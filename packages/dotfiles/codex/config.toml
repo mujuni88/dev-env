@@ -1,0 +1,7 @@
+model = "gpt-5"
+model_provider = "openai-chat-completions"
+[model_providers.openai-chat-completions]
+# Name of the provider that will be displayed in the Codex UI.
+name = "OpenAI Netflix Bedrock"
+base_url = "http://copilotdppython-secure.us-east-1.prod.svip.mesh.netflix.net:22022/proxy/jbuzaws/v1"
+env_key = "OPENAI_API_KEY"

@@ -45,6 +45,9 @@
     ~/.zprofile: zsh/.zprofile
     ~/.zshenv: zsh/.zshenv
 
+    # Codex configuration
+    ~/.codex/config.toml: codex/config.toml
+
     # Scripts directory
     ~/.local/bin/:
       glob: true
@@ -52,6 +55,7 @@
       create: true
 
 - shell:
+    - [mkdir -p ~/.codex, Creating codex directory]
     - [chmod +x scripts/bin/*, Making scripts executable]
     - [echo "✅ Dotfiles installation complete!", Finishing up]
 
