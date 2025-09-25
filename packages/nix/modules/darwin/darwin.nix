@@ -43,7 +43,7 @@ in {
           "/System/Applications/Messages.app"
           "/Users/jbuza/Applications/Slack.app"
           "/Users/jbuza/Applications/Arc.app"
-          "/System/Applications/Comet.app"
+          "/Applications/Comet.app"
           "/Users/jbuza/Applications/Notion.app"
           "/Users/jbuza/Applications/Cursor.app"
           "/Users/jbuza/Applications/Zed.app"
