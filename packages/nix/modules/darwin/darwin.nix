@@ -45,7 +45,7 @@ in {
           "/Users/jbuza/Applications/Arc.app"
           "/Applications/Comet.app"
           "/Users/jbuza/Applications/Notion.app"
-          "/Users/jbuza/Applications/Cursor.app"
+          "/Applications/Cursor.app"
           "/Users/jbuza/Applications/Zed.app"
         ];
       };
