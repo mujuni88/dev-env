@@ -106,7 +106,7 @@
     "zed" # IDE
     "ngrok"
     "temurin" # Eclipse Temurin OpenJDK distribution
-    "docker" # Docker Desktop for macOS
+    "docker-desktop" # Docker Desktop for macOS
     "figma"
 
     # Web Browsers
