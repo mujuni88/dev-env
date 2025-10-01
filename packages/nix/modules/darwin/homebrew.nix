@@ -102,7 +102,7 @@
     # Development
     "visual-studio-code" # IDE
     "sublime-text" # Text editor
-    "cursor" # Cursor IDE
+    #"cursor"  Cursor IDE::NOTE:: using companies version /Applications/Cursor.app/
     "zed" # IDE
     "ngrok"
     "temurin" # Eclipse Temurin OpenJDK distribution
