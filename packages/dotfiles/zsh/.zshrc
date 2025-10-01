@@ -29,11 +29,7 @@ zstyle ':vcs_info:git:*' formats '%b'
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # Fnm
-FNM_PATH="$HOME/Library/Application Support/fnm"
-if [ -d "$FNM_PATH" ]; then
-  export PATH="$FNM_PATH:$PATH"
-  eval "`fnm env`"
-fi
+eval "$(fnm env --use-on-cd --shell zsh)"
 
 # Zoxide
 eval "$(zoxide init zsh)"
