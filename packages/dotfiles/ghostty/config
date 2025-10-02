@@ -16,12 +16,13 @@
 # # Color scheme (Tokyo Night)
 # theme = ultradark
 # theme = cyberdream
-# theme = catppuccin-mocha
 # theme = gruvbox-material
 # theme = gruvboxdark
-# theme = gruvboxdarkhard
-theme = "Everforest Dark - Hard"
 # theme = "Kanagawa Wave"
+# theme = Gruvbox Dark Hard
+# theme = Gruvbox Light Hard
+# theme = Catppuccin Mocha
+theme = Fun Forrest
 
 # # Normal colors
 # palette = 0=#15161e
