@@ -1,18 +1,22 @@
 --[[ Available themes:
   "folke/tokyonight.nvim" -> tokyonight-night
-  "scottmckendry/cyberdream.nvim" -> cyberdream  
+  "scottmckendry/cyberdream.nvim" -> cyberdream
   "olimorris/onedarkpro.nvim" -> onedark
   "catppuccin/nvim" -> catppuccin-mocha
   "sainnhe/everforest" -> everforest
   "rebelot/kanagawa.nvim" -> kanagawa-wave
   "dasupradyumna/midnight.nvim" -> midnight
+  "ellisonleao/gruvbox.nvim" -> gruvbox
 ]]
 
 return {
-	"sainnhe/everforest",
+	"ellisonleao/gruvbox.nvim",
 	lazy = false,
 	priority = 1000,
 	config = function()
-		vim.cmd("colorscheme everforest")
+		require("gruvbox").setup({
+			transparent_mode = false,
+		})
+		vim.cmd("colorscheme gruvbox")
 	end,
 }

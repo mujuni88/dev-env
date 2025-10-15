@@ -22,7 +22,8 @@
 # theme = Gruvbox Dark Hard
 # theme = Gruvbox Light Hard
 # theme = Catppuccin Mocha
-theme = Fun Forrest
+# theme = Fun Forrest
+theme = dark:Gruvbox Dark Hard,light:Gruvbox Light Hard
 
 # # Normal colors
 # palette = 0=#15161e
