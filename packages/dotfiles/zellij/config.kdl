@@ -157,7 +157,7 @@ keybinds clear-defaults=true {
             ToggleActiveSyncTab
             SwitchToMode "normal"
         }
-        bind "Ctrl t" {
+        bind "Ctrl y" {
             SwitchToMode "normal"
         }
         bind "x" {
@@ -416,7 +416,7 @@ keybinds clear-defaults=true {
         }
     }
     shared_except "locked" "tab" {
-        bind "Ctrl t" {
+        bind "Ctrl y" {
             SwitchToMode "tab"
         }
     }
