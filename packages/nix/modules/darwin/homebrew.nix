@@ -75,6 +75,7 @@
     "node" # Node.js runtime (needed for LSP servers)
     "python" # Python runtime (needed for some LSP servers)
     "luarocks" # Lua package manager
+    "sdkman-cli" # SDKMAN - Software Development Kit Manager
 
     # AI tools
     "ollama" # Local LLMs

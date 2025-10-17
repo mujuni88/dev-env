@@ -19,9 +19,6 @@ zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:git:*' formats '%b'
 
 # ----- Tool Configurations -----
-# Jabba (Java Version Manager)
-[ -s "$HOME/.jabba/jabba.sh" ] && source "$HOME/.jabba/jabba.sh"
-
 # SDKMAN
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
