@@ -19,8 +19,9 @@ zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:git:*' formats '%b'
 
 # ----- Tool Configurations -----
-# SDKMAN
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+# SDKMAN (Homebrew installation)
+export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
+[[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
 
 # Bun
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
