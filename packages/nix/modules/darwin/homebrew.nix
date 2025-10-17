@@ -24,6 +24,11 @@
   # Use a global Brewfile to manage Homebrew dependencies across the system
   global.brewfile = false;
 
+  # Homebrew taps (third-party repositories)
+  taps = [
+    "sdkman/tap"
+  ];
+
   brews = [
     # Package manager and utilities
     "uv"
@@ -75,7 +80,7 @@
     "node" # Node.js runtime (needed for LSP servers)
     "python" # Python runtime (needed for some LSP servers)
     "luarocks" # Lua package manager
-    "sdkman-cli" # SDKMAN - Software Development Kit Manager
+    "sdkman/tap/sdkman-cli" # SDKMAN - Software Development Kit Manager
 
     # AI tools
     "ollama" # Local LLMs
