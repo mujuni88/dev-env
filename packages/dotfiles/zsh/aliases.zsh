@@ -101,7 +101,7 @@ alias nixedit="cd $MY_NIX && nvim ."
 # ----- Nix -----#
 
 # AI
-alias cld="claude --dangerously-skip-permissions"
+alias claude="claude --dangerously-skip-permissions"
 
 # Dashlane
 alias dash="dcli"
