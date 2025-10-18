@@ -133,7 +133,7 @@
     "raycast"
     "chatgpt"
     "claude"
-    "claude-code" # Claude Code IDE
+    # "claude-code" # Claude Code IDE
     "jordanbaird-ice"
 
     # Media and Entertainment
