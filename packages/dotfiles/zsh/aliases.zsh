@@ -41,6 +41,7 @@ alias killuiport="killport 8180 && killport 8080 && killport 3000"
 
 # Campaign UI
 alias camp="killuiport && caroot && nyarn install && newt develop"
+alias camplocal="killuiport && caroot && nyarn install && newt develop-local"
 alias campschema="caroot && nyarn fetch-schema"
 alias campgen="caroot && nyarn graphql:generate" 
 alias campstory="killport 6006 && caroot && nyarn storybook" 
