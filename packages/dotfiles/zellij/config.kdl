@@ -214,7 +214,7 @@ keybinds clear-defaults=true {
         bind "l" {
             Resize "Increase right"
         }
-        bind "Ctrl n" {
+        bind "Ctrl w" {
             SwitchToMode "normal"
         }
     }
