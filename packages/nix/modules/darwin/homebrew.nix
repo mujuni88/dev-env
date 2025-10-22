@@ -121,6 +121,7 @@
     "firefox"
     "brave-browser"
     "thebrowsercompany-dia"
+    "chatgpt-atlas"
 
     # Communication Apps
     "slack"
