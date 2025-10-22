@@ -118,8 +118,8 @@
     # Web Browsers
     "arc"
     "google-chrome"
-    "firefox"
-    "brave-browser"
+    "zen@twilight" # zen browser
+    "helium-browser" # privacy browser
     "thebrowsercompany-dia"
     "chatgpt-atlas"
 
