@@ -51,6 +51,7 @@ alias casts="caroot && nyarn workspace @netflix-console/plugin-common-campaigns 
 alias cast="caroot && nyarn workspace @netflix-console/plugin-common-campaigns test"
 
 alias campnew='create_full_campaign "Joe Test Campaign" "Test campaign for Joe" jbuza SERVICE test'
+alias campnewprod='create_full_campaign "Joe Test Campaign" "Test campaign for Joe" jbuza SERVICE prod'
 # ----- End Netflix Development -----
 
 # Tmux
