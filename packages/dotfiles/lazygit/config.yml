@@ -1,7 +1,7 @@
 git:
-  paging:
-    colorArg: always
-    pager: delta --dark --paging=never --24-bit-color=never
+  pagers:
+    - colorArg: always
+      pager: delta --dark --paging=never --24-bit-color=never
   disableForcePushing: false
   parseEmoji: true
   disableStartupPopups: true
