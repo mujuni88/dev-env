@@ -6,14 +6,24 @@ My personal dotfiles managed with Dotbot. These configurations work in conjuncti
 
 ```
 .
+├── aerospace/    # AeroSpace window manager configuration
 ├── bat/          # Syntax highlighting and paging configuration
-├── git/          # Git configuration and aliases
+├── carapace/     # Shell completion framework configuration
+├── codex/        # OpenAI Codex configuration
 ├── ghostty/      # Terminal emulator configuration
+├── git/          # Git configuration and aliases
 ├── karabiner/    # Keyboard customization for home row mode navigation
+├── lazygit/      # Git UI tool configuration
+├── mcp/          # Model Context Protocol configuration
+├── ni/           # Universal package manager runner (@antfu/ni)
+├── nushell/      # Alternative shell configuration
 ├── nvim/         # Neovim configuration and plugins
 ├── scripts/      # Custom shell scripts and utilities
 ├── starship/     # Cross-shell prompt configuration
 ├── tmux/         # Terminal multiplexer configuration
+├── yazi/         # Terminal file manager configuration
+├── zed/          # Zed editor configuration
+├── zellij/       # Terminal workspace manager configuration
 └── zsh/          # Shell configuration and aliases
 ```
 
@@ -93,6 +103,50 @@ bun run upgrade
 ## Tool-Specific Documentation
 
 Each tool's directory contains its own configuration files and may include a README with tool-specific setup instructions and customizations.
+
+## Featured Tools
+
+### Window Management & Terminal
+
+- **aerospace** - Tiling window manager for macOS with i3-like keyboard-driven workflow
+- **ghostty** - Fast, feature-rich GPU-accelerated terminal emulator
+- **tmux** - Terminal multiplexer for managing multiple terminal sessions
+- **zellij** - Modern terminal workspace with layouts and built-in collaboration
+
+### File Management & Navigation
+
+- **yazi** - Blazingly fast terminal file manager with image preview support
+- **lazygit** - Terminal UI for git with interactive staging, branching, and commit management
+
+### Shell & Completion
+
+- **zsh** - Primary shell with custom aliases, functions, and environment configuration
+- **nushell** - Alternative shell with structured data pipelines
+- **carapace** - Multi-shell completion framework supporting 400+ CLI tools
+- **starship** - Cross-shell prompt with rich customization and git integration
+
+### Development Tools
+
+- **nvim** - Neovim editor with LSP, treesitter, and extensive plugin configuration
+- **zed** - Collaborative code editor with native performance
+- **git** - Version control configuration with aliases and commit templates
+
+### Package Management
+
+- **ni** - Universal package manager runner that auto-detects npm/yarn/pnpm/bun
+  - Use `ni` instead of `npm install`, `yarn`, `pnpm install`, or `bun install`
+  - Automatically detects the right package manager for each project
+
+### AI & Automation
+
+- **codex** - OpenAI Codex integration for AI-assisted development
+- **mcp** - Model Context Protocol for connecting AI models with development tools
+
+### Utilities
+
+- **bat** - Enhanced `cat` with syntax highlighting and git integration
+- **karabiner** - Advanced keyboard customization for macOS (home row mods, hyper key)
+- **scripts** - Collection of custom shell utilities and helper scripts
 
 ## AI Assistant Integration
 
