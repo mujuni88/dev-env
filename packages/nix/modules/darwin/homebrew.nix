@@ -67,7 +67,7 @@
     "lazygit" # Terminal UI for git
     "commitizen" # Git commit conventions tool
     "gh" # Github CLI
-    "graphite" # Graphite CLI for stacked diffs
+    "withgraphite/tap/graphite" # Graphite CLI for stacked diffs
     "neovim" # Text editor
     "git-delta" # Better git diff
     "lazydocker" # Terminal UI for docker
