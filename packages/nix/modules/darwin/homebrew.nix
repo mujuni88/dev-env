@@ -105,7 +105,6 @@
     # Terminal and Shell Tools
     "ghostty"
     "warp"
-    "amazon-q"
 
     # Development
     "visual-studio-code" # IDE
