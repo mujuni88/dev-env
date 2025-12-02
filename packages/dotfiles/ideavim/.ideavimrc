@@ -1,0 +1,254 @@
+" =============================================================================
+" IdeaVim Configuration - Mirroring Neovim Setup
+" =============================================================================
+
+" Leader key
+let mapleader = " "
+
+" =============================================================================
+" Plugins (IdeaVim emulations)
+" =============================================================================
+
+" Surround - mirrors nvim-surround (ys, ds, cs)
+set surround
+
+" Commentary - mirrors Comment.nvim (gc to comment)
+set commentary
+
+" Sneak - similar to flash.nvim (s{char}{char} to jump)
+set sneak
+
+" NERDTree - file explorer integration
+set NERDTree
+
+" Which-key popup for leader mappings
+set which-key
+set notimeout
+let g:WhichKey_ShowVimActions = "true"
+
+" Highlight yanked text
+set highlightedyank
+let g:highlightedyank_highlight_duration = "200"
+
+" Match words with vim-matchit
+set matchit
+
+" =============================================================================
+" Options (matching options.lua)
+" =============================================================================
+
+" Line numbers - hybrid (relative + current line number)
+set relativenumber
+set number
+
+" Search settings
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+
+" Cursor
+set cursorline
+
+" Clipboard - use system clipboard
+set clipboard+=unnamedplus
+
+" Split behavior
+set splitright
+set splitbelow
+
+" Scrolloff - keep context when scrolling
+set scrolloff=8
+set sidescrolloff=8
+
+" Show mode in status bar
+set showmode
+
+" Smart join (J) for comments
+set ideajoin
+
+" =============================================================================
+" General Keymaps (matching keymaps.lua)
+" =============================================================================
+
+" Exit insert mode with jj
+inoremap jj <Esc>
+
+" Clear search highlights
+nnoremap <leader>nh :nohlsearch<CR>
+
+" Delete single character without copying into register
+nnoremap x "_x
+
+" Increment/decrement numbers
+nnoremap <leader>+ <C-a>
+nnoremap <leader>- <C-x>
+
+" =============================================================================
+" Window Management
+" =============================================================================
+
+" Split window vertically
+nnoremap <leader>sv :vsplit<CR>
+
+" Split window horizontally
+nnoremap <leader>sh :split<CR>
+
+" Make splits equal size
+nnoremap <leader>se <C-w>=
+
+" Close current split
+nnoremap <leader>sx :close<CR>
+
+" Maximize/minimize split (toggle)
+nnoremap <leader>sm :action MaximizeEditorInSplit<CR>
+
+" Navigate between splits (like tmux-navigator)
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" =============================================================================
+" Tab Management
+" =============================================================================
+
+" Open new tab
+nnoremap <leader>to :action NewScratchBuffer<CR>
+
+" Close current tab
+nnoremap <leader>tx :action CloseContent<CR>
+
+" Go to next tab
+nnoremap <leader>tn :action NextTab<CR>
+
+" Go to previous tab
+nnoremap <leader>tp :action PreviousTab<CR>
+
+" Open current buffer in new tab (split off)
+nnoremap <leader>tf :action MoveEditorToOppositeTabGroup<CR>
+
+" =============================================================================
+" IDE Actions (Telescope-like fuzzy finding)
+" =============================================================================
+
+" Find files (like telescope find_files)
+nnoremap <leader>ff :action GotoFile<CR>
+
+" Live grep (like telescope live_grep)
+nnoremap <leader>fg :action FindInPath<CR>
+
+" Find recent files
+nnoremap <leader>fr :action RecentFiles<CR>
+
+" Find buffers (open files)
+nnoremap <leader>fb :action RecentFiles<CR>
+
+" =============================================================================
+" LSP-like Actions
+" =============================================================================
+
+" Go to definition
+nnoremap gd :action GotoDeclaration<CR>
+
+" Go to implementation
+nnoremap gi :action GotoImplementation<CR>
+
+" Go to references
+nnoremap gr :action FindUsages<CR>
+
+" Hover documentation
+nnoremap K :action QuickJavaDoc<CR>
+
+" Rename symbol
+nnoremap <leader>rn :action RenameElement<CR>
+
+" Code actions
+nnoremap <leader>ca :action ShowIntentionActions<CR>
+
+" Format file
+nnoremap <leader>mp :action ReformatCode<CR>
+
+" =============================================================================
+" Diagnostics (Trouble-like)
+" =============================================================================
+
+" Show problems/errors
+nnoremap <leader>xx :action ActivateProblemsViewToolWindow<CR>
+
+" Go to next error
+nnoremap ]d :action GotoNextError<CR>
+
+" Go to previous error
+nnoremap [d :action GotoPreviousError<CR>
+
+" =============================================================================
+" Git Actions (like lazygit/gitsigns)
+" =============================================================================
+
+" Git status/tool window
+nnoremap <leader>gg :action ActivateVersionControlToolWindow<CR>
+
+" Show git blame
+nnoremap <leader>gb :action Annotate<CR>
+
+" =============================================================================
+" File Explorer (NERDTree)
+" =============================================================================
+
+" Toggle file explorer
+nnoremap <leader>ee :NERDTreeToggle<CR>
+
+" Focus file explorer
+nnoremap <leader>ef :NERDTreeFocus<CR>
+
+" Find current file in explorer
+nnoremap <leader>er :NERDTreeFind<CR>
+
+" =============================================================================
+" Other Useful Actions
+" =============================================================================
+
+" Terminal
+nnoremap <leader>tt :action ActivateTerminalToolWindow<CR>
+
+" Run current file/config
+nnoremap <leader>rc :action RunClass<CR>
+nnoremap <leader>rr :action Run<CR>
+
+" Debug
+nnoremap <leader>db :action Debug<CR>
+nnoremap <leader>dt :action ToggleLineBreakpoint<CR>
+
+" Refactoring
+nnoremap <leader>rm :action ExtractMethod<CR>
+nnoremap <leader>rv :action IntroduceVariable<CR>
+nnoremap <leader>rf :action ExtractFunction<CR>
+
+" Structure view (like symbols)
+nnoremap <leader>ss :action FileStructurePopup<CR>
+
+" =============================================================================
+" Visual Mode Enhancements
+" =============================================================================
+
+" Stay in visual mode when indenting
+vnoremap < <gv
+vnoremap > >gv
+
+" Move selected lines up/down
+vnoremap J :action MoveLineDown<CR>
+vnoremap K :action MoveLineUp<CR>
+
+" =============================================================================
+" Quick Actions
+" =============================================================================
+
+" Select all
+nnoremap <leader>a ggVG
+
+" Save file
+nnoremap <leader>w :w<CR>
+
+" Quit
+nnoremap <leader>q :q<CR>

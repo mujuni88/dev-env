@@ -36,6 +36,9 @@
     ~/.config/ni: ni
     ~/.config/zed: zed
 
+    # IdeaVim configuration
+    ~/.ideavimrc: ideavim/.ideavimrc
+
     # NPM configuration
     ~/.npmrc: .npmrc
 
