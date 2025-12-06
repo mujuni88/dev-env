@@ -45,6 +45,7 @@ in {
           "/Users/jbuza/Applications/Arc.app"
           "/Users/jbuza/Applications/Notion.app"
           "/Applications/Cursor.app"
+          "/Applications/IntelliJ IDEA.app"
         ];
       };
 
