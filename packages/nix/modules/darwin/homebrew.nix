@@ -156,7 +156,7 @@
     "nordvpn"
 
     # Finance and Cryptocurrency
-    "ledger-live"
+    "ledger-wallet"
 
     # Keyboard/Navigation Management
     "karabiner-elements"
