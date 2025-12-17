@@ -27,6 +27,7 @@
   # Homebrew taps (third-party repositories)
   taps = [
     "sdkman/tap"
+    "steveyegge/beads"
     "withgraphite/tap"
   ];
 
@@ -86,6 +87,7 @@
 
     # AI tools
     "ollama" # Local LLMs
+    "steveyegge/beads/bd" # AI agent memory system
 
     # File management
     "yazi" # Terminal file manager
