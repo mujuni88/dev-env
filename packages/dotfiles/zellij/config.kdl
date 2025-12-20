@@ -1,6 +1,6 @@
 keybinds clear-defaults=true {
     locked {
-        bind "Ctrl g" {
+        bind "Alt g" {
             SwitchToMode "normal"
         }
     }
@@ -360,7 +360,7 @@ keybinds clear-defaults=true {
         bind "Alt f" {
             ToggleFloatingPanes
         }
-        bind "Ctrl g" {
+        bind "Alt g" {
             SwitchToMode "locked"
         }
         bind "Alt i" {
@@ -377,6 +377,12 @@ keybinds clear-defaults=true {
         }
         bind "Alt x" {
             CloseFocus
+        }
+        bind "Alt p" {
+            LaunchPlugin "filepicker" {
+                floating true
+                close_on_selection true
+            }
         }
     }
     shared_except "locked" "move" {
