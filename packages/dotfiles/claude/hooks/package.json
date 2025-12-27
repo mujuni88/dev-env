@@ -1,0 +1,16 @@
+{
+  "name": "claude-hooks",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "notification": "bun run notification.ts",
+    "stop": "bun run stop.ts",
+    "subagent-stop": "bun run subagent_stop.ts",
+    "user-prompt-submit": "bun run user_prompt_submit.ts",
+    "post-tool-use": "bun run post_tool_use.ts",
+    "pre-tool-use": "bun run pre_tool_use.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  }
+}

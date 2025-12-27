@@ -54,6 +54,9 @@
     # Claude Code configuration
     ~/.claude/statusline.sh: claude/statusline.sh
     ~/.claude/claude-powerline.json: claude/claude-powerline.json
+    ~/.claude/settings.json: claude/settings.json
+    ~/.claude/CLAUDE.md: claude/CLAUDE.md
+    ~/.claude/hooks: claude/hooks
 
     # Scripts directory
     ~/.local/bin/:
