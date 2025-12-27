@@ -2,35 +2,27 @@
   "theme": "dark",
   "display": {
     "padding": 1,
-    "style": "powerline",
+    "style": "minimal",
     "charset": "unicode",
     "lines": [
       {
         "segments": {
           "directory": { "enabled": true, "style": "fish" },
-          "model": { "enabled": true },
-          "session": { "enabled": true, "type": "cost" },
-          "context": { "enabled": false }
-        }
-      },
-      {
-        "segments": {
           "git": {
             "enabled": true,
             "showSha": false,
             "showWorkingTree": true,
-            "showUpstream": true,
-            "showRepoName": true,
-            "showTimeSinceCommit": false
+            "showUpstream": false,
+            "showRepoName": false,
+            "showTimeSinceCommit": false,
+            "showStashCount": false,
+            "showTag": false,
+            "showOperation": false
           },
-          "metrics": {
-            "enabled": true,
-            "showResponseTime": false,
-            "showDuration": false,
-            "showMessageCount": false,
-            "showLinesAdded": true,
-            "showLinesRemoved": true
-          }
+          "model": { "enabled": true },
+          "session": { "enabled": true, "type": "cost" },
+          "today": { "enabled": true, "type": "cost" },
+          "context": { "enabled": false }
         }
       }
     ]
