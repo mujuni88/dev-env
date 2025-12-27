@@ -16,3 +16,4 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 logs
+packages/dotfiles/claude/hooks/prompts.log
