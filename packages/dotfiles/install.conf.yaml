@@ -2,7 +2,8 @@
     link:
       relink: true
       create: true
-      force: true # Always overwrite existing files to ensure correct state
+      force: true # Overwrite existing symlinks
+      backup: true # Backup existing files before replacing
 
 - defaults:
     clean:
