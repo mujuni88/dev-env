@@ -51,6 +51,10 @@
     # Codex configuration
     ~/.codex/config.toml: codex/config.toml
 
+    # Claude Code configuration
+    ~/.claude/statusline.sh: claude/statusline.sh
+    ~/.claude/claude-powerline.json: claude/claude-powerline.json
+
     # Scripts directory
     ~/.local/bin/:
       glob: true
