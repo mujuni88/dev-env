@@ -294,7 +294,7 @@
   &to DEFAULT     &trans    &trans    &trans     &trans                                                                              &trans      &trans   &trans        &kp F10       &kp F11
  &trans     &kp F1    &kp F2    &kp F3     &kp F4  &kp F5                                                          &kp F6      &kp F7      &kp F8   &kp F9      &kp PSCRN       &kp F12
  &trans     &trans    &trans    &trans     &trans  &trans                                                   &kp LS(GRAVE)      &kp N7      &kp N8   &kp N9       &kp BSLH  &kp LS(BSLH)
- &trans  &kp LCTRL  &kp LALT  &kp LGUI  &kp LSHFT  &trans                                                   &kp LS(EQUAL)      &kp N4      &kp N5   &kp N6      &kp MINUS     &kp GRAVE
+ &trans     &kp N1     &kp N2    &kp N3     &kp N4  &kp N5                                                          &kp N6      &kp N7      &kp N8   &kp N9         &kp N0     &kp GRAVE
  &trans     &trans    &trans    &trans     &trans  &trans  &trans  &trans  &trans  &trans   &trans  &trans      &kp EQUAL      &kp N1      &kp N2   &kp N3  &kp LS(MINUS)        &trans
  &trans     &trans    &trans    &trans     &trans          &trans  &trans  &trans  &trans  &kp RET  &kp N0                 &kp LS(N9)  &kp LS(N0)  &kp DOT         &trans        &trans
             >;
