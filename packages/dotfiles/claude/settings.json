@@ -13,11 +13,7 @@
     "OTEL_RESOURCE_ATTRIBUTES": "user.netflix_email=jbuza@netflix.com,runtime_environment=local"
   },
   "permissions": {
-    "allow": [
-      "Bash(npm run lint)",
-      "Bash(npm run test:*)",
-      "Read(~/.zshrc)"
-    ]
+    "allow": ["Bash(npm run lint)", "Bash(npm run test:*)", "Read(~/.zshrc)"]
   },
   "model": "opus",
   "hooks": {
