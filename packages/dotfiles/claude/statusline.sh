@@ -1,38 +1,30 @@
 #!/usr/bin/env bash
 
 # Claude Code Custom Status Line
-# v6.2.0 - Composable with pre-built line components
+# v7.0.0 - Simple line selection
 #
-# Configure layout via CLAUDE_STATUS_LAYOUT environment variable.
-# Use component names separated by spaces. Use "\n" for line breaks.
+# Configure which lines to show by editing LINES below.
+# Each array element = one line. Space-separate to combine.
 #
-# Pre-composed lines:
-#   gitline        - Full git info: [Model] repo:branch [commit] msg | github | status | +/-
-#   bricksline     - Full context bar: [■■□□] 45% (90k/200k) | 110k free | 2h 15m | $1.23
-#   powerline      - Powerline prompt (via @owloops/claude-powerline)
+# Available components:
+#   powerline  - External powerline via @owloops/claude-powerline
+#   gitline    - [Model] repo:branch [commit] msg | github | status | +/-
+#   bricksline - [■■□□] 45% (90k/200k) | 110k free | 2h 15m | +/- | $1.23
 #
-# Individual components (for custom layouts):
-#   model, git, github, gitstatus, lines, bricks, bricksfree, duration, cost, sep
-#
-# Layout examples:
-#   "powerline bricksline"          - Powerline + bricks on same line
-#   "gitline \n bricksline"         - Classic two-line layout
-#   "powerline \n bricksline"       - Powerline on top, bricks below
-#   "powerline sep bricks"          - Powerline with just the brick visualization
-#
-# Set via:
-#   export CLAUDE_STATUS_LAYOUT="powerline bricksline"
+# Examples:
+#   LINES=("bricksline" "gitline")           # bricks on line 1, git on line 2
+#   LINES=("gitline" "bricksline")           # git on line 1, bricks on line 2
+#   LINES=("powerline bricksline")           # powerline + bricks on same line
+#   LINES=("powerline bricksline" "gitline") # combined line 1, git on line 2
+#   LINES=("powerline")                      # just powerline
+#   LINES=("gitline")                        # just git info
+#   LINES=("bricksline")                     # just context bricks
+
+LINES=("powerline" "bricksline")
+BRICK_COUNT=20
 
 # ============================================================================
-# CONFIGURATION
-# ============================================================================
-
-DEFAULT_LAYOUT="powerline bricksline"
-LAYOUT="${CLAUDE_STATUS_LAYOUT:-$DEFAULT_LAYOUT}"
-BRICK_COUNT="${CLAUDE_STATUS_BRICKS:-20}"
-
-# ============================================================================
-# READ INPUT & PARSE COMMON DATA
+# READ INPUT & PARSE DATA
 # ============================================================================
 
 input=$(cat)
@@ -110,125 +102,33 @@ compute_git() {
 }
 
 # ============================================================================
-# INDIVIDUAL COMPONENT RENDERERS
+# LINE RENDERERS
 # ============================================================================
 
 render_powerline() {
     echo "$input" | bunx @owloops/claude-powerline@1.13.2 --style=minimal --theme=dark 2>/dev/null | tr -d '\n'
 }
 
-render_model() {
-    local model=$(get_value model '.model.display_name' 'Claude' | sed 's/Claude //')
-    echo -en "\033[1;36m[$model]\033[0m"
-}
-
-render_git() {
-    compute_git
-    [[ "${CACHE[in_git_repo]}" != "1" ]] && return
-
-    local out="\033[1;32m${CACHE[repo_name]}\033[0m"
-    [[ -n "${CACHE[branch]}" ]] && out+=":\033[1;34m${CACHE[branch]}\033[0m"
-
-    if [[ -n "${CACHE[commit_short]}" ]]; then
-        out+=" [\033[1;33m${CACHE[commit_short]}\033[0m]"
-        [[ -n "${CACHE[commit_msg]}" ]] && out+=" ${CACHE[commit_msg]}"
-    fi
-    echo -en "$out"
-}
-
-render_github() {
-    compute_git
-    [[ -n "${CACHE[github_repo]}" ]] && echo -en "\033[0;35m${CACHE[github_repo]}\033[0m"
-}
-
-render_gitstatus() {
-    compute_git
-    [[ -n "${CACHE[git_status]}" ]] && echo -en "\033[1;31m${CACHE[git_status]}\033[0m"
-}
-
-render_lines() {
-    local added=$(get_value lines_added '.cost.total_lines_added' '0')
-    local removed=$(get_value lines_removed '.cost.total_lines_removed' '0')
-    echo -en "\033[0;32m+${added}\033[0m/\033[0;31m-${removed}\033[0m"
-}
-
-render_bricks() {
-    compute_context
-
-    local used_bricks=$(( CACHE[total_tokens] > 0 ? (CACHE[used_tokens] * BRICK_COUNT) / CACHE[total_tokens] : 0 ))
-    local free_bricks=$((BRICK_COUNT - used_bricks))
-
-    local out="["
-    for ((i=0; i<used_bricks; i++)); do out+="\033[0;36m■\033[0m"; done
-    for ((i=0; i<free_bricks; i++)); do out+="\033[2;37m□\033[0m"; done
-    out+="] \033[1m${CACHE[usage_pct]}%\033[0m (${CACHE[used_k]}k/${CACHE[total_k]}k)"
-
-    echo -en "$out"
-}
-
-render_bricksfree() {
-    compute_context
-    echo -en "\033[1;32m${CACHE[free_k]}k free\033[0m"
-}
-
-render_duration() {
-    local duration_ms=$(get_value duration_ms '.cost.total_duration_ms' '0')
-    local hours=$((duration_ms / 3600000))
-    local mins=$(((duration_ms % 3600000) / 60000))
-    echo -en "${hours}h ${mins}m"
-}
-
-render_cost() {
-    local cost=$(get_value cost '.cost.total_cost_usd' '0')
-
-    local show_cost=0
-    if command -v bc &> /dev/null; then
-        (( $(echo "$cost > 0" | bc -l 2>/dev/null || echo "0") )) && show_cost=1
-    else
-        [[ "$cost" != "0" && "$cost" != "0.0" && "$cost" != "0.00" && -n "$cost" ]] && show_cost=1
-    fi
-
-    if [[ "$show_cost" == "1" ]]; then
-        local formatted=$(printf "%.2f" "$cost" 2>/dev/null || echo "$cost")
-        echo -en "\033[0;33m\$${formatted}\033[0m"
-    fi
-}
-
-render_sep() {
-    echo -en " \033[2m|\033[0m "
-}
-
-# ============================================================================
-# PRE-COMPOSED LINE COMPONENTS
-# ============================================================================
-
 render_gitline() {
     compute_git
     local out=""
 
-    # Model
     local model=$(get_value model '.model.display_name' 'Claude' | sed 's/Claude //')
     out+="\033[1;36m[$model]\033[0m "
 
-    # Repo:Branch
     if [[ "${CACHE[in_git_repo]}" == "1" ]]; then
         out+="\033[1;32m${CACHE[repo_name]}\033[0m"
         [[ -n "${CACHE[branch]}" ]] && out+=":\033[1;34m${CACHE[branch]}\033[0m"
 
-        # Commit
         if [[ -n "${CACHE[commit_short]}" ]]; then
             out+=" [\033[1;33m${CACHE[commit_short]}\033[0m]"
             [[ -n "${CACHE[commit_msg]}" ]] && out+=" ${CACHE[commit_msg]}"
         fi
 
-        # GitHub
         [[ -n "${CACHE[github_repo]}" ]] && out+=" | \033[0;35m${CACHE[github_repo]}\033[0m"
-
-        # Git status
         [[ -n "${CACHE[git_status]}" ]] && out+=" \033[1;31m${CACHE[git_status]}\033[0m"
     fi
 
-    # Lines changed
     local added=$(get_value lines_added '.cost.total_lines_added' '0')
     local removed=$(get_value lines_removed '.cost.total_lines_removed' '0')
     if [[ "$added" -gt 0 || "$removed" -gt 0 ]]; then
@@ -241,7 +141,6 @@ render_gitline() {
 render_bricksline() {
     compute_context
 
-    # Bricks visualization
     local used_bricks=$(( CACHE[total_tokens] > 0 ? (CACHE[used_tokens] * BRICK_COUNT) / CACHE[total_tokens] : 0 ))
     local free_bricks=$((BRICK_COUNT - used_bricks))
 
@@ -249,22 +148,17 @@ render_bricksline() {
     for ((i=0; i<used_bricks; i++)); do out+="\033[0;36m■\033[0m"; done
     for ((i=0; i<free_bricks; i++)); do out+="\033[2;37m□\033[0m"; done
     out+="] \033[1m${CACHE[usage_pct]}%\033[0m (${CACHE[used_k]}k/${CACHE[total_k]}k)"
-
-    # Free space
     out+=" | \033[1;32m${CACHE[free_k]}k free\033[0m"
 
-    # Duration
     local duration_ms=$(get_value duration_ms '.cost.total_duration_ms' '0')
     local hours=$((duration_ms / 3600000))
     local mins=$(((duration_ms % 3600000) / 60000))
     out+=" | ${hours}h ${mins}m"
 
-    # Lines
     local added=$(get_value lines_added '.cost.total_lines_added' '0')
     local removed=$(get_value lines_removed '.cost.total_lines_removed' '0')
     out+=" | \033[0;32m+${added}\033[0m/\033[0;31m-${removed}\033[0m"
 
-    # Cost (if non-zero)
     local cost=$(get_value cost '.cost.total_cost_usd' '0')
     local show_cost=0
     if command -v bc &> /dev/null; then
@@ -281,61 +175,23 @@ render_bricksline() {
 }
 
 # ============================================================================
-# LAYOUT ENGINE
-# ============================================================================
-
-render_component() {
-    local component="$1"
-    case "$component" in
-        # Pre-composed lines
-        gitline)     render_gitline ;;
-        bricksline)  render_bricksline ;;
-        powerline)   render_powerline ;;
-        # Individual components
-        model)       render_model ;;
-        git)         render_git ;;
-        github)      render_github ;;
-        gitstatus)   render_gitstatus ;;
-        lines)       render_lines ;;
-        bricks)      render_bricks ;;
-        bricksfree)  render_bricksfree ;;
-        duration)    render_duration ;;
-        cost)        render_cost ;;
-        sep)         render_sep ;;
-        *)           ;;
-    esac
-}
-
-render_layout() {
-    local layout="$1"
-    local line=""
-    local first_on_line=1
-
-    for token in $layout; do
-        if [[ "$token" == '\n' ]]; then
-            [[ -n "$line" ]] && echo -e "$line"
-            line=""
-            first_on_line=1
-        else
-            local rendered=$(render_component "$token")
-            if [[ -n "$rendered" ]]; then
-                if [[ "$first_on_line" == "1" ]]; then
-                    line="$rendered"
-                    first_on_line=0
-                elif [[ "$token" == "sep" ]]; then
-                    line+="$rendered"
-                else
-                    line+=" $rendered"
-                fi
-            fi
-        fi
-    done
-
-    [[ -n "$line" ]] && echo -e "$line"
-}
-
-# ============================================================================
 # MAIN
 # ============================================================================
 
-render_layout "$LAYOUT"
+render_component() {
+    case "$1" in
+        powerline)  render_powerline ;;
+        gitline)    render_gitline ;;
+        bricksline) render_bricksline ;;
+    esac
+}
+
+for line in "${LINES[@]}"; do
+    first=1
+    for component in $line; do
+        [[ $first -eq 0 ]] && echo -n " "
+        render_component "$component"
+        first=0
+    done
+    echo
+done
