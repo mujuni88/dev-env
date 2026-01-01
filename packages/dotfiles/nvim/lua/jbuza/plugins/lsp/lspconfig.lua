@@ -161,6 +161,16 @@ return {
           capabilities = capabilities,
         })
       end,
+      ["kotlin_language_server"] = function()
+        -- configure kotlin language server with Java 17 (required - Java 25 not supported)
+        local java17_home = "/Library/Java/JavaVirtualMachines/temurin-17.jdk/Contents/Home"
+        lspconfig["kotlin_language_server"].setup({
+          capabilities = capabilities,
+          cmd_env = {
+            JAVA_HOME = java17_home,
+          },
+        })
+      end,
       }
     })
   end,

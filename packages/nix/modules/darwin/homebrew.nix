@@ -114,7 +114,8 @@
     #"cursor"  Cursor IDE::NOTE:: using companies version /Applications/Cursor.app/
     "zed" # IDE
     "ngrok"
-    "temurin" # Eclipse Temurin OpenJDK distribution
+    "temurin" # Eclipse Temurin OpenJDK distribution (latest)
+    "temurin@17" # Java 17 LTS (required for kotlin-language-server)
     "docker-desktop" # Docker Desktop for macOS
     "figma"
 
