@@ -168,8 +168,10 @@ return {
         local java_home = vim.fn.isdirectory(sdkman_java) == 1 and sdkman_java or brew_sdkman_java
         lspconfig["kotlin_language_server"].setup({
           capabilities = capabilities,
-          cmd_env = {
-            JAVA_HOME = java_home,
+          cmd = {
+            "env",
+            "JAVA_HOME=" .. java_home,
+            vim.fn.expand("$HOME/.local/share/nvim/mason/bin/kotlin-language-server"),
           },
         })
       end,
