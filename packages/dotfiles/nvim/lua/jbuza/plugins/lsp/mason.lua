@@ -39,6 +39,7 @@ return {
 				"prismals",
 				"pyright",
 				"rust_analyzer",
+				"kotlin_language_server",
 			},
 		})
 
@@ -50,6 +51,7 @@ return {
 				"black", -- python formatter
 				"pylint",
 				"eslint_d",
+				"ktlint", -- kotlin linter/formatter
 			},
 		})
 	end,

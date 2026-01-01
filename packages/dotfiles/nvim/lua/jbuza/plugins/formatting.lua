@@ -22,6 +22,7 @@ return {
 				python = { "isort", "black" },
 				nix = { "alejandra" },
 				kdl = { "kdlfmt" },
+				kotlin = { "ktlint" },
 			},
 			format_on_save = {
 				lsp_fallback = true,
