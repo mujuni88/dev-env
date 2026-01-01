@@ -162,12 +162,14 @@ return {
         })
       end,
       ["kotlin_language_server"] = function()
-        -- configure kotlin language server with Java 17 (required - Java 25 not supported)
-        local java17_home = "/Library/Java/JavaVirtualMachines/temurin-17.jdk/Contents/Home"
+        -- configure kotlin language server with Java 17 via SDKMAN (Java 25 not supported)
+        local sdkman_java = vim.fn.expand("$HOME/.sdkman/candidates/java/current")
+        local brew_sdkman_java = "/opt/homebrew/opt/sdkman-cli/libexec/candidates/java/current"
+        local java_home = vim.fn.isdirectory(sdkman_java) == 1 and sdkman_java or brew_sdkman_java
         lspconfig["kotlin_language_server"].setup({
           capabilities = capabilities,
           cmd_env = {
-            JAVA_HOME = java17_home,
+            JAVA_HOME = java_home,
           },
         })
       end,
