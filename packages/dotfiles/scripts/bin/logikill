@@ -1,6 +1,3 @@
 #!/usr/bin/env bash
-
-# Kill logioptionsplus_agent
-killlogi() {
-  kill -9 $(ps aux | grep "MacOS/logioptionsplus_agent" | grep -v grep | awk '{print $2}')
-}
+# Kill all Logitech Options Plus processes
+sudo pkill -9 -f "logioptionsplus"

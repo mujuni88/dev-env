@@ -153,6 +153,7 @@
     "canva"
     "grammarly-desktop"
     "clop"
+    "logi-options+" # Logitech mouse/keyboard customization
 
     # Security and Privacy
     "nordvpn"
