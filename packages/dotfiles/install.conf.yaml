@@ -49,9 +49,6 @@
     ~/.zprofile: zsh/.zprofile
     ~/.zshenv: zsh/.zshenv
 
-    # Codex configuration
-    ~/.codex/config.toml: codex/config.toml
-
     # Claude Code configuration
     ~/.claude/statusline.sh: claude/statusline.sh
     ~/.claude/claude-powerline.json: claude/claude-powerline.json
@@ -66,7 +63,9 @@
       create: true
 
 - shell:
-    - [mkdir -p ~/.codex, Creating codex directory]
+    - [mkdir -p ~/.claude/plugins, Creating claude plugins directory]
     - [chmod +x scripts/bin/*, Making scripts executable]
+    - [chmod +x claude/install-plugins.sh, Making plugin installer executable]
+    - [./claude/install-plugins.sh, Installing Claude Code plugins]
     - [echo "✅ Dotfiles installation complete!", Finishing up]
 
