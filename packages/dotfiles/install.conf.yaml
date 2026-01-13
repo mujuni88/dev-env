@@ -36,6 +36,7 @@
     ~/.config/carapace: carapace
     ~/.config/ni: ni
     ~/.config/zed: zed
+    ~/.config/opencode: opencode
 
     # IdeaVim configuration
     ~/.ideavimrc: ideavim/.ideavimrc
