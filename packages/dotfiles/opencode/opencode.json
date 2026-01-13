@@ -3,24 +3,8 @@
   "plugin": ["opencode-antigravity-auth@beta"],
   "provider": {
     "anthropic": {
-      "npm": "@ai-sdk/anthropic",
-      "name": "Anthropic (Company)",
       "options": {
         "baseURL": "http://localhost:9123/mtlsproxy:claudecode/v1"
-      },
-      "models": {
-        "claude-opus-4-5": {
-          "name": "Claude Opus 4.5 (Company)",
-          "limit": { "context": 200000, "output": 64000 }
-        },
-        "claude-sonnet-4-5": {
-          "name": "Claude Sonnet 4.5 (Company)",
-          "limit": { "context": 200000, "output": 64000 }
-        },
-        "claude-haiku-4-5": {
-          "name": "Claude Haiku 4.5 (Company)",
-          "limit": { "context": 200000, "output": 65536 }
-        }
       }
     },
     "google": {
