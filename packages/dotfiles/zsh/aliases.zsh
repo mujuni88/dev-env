@@ -108,3 +108,6 @@ alias claude="claude --dangerously-skip-permissions"
 
 # Dashlane
 alias dash="dcli"
+
+# Claude
+alias claude-mem='bun "/Users/jbuza/.claude/plugins/marketplaces/thedotmack/plugin/scripts/worker-service.cjs"'
