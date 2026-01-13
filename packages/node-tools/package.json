@@ -3,8 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "@typescript/native-preview": "latest",
-    "@antfu/ni": "latest"
+    "@typescript/native-preview": "latest"
   },
   "scripts": {
     "global-install": "./install.sh"
