@@ -29,6 +29,7 @@
     "sdkman/tap"
     "steveyegge/beads"
     "withgraphite/tap"
+    "anomalyco/tap"
   ];
 
   brews = [
@@ -100,7 +101,7 @@
     "imagemagick" # Image processing
 
     # AI Terminal Apps
-    "sst/tap/opencode" # Opencode
+    "anomalyco/tap/opencode" # Opencode (official)
     "gemini-cli" # Gemini Cli
   ];
 
@@ -138,6 +139,7 @@
     "raycast"
     "chatgpt"
     "claude"
+    "opencode-desktop" # OpenCode desktop client
     # "claude-code" # Claude Code IDE
     "jordanbaird-ice"
 
