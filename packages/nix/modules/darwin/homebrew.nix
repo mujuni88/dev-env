@@ -73,6 +73,7 @@
     "git-delta" # Better git diff
     "lazydocker" # Terminal UI for docker
     "dotbot" # Dotfiles manager
+    "mprocs" # Run multiple commands in parallel
 
     # Programming languages and runtimes
     "rustup" # Rust toolchain installer
