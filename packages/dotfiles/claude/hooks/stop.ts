@@ -1,7 +1,14 @@
 #!/usr/bin/env bun
 import type { StopHookInput, SyncHookJSONOutput } from '@anthropic-ai/claude-code/sdk';
 
-const input: StopHookInput = JSON.parse(await Bun.stdin.text());
+let input: StopHookInput;
+try {
+  const stdin = await Bun.stdin.text();
+  input = stdin ? JSON.parse(stdin) : {};
+} catch {
+  input = {};
+}
+
 const args = process.argv.slice(2);
 const isChat = args.includes('--chat');
 
