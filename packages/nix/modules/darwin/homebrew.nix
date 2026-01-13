@@ -56,6 +56,7 @@
 
     # CLI tools and utilities
     "bat" # Better cat with syntax highlighting
+    "pandoc" # Universal document converter
     "ripgrep" # Fast text search
     "eza" # Modern ls replacement
     "tree" # Directory structure visualization
