@@ -6,7 +6,7 @@
       "npm": "@ai-sdk/anthropic",
       "name": "Anthropic (Company)",
       "options": {
-        "baseURL": "http://localhost:9123/mtlsproxy:claudecode"
+        "baseURL": "http://localhost:9123/mtlsproxy:claudecode/v1"
       },
       "models": {
         "claude-opus-4-5": {
