@@ -64,6 +64,7 @@
       create: true
 
 - shell:
+    - [mkdir -p ~/.config/graphite && dcli inject -i graphite/user_config.template -o ~/.config/graphite/user_config, Generating Graphite config from Dashlane]
     - [mkdir -p ~/.claude/plugins, Creating claude plugins directory]
     - [chmod +x scripts/bin/*, Making scripts executable]
     - [chmod +x claude/install-plugins.sh, Making plugin installer executable]

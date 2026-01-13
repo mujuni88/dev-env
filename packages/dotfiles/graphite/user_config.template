@@ -1,0 +1,8 @@
+{
+  "authToken": "{{dl://graphite-work-token/content}}",
+  "alternativeProfiles": [
+    {"name": "work", "authToken": "{{dl://graphite-work-token/content}}"},
+    {"name": "personal", "authToken": "{{dl://graphite-personal-token/content}}"}
+  ],
+  "updateAutomatically": true
+}
