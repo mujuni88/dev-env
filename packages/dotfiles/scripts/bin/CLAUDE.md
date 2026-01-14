@@ -7,6 +7,5 @@
 
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
-| #210 | 4:06 PM | 🟣 | Added Instructions File Paths to OpenCode Configuration | ~336 |
-| #209 | " | 🔵 | OpenCode Configuration with Netflix Antigravity Models and MCP Servers | ~545 |
+| #205 | 4:03 PM | 🟣 | Custom Claude Commands and Netflix GitHub Tooling Added to Dotfiles | ~429 |
 </claude-mem-context>
