@@ -2,6 +2,12 @@
   "$schema": "https://opencode.ai/config.json",
   "permission": "allow",
   "plugin": ["opencode-antigravity-auth@beta"],
+  "instructions": [
+    "~/.claude/CLAUDE.md",
+    "CLAUDE.md",
+    "CLAUDE.local.md",
+    ".cursor/rules/*.md"
+  ],
   "provider": {
     "anthropic": {
       "options": {
@@ -82,40 +88,46 @@
       "command": ["npx", "-y", "@upstash/context7-mcp@latest"],
       "enabled": true
     },
-    "sequential-thinking": {
+    "chrome-devtools": {
       "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "@modelcontextprotocol/server-sequential-thinking"
-      ],
+      "command": ["npx", "chrome-devtools-mcp@latest"],
       "enabled": true,
       "environment": {}
     },
-    "mcp-playwright": {
+    "hawkins-scraper": {
       "type": "local",
-      "command": ["npx", "-y", "@executeautomation/playwright-mcp-server"],
-      "enabled": true,
-      "environment": {}
-    },
-    "notion-mcp-server": {
-      "type": "local",
-      "command": ["npx", "-y", "@notionhq/notion-mcp-server"],
+      "command": ["npx", "-y", "@netflix-internal/mcp-server-hawkins-scraper"],
       "enabled": true,
       "environment": {
-        "OPENAPI_MCP_HEADERS": "{\"Authorization\": \"Bearer $NOTION_TOKEN\", \"Notion-Version\": \"2022-06-28\"}"
+        "HAWKINS_ASSETS_PATH": "/Users/jbuza/Code/Netflix/netflix-libs/node_modules/@hawkins/assets/",
+        "HAWKINS_COMPONENTS_PATH": "/Users/jbuza/Code/Netflix/netflix-libs/node_modules/@hawkins/components",
+        "HAWKINS_FORMS_PATH": "/Users/jbuza/Code/Netflix/netflix-libs/node_modules/@hawkins/forms",
+        "HAWKINS_HELPERS_PATH": "/Users/jbuza/Code/Netflix/netflix-libs/node_modules/@hawkins/helpers/",
+        "HAWKINS_ICONS_PATH": "/Users/jbuza/Code/Netflix/netflix-libs/node_modules/@hawkins/icons/",
+        "HAWKINS_SEARCH_PATH": "/Users/jbuza/Code/Netflix/netflix-libs/node_modules/@hawkins/search/",
+        "HAWKINS_STYLES_PATH": "/Users/jbuza/Code/Netflix/netflix-libs/node_modules/@hawkins/styles/",
+        "HAWKINS_TABLE_PATH": "/Users/jbuza/Code/Netflix/netflix-libs/node_modules/@hawkins/table",
+        "HAWKINS_VARIABLES_PATH": "/Users/jbuza/Code/Netflix/netflix-libs/node_modules/@hawkins/variables/"
       }
     },
-    "filesystem": {
+    "genai-mcp-gateway": {
       "type": "local",
       "command": [
-        "npx",
-        "-y",
-        "@modelcontextprotocol/server-filesystem",
-        "/Users/jbuza"
+        "sh",
+        "-c",
+        "[ -x /apps/nflx-genai-tool-registry/bin/nflx-genai-tool-registry ] && exec /apps/nflx-genai-tool-registry/bin/nflx-genai-tool-registry || exec newt --app-type=python uvx --tool=python=3.12 -- nflx-genai-tool-registry@latest"
       ],
       "enabled": true,
-      "environment": {}
+      "environment": {
+        "REGISTRY_ENV": "prod",
+        "REGISTRY_TOOLBOX_ID": "core_tools",
+        "REGISTRY_URL_OVERRIDE": "sbn-dev-agent"
+      }
+    },
+    "netflix-eng": {
+      "type": "remote",
+      "url": "http://localhost:9123/mcp",
+      "enabled": true
     }
   }
 }
