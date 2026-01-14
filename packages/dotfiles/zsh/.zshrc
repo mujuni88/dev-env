@@ -32,6 +32,9 @@ eval "$(fnm env --use-on-cd --shell zsh)"
 # Zoxide
 eval "$(zoxide init zsh)"
 
+# Atuin (shell history)
+eval "$(atuin init zsh)"
+
 # ----- Load Additional Configs -----
 # Load all zsh config files eg. aliases.zsh
 for config_file (~/.config/zsh/*.zsh(N)); do
