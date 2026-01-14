@@ -56,7 +56,10 @@ compute_context() {
         fi
 
         CACHE[free_tokens]=$((CACHE[total_tokens] - CACHE[used_tokens]))
-        CACHE[usage_pct]=$(( CACHE[total_tokens] > 0 ? (CACHE[used_tokens] * 100) / CACHE[total_tokens] : 0 ))
+
+        # Use official Anthropic percentage calculations
+        CACHE[usage_pct]=$(get_value usage_pct '.context_window.used_percentage' '0')
+
         CACHE[used_k]=$(( CACHE[used_tokens] / 1000 ))
         CACHE[total_k]=$(( CACHE[total_tokens] / 1000 ))
         CACHE[free_k]=$(( CACHE[free_tokens] / 1000 ))
