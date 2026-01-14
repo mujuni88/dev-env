@@ -1,0 +1,312 @@
+#!/bin/bash
+# ngh - Netflix GitHub CLI wrapper
+# A convenience wrapper around 'gh' for Netflix's GitHub Enterprise at github.netflix.net
+
+set -e
+
+# Enable debug output if NGH_DEBUG is set
+if [ -n "$NGH_DEBUG" ]; then
+    set -x
+fi
+
+# Helper function to log debug messages
+debug() {
+    if [ -n "$NGH_DEBUG" ]; then
+        echo "[ngh debug] $*" >&2
+    fi
+}
+
+# Helper function to check if we're in a git repo
+in_git_repo() {
+    git rev-parse --git-dir >/dev/null 2>&1
+}
+
+# Helper function to map Netflix git.netflix.net org/repo to github.netflix.net format
+# Mapping rules:
+# - corp/repo -> corp/repo (unchanged)
+# - other_org/repo -> corp/other_org-repo (e.g., bdp/spark-udf -> corp/bdp-spark-udf)
+map_netflix_org() {
+    local org_repo="$1"
+    local org
+    local repo
+    org=$(echo "$org_repo" | cut -d'/' -f1)
+    repo=$(echo "$org_repo" | cut -d'/' -f2)
+
+    if [ "$org" = "corp" ]; then
+        # If org is corp, use as is
+        echo "corp/$repo"
+    else
+        # If org is not corp, map to corp/org-repo format
+        echo "corp/${org}-${repo}"
+    fi
+}
+
+# Helper function to extract org/repo from git URL
+extract_repo() {
+    echo "$1" | sed -E 's|.*[:/]([^/]+)/([^/]+)(\.git)?$|\1/\2|' | sed 's/\.git$//'
+}
+
+# Helper function to get the actual git remote URL (not rewritten)
+get_actual_remote_url() {
+    git remote get-url origin 2>/dev/null || true
+}
+
+# Helper function to get org and repo from git remote
+get_org_and_repo() {
+    if ! in_git_repo; then
+        debug "Not in a git repository"
+        return 1
+    fi
+
+    local remote_url
+    remote_url=$(git config --get remote.origin.url 2>/dev/null || true)
+
+    if [[ -z "$remote_url" ]]; then
+        debug "Warning: No origin remote found"
+        return 1
+    fi
+
+    debug "Remote URL: $remote_url"
+
+    # Parse org/repo from remote URL
+    local org_repo
+    org_repo=$(extract_repo "$remote_url")
+    debug "Parsed org/repo: $org_repo"
+
+    # Check if this is a Netflix URL
+    if [[ "$remote_url" == *github.netflix.net* ]]; then
+        # Already github.netflix.net - use as-is
+        debug "Using github.netflix.net repo as-is: $org_repo"
+        echo "$org_repo"
+    elif [[ "$remote_url" == *git.netflix.net* ]]; then
+        # git.netflix.net - apply mapping rules
+        local mapped_repo
+        mapped_repo=$(map_netflix_org "$org_repo")
+        debug "Mapped git.netflix.net repo to: $mapped_repo"
+        echo "$mapped_repo"
+    else
+        # Non-Netflix URL - use as-is
+        debug "Using non-Netflix repo as-is: $org_repo"
+        echo "$org_repo"
+    fi
+}
+
+# Helper function to setup temporary github.netflix.net remote if needed
+# Returns 0 if temp remote was added, 1 if not needed
+setup_temp_remote() {
+    if ! in_git_repo; then
+        return 1
+    fi
+
+    local actual_url
+    actual_url=$(get_actual_remote_url)
+
+    if [[ -z "$actual_url" ]]; then
+        return 1
+    fi
+
+    debug "Actual remote URL: $actual_url"
+
+    # Only need temp remote if actual remote is git.netflix.net
+    if [[ "$actual_url" != *git.netflix.net* ]]; then
+        debug "Remote is not git.netflix.net, no temp remote needed"
+        return 1
+    fi
+
+    # Get the github.netflix.net version from git config (URL rewriting gives us this)
+    local github_url
+    github_url=$(git config --get remote.origin.url 2>/dev/null || true)
+
+    if [[ -z "$github_url" ]] || [[ "$github_url" != *github.netflix.net* ]]; then
+        debug "Could not get github.netflix.net URL from git config"
+        return 1
+    fi
+
+    debug "Adding temporary remote 'ngh-temp' pointing to: $github_url"
+    git remote add ngh-temp "$github_url" 2>/dev/null || true
+    return 0
+}
+
+# Helper function to cleanup temporary remote
+cleanup_temp_remote() {
+    if in_git_repo && git remote | grep -q "^ngh-temp$"; then
+        debug "Removing temporary remote 'ngh-temp'"
+        git remote remove ngh-temp 2>/dev/null || true
+    fi
+}
+
+# Helper function to check if a command needs GH_HOST
+needs_gh_host() {
+    local cmd="$1"
+    case "$cmd" in
+        api|search)
+            return 0
+            ;;
+        *)
+            return 1
+            ;;
+    esac
+}
+
+# Helper function to check if argument is already a full URL
+is_full_url() {
+    [[ "$1" =~ ^https?:// ]]
+}
+
+# Helper function to transform -R corp/repo to full URL for certain commands
+# Modifies the global ARGS array
+transform_repo_flag() {
+    local cmd="$1"
+    shift
+    ARGS=()
+    local skip_next=false
+
+    # Commands that work better with full URLs
+    case "$cmd" in
+        pr|issue|repo|release|workflow|run)
+            while [ $# -gt 0 ]; do
+                local arg="$1"
+                shift
+
+                if [ "$skip_next" = true ]; then
+                    skip_next=false
+                    # Transform corp/repo to full URL
+                    if [[ "$arg" =~ ^corp/ ]] && ! is_full_url "$arg"; then
+                        ARGS+=("https://github.netflix.net/$arg")
+                    else
+                        ARGS+=("$arg")
+                    fi
+                    continue
+                fi
+
+                if [ "$arg" = "-R" ] || [ "$arg" = "--repo" ]; then
+                    ARGS+=("$arg")
+                    skip_next=true
+                else
+                    ARGS+=("$arg")
+                fi
+            done
+            return 0
+            ;;
+    esac
+
+    # For other commands, keep args unchanged
+    ARGS=("$@")
+}
+
+# Main logic
+if [ $# -eq 0 ]; then
+    # No arguments, just pass through
+    exec gh "$@"
+fi
+
+# Get the subcommand
+SUBCOMMAND="$1"
+shift
+
+# Special handling for 'pr checkout' - doesn't work with Netflix Git Proxy
+if [ "$SUBCOMMAND" = "pr" ] && [ $# -gt 0 ] && [ "$1" = "checkout" ]; then
+    if ! in_git_repo; then
+        echo "You must be in a git repository to checkout pull requests." >&2
+        exit 1
+    fi
+
+    shift  # Remove 'checkout'
+    PR_ARG="$1"
+
+    # Extract PR number from various formats
+    PR_NUMBER=""
+    if [[ "$PR_ARG" =~ ^[0-9]+$ ]]; then
+        # Plain number: 329
+        PR_NUMBER="$PR_ARG"
+    elif [[ "$PR_ARG" =~ /pull/([0-9]+) ]]; then
+        # URL format: https://github.netflix.net/corp/repo/pull/329
+        PR_NUMBER="${BASH_REMATCH[1]}"
+    fi
+
+    ORG_AND_REPO=$(get_org_and_repo)
+    echo "ERROR: 'ngh pr checkout' does not work due to Netflix Git Proxy limitations." >&2
+    echo "" >&2
+
+    if [ -n "$ORG_AND_REPO" ] && [ -n "$PR_NUMBER" ]; then
+        echo "WORKAROUND - Use git directly to checkout pull requests:" >&2
+        echo "" >&2
+        echo "For PR #${PR_NUMBER}, run these commands:" >&2
+        echo "  BRANCH=\$(ngh api repos/${ORG_AND_REPO}/pulls/${PR_NUMBER} --jq '.head.ref')" >&2
+        echo "  git fetch origin pull/${PR_NUMBER}/head:\$BRANCH && git checkout \$BRANCH" >&2
+    else
+        echo "WORKAROUND - Use git directly to checkout pull requests:" >&2
+        echo "" >&2
+        echo "For PR #${PR_NUMBER:-PR_NUMBER}, run these commands:" >&2
+        echo "  BRANCH=\$(ngh api repos/ORG/REPO/pulls/${PR_NUMBER:-PR_NUMBER} --jq '.head.ref')" >&2
+        echo "  git fetch origin pull/${PR_NUMBER:-PR_NUMBER}/head:\$BRANCH && git checkout \$BRANCH" >&2
+    fi
+
+    exit 1
+fi
+
+# Transform repo flags if needed (modifies global ARGS array)
+transform_repo_flag "$SUBCOMMAND" "$@"
+
+# Special handling for pr create - needs temp remote and --head flag for git.netflix.net repos
+if [ "$SUBCOMMAND" = "pr" ] && [[ " ${ARGS[*]} " =~ " create " ]]; then
+    if setup_temp_remote; then
+        debug "Temp remote setup for pr create"
+        trap cleanup_temp_remote EXIT
+        export GH_HOST=github.netflix.net
+
+        # Get current branch for --head flag if not already specified
+        HEAD_ARG=""
+        if [[ ! " ${ARGS[*]} " =~ " --head " ]] && in_git_repo; then
+            CURRENT_BRANCH=$(git symbolic-ref --short HEAD 2>/dev/null || true)
+            if [ -n "$CURRENT_BRANCH" ]; then
+                HEAD_ARG="--head $CURRENT_BRANCH"
+                debug "Auto-injecting --head $CURRENT_BRANCH for pr create"
+            fi
+        fi
+
+        # Auto-inject -R if not present
+        if [[ ! "$*" =~ (--repo|-R) ]] && in_git_repo; then
+            ORG_AND_REPO=$(get_org_and_repo)
+            if [ -n "$ORG_AND_REPO" ]; then
+                debug "Auto-injecting -R https://github.netflix.net/$ORG_AND_REPO for pr create"
+                gh "$SUBCOMMAND" -R "https://github.netflix.net/$ORG_AND_REPO" $HEAD_ARG "${ARGS[@]}"
+                EXIT_CODE=$?
+                cleanup_temp_remote
+                exit $EXIT_CODE
+            fi
+        fi
+
+        gh "$SUBCOMMAND" $HEAD_ARG "${ARGS[@]}"
+        EXIT_CODE=$?
+        cleanup_temp_remote
+        exit $EXIT_CODE
+    fi
+fi
+
+# For commands that can use -R with current repo context, auto-inject if not present
+if [ "$SUBCOMMAND" = "pr" ] || [ "$SUBCOMMAND" = "issue" ] || [ "$SUBCOMMAND" = "release" ]; then
+    if [[ ! "$*" =~ (--repo|-R) ]] && in_git_repo; then
+        # Auto-inject -R org/repo from git remote
+        ORG_AND_REPO=$(get_org_and_repo)
+        if [ -n "$ORG_AND_REPO" ]; then
+            debug "Auto-injecting -R https://github.netflix.net/$ORG_AND_REPO"
+            # Set GH_HOST for commands that need it (api, search)
+            if needs_gh_host "$SUBCOMMAND"; then
+                export GH_HOST=github.netflix.net
+            fi
+            exec gh "$SUBCOMMAND" -R "https://github.netflix.net/$ORG_AND_REPO" "${ARGS[@]}"
+        fi
+    fi
+fi
+
+# Check if this command needs GH_HOST
+if needs_gh_host "$SUBCOMMAND"; then
+    # Commands like 'gh api' and 'gh search' need GH_HOST
+    debug "Setting GH_HOST=github.netflix.net for command: $SUBCOMMAND"
+    export GH_HOST=github.netflix.net
+fi
+
+# Pass through with transformed args
+debug "Executing: gh $SUBCOMMAND ${ARGS[*]}"
+exec gh "$SUBCOMMAND" "${ARGS[@]}"
