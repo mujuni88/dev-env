@@ -52,7 +52,7 @@ keybinds clear-defaults=true {
         bind "p" {
             SwitchFocus
         }
-        bind "Ctrl p" {
+        bind "Alt p" {
             SwitchToMode "normal"
         }
         bind "r" {
@@ -378,9 +378,8 @@ keybinds clear-defaults=true {
         bind "Alt x" {
             CloseFocus
         }
-        bind "Alt p" {
+        bind "Alt o" {
             LaunchPlugin "filepicker" {
-                floating true
                 close_on_selection true
             }
         }
@@ -427,7 +426,7 @@ keybinds clear-defaults=true {
         }
     }
     shared_except "locked" "pane" {
-        bind "Ctrl p" {
+        bind "Alt p" {
             SwitchToMode "pane"
         }
     }
