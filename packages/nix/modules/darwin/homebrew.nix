@@ -65,17 +65,17 @@
     "wget" # Command-line tool for downloading files
     "dashlane/tap/dashlane-cli" # dashlane api
 
-      # Development tools
-      "jj" # A more improved Git
-      "lazygit" # Terminal UI for git
-      "commitizen" # Git commit conventions tool
-      "gh" # Github CLI
-      "withgraphite/tap/graphite" # Graphite CLI for stacked diffs
-      "neovim" # Text editor
-      "git-delta" # Better git diff
-      "lazydocker" # Terminal UI for docker
-      "dotbot" # Dotfiles manager
-      "mprocs" # Run multiple commands in parallel
+    # Development tools
+    "jj" # A more improved Git
+    "lazygit" # Terminal UI for git
+    "commitizen" # Git commit conventions tool
+    "gh" # Github CLI
+    "withgraphite/tap/graphite" # Graphite CLI for stacked diffs
+    "neovim" # Text editor
+    "git-delta" # Better git diff
+    "lazydocker" # Terminal UI for docker
+    "dotbot" # Dotfiles manager
+    "mprocs" # Run multiple commands in parallel
 
     # Programming languages and runtimes
     "rustup" # Rust toolchain installer
@@ -88,8 +88,8 @@
     "luarocks" # Lua package manager
     "sdkman/tap/sdkman-cli" # SDKMAN - Software Development Kit Manager
 
-     # AI tools
-     "steveyegge/beads/bd" # AI agent memory system
+    # AI tools
+    "steveyegge/beads/bd" # AI agent memory system
 
     # File management
     "yazi" # Terminal file manager
@@ -100,11 +100,11 @@
     "poppler" # PDF rendering
     "imagemagick" # Image processing
 
-     # AI Terminal Apps
-     "anomalyco/tap/opencode" # Opencode (official)
+    # AI Terminal Apps
+    "anomalyco/tap/opencode" # Opencode (official)
   ];
 
-   casks = [
+  casks = [
     # Terminal and Shell Tools
     "ghostty"
 
@@ -166,6 +166,6 @@
   masApps = {
     "PastePal" = 1503446680;
     "Yoink" = 457622435;
-    "SparkMailAI" = 6445813049;
+    "SparkClassicEmailApp" = 1176895641;
   };
 }

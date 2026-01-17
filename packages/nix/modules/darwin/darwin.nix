@@ -38,7 +38,7 @@ in {
         persistent-apps = [
           "/System/Applications/iPhone Mirroring.app"
           "/Users/jbuza/Applications/AppCleaner.app"
-          "/Applications/Spark Desktop.app"
+          "/Applications/Spark.app"
           "/System/Applications/Calendar.app"
           "/System/Applications/Messages.app"
           "/Users/jbuza/Applications/Slack.app"
