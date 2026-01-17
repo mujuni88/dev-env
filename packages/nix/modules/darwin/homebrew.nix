@@ -62,6 +62,7 @@
     "tree" # Directory structure visualization
     "fd" # Better alternative to find
     "jq" # JSON processor
+    "yq" # YAML processor (jq for YAML)
     "wget" # Command-line tool for downloading files
     "dashlane/tap/dashlane-cli" # dashlane api
 
