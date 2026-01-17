@@ -65,17 +65,17 @@
     "wget" # Command-line tool for downloading files
     "dashlane/tap/dashlane-cli" # dashlane api
 
-    # Development tools
-    "jj" # A more improved Git
-    "lazygit" # Terminal UI for git
-    "commitizen" # Git commit conventions tool
-    "gh" # Github CLI
-    "withgraphite/tap/graphite" # Graphite CLI for stacked diffs
-    "neovim" # Text editor
-    "git-delta" # Better git diff
-    "lazydocker" # Terminal UI for docker
-    "dotbot" # Dotfiles manager
-    "mprocs" # Run multiple commands in parallel
+      # Development tools
+      "jj" # A more improved Git
+      "lazygit" # Terminal UI for git
+      "commitizen" # Git commit conventions tool
+      "gh" # Github CLI
+      "withgraphite/tap/graphite" # Graphite CLI for stacked diffs
+      "neovim" # Text editor
+      "git-delta" # Better git diff
+      "lazydocker" # Terminal UI for docker
+      "dotbot" # Dotfiles manager
+      "mprocs" # Run multiple commands in parallel
 
     # Programming languages and runtimes
     "rustup" # Rust toolchain installer
@@ -88,9 +88,8 @@
     "luarocks" # Lua package manager
     "sdkman/tap/sdkman-cli" # SDKMAN - Software Development Kit Manager
 
-    # AI tools
-    "ollama" # Local LLMs
-    "steveyegge/beads/bd" # AI agent memory system
+     # AI tools
+     "steveyegge/beads/bd" # AI agent memory system
 
     # File management
     "yazi" # Terminal file manager
@@ -101,33 +100,26 @@
     "poppler" # PDF rendering
     "imagemagick" # Image processing
 
-    # AI Terminal Apps
-    "anomalyco/tap/opencode" # Opencode (official)
-    "gemini-cli" # Gemini Cli
+     # AI Terminal Apps
+     "anomalyco/tap/opencode" # Opencode (official)
   ];
 
-  casks = [
+   casks = [
     # Terminal and Shell Tools
     "ghostty"
-    "warp"
 
     # Development
-    "visual-studio-code" # IDE
     "sublime-text" # Text editor
     #"cursor"  Cursor IDE::NOTE:: using companies version /Applications/Cursor.app/
-    "zed" # IDE
     "ngrok"
     "temurin" # Eclipse Temurin OpenJDK distribution (use SDKMAN for version management)
     "docker-desktop" # Docker Desktop for macOS
+    "db-browser-for-sqlite" # SQLite database browser
     "figma"
 
     # Web Browsers
     "arc"
     "google-chrome"
-    "zen@twilight" # zen browser
-    "helium-browser" # privacy browser
-    "thebrowsercompany-dia"
-    "chatgpt-atlas"
 
     # Communication Apps
     "slack"
