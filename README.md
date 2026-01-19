@@ -22,8 +22,6 @@ This repository is organized as a monorepo using Turborepo for efficient build o
 
 - **Keyboard Firmware** (`packages/zmk`): ZMK firmware configuration
 
-- **Dygma Configuration** (`packages/dygma`): Dygma keyboard configuration
-
 - **Node Tools** (`packages/node-tools`): Globally installed Node.js utilities
 
 ## Quick Start
@@ -86,9 +84,6 @@ This repository is organized as a monorepo using Turborepo for efficient build o
 
 - [ZMK Firmware](packages/zmk/README.md)
   - Keyboard firmware configuration
-
-- [Dygma Configuration](packages/dygma/README.md)
-  - Dygma keyboard settings
 
 ## License
 

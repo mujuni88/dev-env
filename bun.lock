@@ -1,5 +1,6 @@
 {
   "lockfileVersion": 1,
+  "configVersion": 0,
   "workspaces": {
     "": {
       "name": "dev-env",
@@ -9,10 +10,6 @@
     },
     "packages/dotfiles": {
       "name": "dotfiles",
-      "version": "0.0.1",
-    },
-    "packages/dygma": {
-      "name": "dygma-config",
       "version": "0.0.1",
     },
     "packages/nix": {
@@ -52,8 +49,6 @@
     "@typescript/native-preview-win32-x64": ["@typescript/native-preview-win32-x64@7.0.0-dev.20250607.1", "", { "os": "win32", "cpu": "x64" }, "sha512-RmUTenoe+6wotEYoM9ycICVBLt9lqTpzvco5rLs6lynOrOgYoEmCoj+oX17kKk8/009NMXQ3CNxkz1du1C16ug=="],
 
     "dotfiles": ["dotfiles@workspace:packages/dotfiles"],
-
-    "dygma-config": ["dygma-config@workspace:packages/dygma"],
 
     "nix-config": ["nix-config@workspace:packages/nix"],
 

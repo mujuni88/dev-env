@@ -53,7 +53,6 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
   - `packages/nix`: macOS system configuration using nix-darwin
   - `packages/dotfiles`: Tool configurations managed with Dotbot
   - `packages/zmk`: ZMK firmware configuration for Glove80 keyboard
-  - `packages/dygma`: Dygma keyboard configuration
   - `packages/node-tools`: Global Node.js package management (installs dependencies globally via npm)
 
 ### Build System
