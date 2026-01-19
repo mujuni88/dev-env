@@ -84,8 +84,11 @@
   },
   "mcp": {
     "context7": {
-      "type": "local",
-      "command": ["npx", "-y", "@upstash/context7-mcp@latest"],
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp",
+      "headers": {
+        "CONTEXT7_API_KEY": "$CONTEXT7_API_KEY"
+      },
       "enabled": true
     },
     "chrome-devtools": {
