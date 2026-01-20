@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "system-install": "./sync.sh",
-    "sync": "./sync.sh"
+    "system-install": "./sync.sh"
   }
 }

@@ -31,16 +31,16 @@ This file provides global guidance to Claude Code (claude.ai/code) when working 
 - `dev-env`: The main development environment repository at `~/dev-env`
 - `MY_DEV`: Environment variable pointing to dev-env repository (`$HOME/dev-env`)
 - `MY_NIX`: Environment variable pointing to Nix configuration (`$MY_DEV/packages/nix`)
-- `devsetup`: Alias for `cd $MY_DEV && bun run setup` (installs deps and runs sync)
+- `devsetup`: Alias for `cd $MY_DEV && bun run setup` (full environment setup)
 
 ## Default Commands
 
 ### Common Development
 - Build: `bun run build` (uses Turborepo)
 - Install dependencies: `bun install`
-- Setup: `bun run setup` (installs deps and runs sync)
-- Sync packages: `bun run sync`
+- Setup: `bun run setup` (system-install → global-install → dotfiles-install)
+- Update system: `bun run update` (rebuild Nix configuration)
 
 ### Environment Management
 - Install dotfiles: `./install` (in dotfiles directory)
-- Update dotfiles: `bun run sync` (from project root)
+- Update dotfiles: `bun run dotfiles-install` (from project root)

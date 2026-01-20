@@ -15,7 +15,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - System dependencies: `bun run system-install` - Install apps and tools via Nix
 - Global tools: `bun run global-install` - Install global npm packages and CLI tools
 - Dotfiles setup: `bun run dotfiles-install` - Configure dotfiles and shell settings
-- Update configs: `bun run update` - Sync existing configurations
+- Update system: `bun run update` - Rebuild Nix system configuration
 
 ### TypeScript Native Preview (tsgo)
 
@@ -32,7 +32,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ### Dotfiles Management
 
 - Install all dotfiles: `bun run dotfiles-install` (from project root)
-- Update dotfiles after changes: `bun run update` (from project root)
+- Update dotfiles after changes: `bun run dotfiles-install` (from project root)
 - Direct install: `cd packages/dotfiles && ./install` (for debugging)
 
 ### Environment Variables
