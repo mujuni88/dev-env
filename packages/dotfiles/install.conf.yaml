@@ -50,11 +50,9 @@
     ~/.zprofile: zsh/.zprofile
     ~/.zshenv: zsh/.zshenv
 
-    # Claude Code configuration
+    # Claude Code configuration (symlinked files that Claude doesn't modify)
     ~/.claude/statusline.sh: claude/statusline.sh
     ~/.claude/claude-powerline.json: claude/claude-powerline.json
-    ~/.claude/settings.json: claude/settings.json
-    ~/.claude/CLAUDE.md: claude/CLAUDE.md
     ~/.claude/hooks: claude/hooks
     ~/.claude/commands: claude/commands
     ~/.claude/skills: claude/skills
@@ -66,6 +64,9 @@
       create: true
 
 - shell:
+    # Claude Code files that get modified at runtime (copy, don't symlink)
+    - [cp -n claude/settings.json ~/.claude/settings.json 2>/dev/null || true, Copying Claude settings.json (if not exists)]
+    - [cp -n claude/CLAUDE.md ~/.claude/CLAUDE.md 2>/dev/null || true, Copying Claude CLAUDE.md (if not exists)]
     - [mkdir -p ~/.config/graphite && dcli inject -i graphite/user_config.template -o ~/.config/graphite/user_config, Generating Graphite config from Dashlane]
     - [mkdir -p ~/.local/share/atuin && dcli inject -i atuin/key.template -o ~/.local/share/atuin/key, Restoring Atuin encryption key from Dashlane]
     - [mkdir -p ~/.claude/plugins, Creating claude plugins directory]

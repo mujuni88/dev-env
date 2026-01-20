@@ -110,5 +110,3 @@ alias oc="opencode"
 # Dashlane
 alias dash="dcli"
 
-# Claude
-alias claude-mem='bun "/Users/jbuza/.claude/plugins/marketplaces/thedotmack/plugin/scripts/worker-service.cjs"'
