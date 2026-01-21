@@ -1,0 +1,436 @@
+/*
+ * Copyright (c) 2020 The ZMK Contributors
+ * Copyright (c) 2025 Innaworks Development Limited, trading as MoErgo
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+/*
+ * Go60 Keymap - Adapted from Glove80 configuration
+ *
+ * Key features:
+ * - Home row mods (Miryoku-style)
+ * - Tap-dance for brackets
+ * - Delete word macro
+ * - Integrated trackpad support
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/outputs.h>
+#include <dt-bindings/zmk/rgb.h>
+
+#include <input/processors.dtsi>
+#include <dt-bindings/zmk/input_transform.h>
+#include <zephyr/dt-bindings/input/input-event-codes.h>
+#include <dt-bindings/zmk/pointing.h>
+
+#define HYPER LC(LS(LG(LALT)))
+
+// Layers
+#define BASE 0
+#define KEYPAD 1
+#define SYMBOLNAV 2
+#define MAGIC 3
+#define FACTORY 4
+
+// Timing parameters for home row mods
+#define TYPING_STREAK_TERM 175
+#define KEY_REPEATING_TERM 300
+#define REGISTER_MODS_TERM 250
+#define THUMB_TAPPING_TERM 200
+#define INDEX_SHIFT_TAPPING_TERM 200
+
+// Go60 Key positions (60 keys)
+// Row 1:  0  1  2  3  4  5  |  6  7  8  9 10 11
+// Row 2: 12 13 14 15 16 17  | 18 19 20 21 22 23
+// Row 3: 24 25 26 27 28 29  | 30 31 32 33 34 35
+// Row 4: 36 37 38 39 40 41  | 42 43 44 45 46 47
+// Row 5:       48 49 50     |    51 52 53
+// Thumbs:         54 55 56  | 57 58 59
+
+#define LEFT_HAND_KEYS      \
+     0  1  2  3  4  5       \
+    12 13 14 15 16 17       \
+    24 25 26 27 28 29       \
+    36 37 38 39 40 41       \
+          48 49 50
+
+#define RIGHT_HAND_KEYS     \
+     6  7  8  9 10 11       \
+    18 19 20 21 22 23       \
+    30 31 32 33 34 35       \
+    42 43 44 45 46 47       \
+          51 52 53
+
+#define THUMB_KEYS          \
+    54 55 56 57 58 59
+
+/* Helper Macros */
+#define ZMK_BEHAVIOR_CORE_tap_dance  \
+    compatible = "zmk,behavior-tap-dance"; \
+    #binding-cells = <0>
+
+#define ZMK_BEHAVIOR(name, type, ...) \
+    name: name { \
+        ZMK_BEHAVIOR_CORE_ ## type; \
+        __VA_ARGS__ \
+    };
+
+#define ZMK_TAP_DANCE(name, ...) \
+    ZMK_BEHAVIOR(name, tap_dance, __VA_ARGS__)
+
+#define ZMK_TD_LAYER(name, layer) \
+    ZMK_TAP_DANCE(name, \
+        tapping-term-ms = <200>; \
+        bindings = <&mo layer>, <&to layer>; \
+)
+
+/* Input processors for trackpad */
+/ {
+    input_processors {
+        zip_click_to_right_click_mapper: zip_click_to_right_click_mapper {
+            compatible = "zmk,input-processor-code-mapper";
+            #input-processor-cells = <0>;
+            type = <INPUT_EV_KEY>;
+            map = <INPUT_BTN_0 INPUT_BTN_1>;
+        };
+    };
+};
+
+/* Trackpad Configuration */
+&cirque_rh_listener {
+    input-processors = <&zip_xy_scaler 3 1>;
+    layer_symbolnav {
+        layers = <SYMBOLNAV>;
+        input-processors = <&zip_xy_scaler 9 1>;  // 3x faster on nav layer
+    };
+};
+
+&cirque_lh_listener {
+    input-processors = <&zip_xy_to_scroll_mapper>, <&zip_xy_scaler 11 12>, <&zip_click_to_right_click_mapper>, <&zip_scroll_scaler 1 8>;
+    layer_factory {
+        layers = <FACTORY>;
+        input-processors = <&zip_xy_scaler 3 1>;  // Pointer mode in factory layer
+    };
+};
+
+/ {
+    behaviors {
+        // Home row mods with balanced flavor - LEFT HAND
+        homey_left: miryoku_home_row_mods_left_hand {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOME_ROW_MODS_LEFT_HAND";
+            flavor = "balanced";
+            hold-trigger-key-positions = <RIGHT_HAND_KEYS THUMB_KEYS>;
+            hold-trigger-on-release;
+            tapping-term-ms = <REGISTER_MODS_TERM>;
+            quick-tap-ms = <KEY_REPEATING_TERM>;
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+        };
+
+        // Home row mods with balanced flavor - RIGHT HAND
+        homey_right: miryoku_home_row_mods_right_hand {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOME_ROW_MODS_RIGHT_HAND";
+            flavor = "balanced";
+            hold-trigger-key-positions = <LEFT_HAND_KEYS THUMB_KEYS>;
+            hold-trigger-on-release;
+            tapping-term-ms = <REGISTER_MODS_TERM>;
+            quick-tap-ms = <KEY_REPEATING_TERM>;
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+        };
+
+        // Special handling for index finger shifts - LEFT
+        index_left: miryoku_home_row_mods_left_index_shift {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOME_ROW_MODS_LEFT_INDEX_SHIFT";
+            flavor = "balanced";
+            hold-trigger-key-positions = <RIGHT_HAND_KEYS THUMB_KEYS>;
+            tapping-term-ms = <INDEX_SHIFT_TAPPING_TERM>;
+            quick-tap-ms = <KEY_REPEATING_TERM>;
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+        };
+
+        // Special handling for index finger shifts - RIGHT
+        index_right: miryoku_home_row_mods_right_index_shift {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOME_ROW_MODS_RIGHT_INDEX_SHIFT";
+            flavor = "balanced";
+            hold-trigger-key-positions = <LEFT_HAND_KEYS THUMB_KEYS>;
+            tapping-term-ms = <INDEX_SHIFT_TAPPING_TERM>;
+            quick-tap-ms = <KEY_REPEATING_TERM>;
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+        };
+
+        // Thumb layer switching with repeat
+        thumb: miryoku_thumb_layer {
+            compatible = "zmk,behavior-hold-tap";
+            label = "MIRYOKU_LAYER_TAP_WITH_REPEAT";
+            flavor = "balanced";
+            tapping-term-ms = <THUMB_TAPPING_TERM>;
+            quick-tap-ms = <KEY_REPEATING_TERM>;
+            #binding-cells = <2>;
+            bindings = <&mo>, <&kp>;
+        };
+
+        // Magic hold-tap for RGB status
+        magic: magic_hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "MAGIC_HOLD_TAP";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&mo>, <&rgb_ug_status_macro>;
+        };
+
+        // Hyper key with delay to prevent accidental triggers
+        hyper_ht: hyper_hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HYPER_HOLD_TAP";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <250>;
+            quick-tap-ms = <150>;
+            require-prior-idle-ms = <150>;
+            bindings = <&kp>, <&kp>;
+        };
+
+        // Tap-dance for brackets/braces
+        td_lbrace_rbrace: tap_dance_lbrace_rbrace {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_LBRACE_RBRACE";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp LS(LBKT)>, <&kp LS(RBKT)>;
+        };
+
+        td_lbrack_rbrack: tap_dance_lbrack_rbrack {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_LBRACK_RBRACK";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp LBKT>, <&kp RBKT>;
+        };
+
+        td_rbrace_lbrace: tap_dance_rbrace_lbrace {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_RBRACE_LBRACE";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp LS(RBKT)>, <&kp LS(LBKT)>;
+        };
+
+        td_rbrack_lbrack: tap_dance_rbrack_lbrack {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_RBRACK_LBRACK";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp RBKT>, <&kp LBKT>;
+        };
+
+        // Tap dance for backspace (single tap: backspace, double tap: delete word)
+        td_backspace: tap_dance_backspace {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_BACKSPACE";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp BSPC>, <&del_word>;
+        };
+
+        // Tap dance for parentheses: ( )
+        td_lpar_rpar: tap_dance_lpar_rpar {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_LPAR_RPAR";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp LS(N9)>, <&kp LS(N0)>;
+        };
+
+        // Tap dance for parentheses: ) (
+        td_rpar_lpar: tap_dance_rpar_lpar {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_RPAR_LPAR";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp LS(N0)>, <&kp LS(N9)>;
+        };
+
+        // Layer tap-dances
+        ZMK_TD_LAYER(td_keypad, KEYPAD)
+        ZMK_TD_LAYER(td_symbolnav, SYMBOLNAV)
+    };
+
+    macros {
+        rgb_ug_status_macro: rgb_ug_status_macro {
+            label = "RGB_UG_STATUS";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&rgb_ug RGB_STATUS>;
+        };
+
+        bt_0: bt_profile_macro_0 {
+            label = "BT_0";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&out OUT_BLE>, <&bt BT_SEL 0>;
+        };
+
+        bt_1: bt_profile_macro_1 {
+            label = "BT_1";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&out OUT_BLE>, <&bt BT_SEL 1>;
+        };
+
+        bt_2: bt_profile_macro_2 {
+            label = "BT_2";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&out OUT_BLE>, <&bt BT_SEL 2>;
+        };
+
+        bt_3: bt_profile_macro_3 {
+            label = "BT_3";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&out OUT_BLE>, <&bt BT_SEL 3>;
+        };
+
+        del_word: macro_del_word {
+            compatible = "zmk,behavior-macro";
+            label = "MACRO_DEL_WORD";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&macro_press &kp LALT>, <&macro_tap &kp BSPC>, <&macro_release &kp LALT>;
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        layer_Base {
+            // ┌──────┬──────┬──────┬──────┬──────┬──────┐                    ┌──────┬──────┬──────┬──────┬──────┬──────┐
+            // │  =   │  1   │  2   │  3   │  4   │  5   │                    │  6   │  7   │  8   │  9   │  0   │  -   │
+            // ├──────┼──────┼──────┼──────┼──────┼──────┤                    ├──────┼──────┼──────┼──────┼──────┼──────┤
+            // │ TAB  │  Q   │  W   │  E   │  R   │  T   │                    │  Y   │  U   │  I   │  O   │  P   │  \   │
+            // ├──────┼──────┼──────┼──────┼──────┼──────┤                    ├──────┼──────┼──────┼──────┼──────┼──────┤
+            // │ ESC  │  A   │  S   │  D   │  F   │  G   │                    │  H   │  J   │  K   │  L   │  ;   │  '   │
+            // │      │ CTRL │ ALT  │ GUI  │ SHFT │      │                    │      │ SHFT │ GUI  │ ALT  │ CTRL │      │
+            // ├──────┼──────┼──────┼──────┼──────┼──────┤                    ├──────┼──────┼──────┼──────┼──────┼──────┤
+            // │MAGIC │  Z   │  X   │  C   │  V   │  B   │                    │  N   │  M   │  ,   │  .   │  /   │KEYPAD│
+            // └──────┴──────┼──────┼──────┼──────┼──────┘                    └──────┼──────┼──────┼──────┼──────┴──────┘
+            //               │  `   │ DEL  │ BSPC │                                  │ LCTRL│  [   │  ]   │
+            //               └──────┴──────┴──────┘                                  └──────┴──────┴──────┘
+            //                             ┌──────┬──────┬──────┐  ┌──────┬──────┬──────┐
+            //                             │ BSPC │ SYM  │ ALT  │  │ GUI  │ RET  │ SPACE│
+            //                             │      │SHFT  │      │  │      │      │      │
+            //                             └──────┴──────┴──────┘  └──────┴──────┴──────┘
+            bindings = <
+            &kp EQUAL          &kp N1              &kp N2              &kp N3              &kp N4               &kp N5                                                   &kp N6               &kp N7              &kp N8              &kp N9               &kp N0                 &kp MINUS
+            &lt KEYPAD TAB      &kp Q               &kp W               &kp E               &kp R                &kp T                                                    &kp Y                &kp U               &kp I               &kp O                &kp P                  &kp BSLH
+            &lt SYMBOLNAV ESC  &homey_left LCTRL A &homey_left LALT S  &homey_left LGUI D  &index_left LSHFT F  &hyper_ht HYPER G                                        &hyper_ht HYPER H    &index_right RSHFT J &homey_right LGUI K &homey_right RALT L  &homey_right RCTRL SEMI &kp SQT
+            &magic MAGIC 0     &kp Z               &kp X               &kp C               &kp V                &kp B                                                    &kp N                &kp M               &kp COMMA           &kp DOT              &kp FSLH               &td_keypad
+                                                   &kp GRAVE           &kp DEL             &td_backspace                                                                                      &kp LCTRL           &kp LBKT            &kp RBKT
+                                                                                                                &kp BSPC  &mo SYMBOLNAV  &caps_word  &kp LGUI  &kp RET  &kp SPACE
+            >;
+        };
+
+        layer_Keypad {
+            // Numbers + Function keys + Navigation
+            // ┌──────┬──────┬──────┬──────┬──────┬──────┐                    ┌──────┬──────┬──────┬──────┬──────┬──────┐
+            // │      │  F1  │  F2  │  F3  │  F4  │  F5  │                    │  F6  │  F7  │  F8  │  F9  │ F10  │ F11  │
+            // ├──────┼──────┼──────┼──────┼──────┼──────┤                    ├──────┼──────┼──────┼──────┼──────┼──────┤
+            // │      │      │ HOME │  UP  │ END  │ PGUP │                    │  7   │  8   │  9   │  -   │  /   │ F12  │
+            // ├──────┼──────┼──────┼──────┼──────┼──────┤                    ├──────┼──────┼──────┼──────┼──────┼──────┤
+            // │      │ REDO │ LEFT │ DOWN │RIGHT │ PGDN │                    │  4   │  5   │  6   │  +   │  *   │NUMLK │
+            // ├──────┼──────┼──────┼──────┼──────┼──────┤                    ├──────┼──────┼──────┼──────┼──────┼──────┤
+            // │MAGIC │ UNDO │ CUT  │ COPY │PASTE │PSTMAT│                    │  1   │  2   │  3   │ENTER │  =   │ BASE │
+            // └──────┴──────┼──────┼──────┼──────┼──────┘                    └──────┼──────┼──────┼──────┼──────┴──────┘
+            //               │      │      │      │                                  │  0   │  .   │ BSPC │
+            //               └──────┴──────┴──────┘                                  └──────┴──────┴──────┘
+            //                             ┌──────┬──────┬──────┐  ┌──────┬──────┬──────┐
+            //                             │      │ SYM  │      │  │      │      │  0   │
+            //                             └──────┴──────┴──────┘  └──────┴──────┴──────┘
+            bindings = <
+            &none              &kp F1              &kp F2              &kp F3              &kp F4               &kp F5                                                   &kp F6               &kp F7              &kp F8              &kp F9               &kp F10                &kp F11
+            &trans             &none               &kp HOME            &kp UP              &kp END              &kp PG_UP                                                &kp KP_N7            &kp KP_N8           &kp KP_N9           &kp KP_MINUS         &kp KP_SLASH           &kp F12
+            &trans             &kp LG(LS(Z))       &kp LEFT            &kp DOWN            &kp RIGHT            &kp PG_DN                                                &kp KP_N4            &kp KP_N5           &kp KP_N6           &kp KP_PLUS          &kp KP_MULTIPLY        &kp KP_NUM
+            &magic MAGIC 0     &kp LG(Z)           &kp LG(X)           &kp LG(C)           &kp LG(V)            &kp LG(LA(LS(V)))                                        &kp KP_N1            &kp KP_N2           &kp KP_N3           &kp KP_ENTER         &kp KP_EQUAL           &to BASE
+                                                   &none               &trans              &trans                                                                                            &kp KP_N0           &kp KP_DOT          &kp BSPC
+                                                                                                                &trans  &mo SYMBOLNAV  &trans  &trans  &trans  &kp KP_N0
+            >;
+        };
+
+        layer_SymbolNav {
+            // Symbols + Extended Navigation
+            // ┌──────┬──────┬──────┬──────┬──────┬──────┐                    ┌──────┬──────┬──────┬──────┬──────┬──────┐
+            // │ INS  │  F1  │  F2  │  F3  │  F4  │  F5  │                    │  F6  │  F7  │  F8  │  F9  │ F10  │ F11  │
+            // ├──────┼──────┼──────┼──────┼──────┼──────┤                    ├──────┼──────┼──────┼──────┼──────┼──────┤
+            // │SCRLK │  !   │ HOME │  UP  │ END  │ PGUP │                    │  (   │  )   │  UP  │  %   │ APP  │ F12  │
+            // ├──────┼──────┼──────┼──────┼──────┼──────┤                    ├──────┼──────┼──────┼──────┼──────┼──────┤
+            // │ CAPS │  @   │ LEFT │ DOWN │RIGHT │ PGDN │                    │  $   │ LEFT │ DOWN │RIGHT │PAUSE │PSCRN │
+            // ├──────┼──────┼──────┼──────┼──────┼──────┤                    ├──────┼──────┼──────┼──────┼──────┼──────┤
+            // │MAGIC │  #   │  [   │  ]   │  {   │  }   │                    │  &   │  *   │  _   │  +   │SHIFT │ CTRL │
+            // └──────┴──────┼──────┼──────┼──────┼──────┘                    └──────┼──────┼──────┼──────┼──────┴──────┘
+            //               │  ^   │      │      │                                  │      │TAB-L │TAB-R │
+            //               └──────┴──────┴──────┘                                  └──────┴──────┴──────┘
+            //                             ┌──────┬──────┬──────┐  ┌──────┬──────┬──────┐
+            //                             │ BASE │      │      │  │      │      │      │
+            //                             └──────┴──────┴──────┘  └──────┴──────┴──────┘
+            bindings = <
+            &kp INS            &kp F1              &kp F2              &kp F3              &kp F4               &kp F5                                                   &kp F6               &kp F7              &kp F8              &kp F9               &kp F10                &kp F11
+            &kp SLCK           &kp LS(N1)          &kp HOME            &kp UP              &kp END              &kp PG_UP                                                &kp LS(N9)           &kp LS(N0)          &kp UP              &kp LS(N5)           &kp K_APP              &kp F12
+            &kp CAPS           &kp LS(N2)          &kp LEFT            &kp DOWN            &kp RIGHT            &kp PG_DN                                                &kp LEFT             &kp DOWN            &kp UP              &kp RIGHT            &kp PAUSE_BREAK        &kp PSCRN
+            &magic MAGIC 0     &kp LS(N3)          &kp LBKT            &kp RBKT            &kp LS(LBKT)         &kp LS(RBKT)                                             &kp LS(N7)           &kp LS(N8)          &kp LS(MINUS)       &kp LS(EQUAL)        &kp LSHFT              &kp LCTRL
+                                                   &kp LS(N6)          &trans              &trans                                                                                            &trans              &kp LC(LS(TAB))     &kp LC(TAB)
+                                                                                                                &to BASE  &trans  &trans  &trans  &trans  &trans
+            >;
+        };
+
+        layer_Magic {
+            // System controls: Bluetooth, RGB, Media, Bootloader
+            // ┌──────┬──────┬──────┬──────┬──────┬──────┐                    ┌──────┬──────┬──────┬──────┬──────┬──────┐
+            // │BT_CLR│BRI_DN│BRI_UP│ PREV │ NEXT │ PLAY │                    │ MUTE │VOL_DN│VOL_UP│      │      │BT_ALL│
+            // ├──────┼──────┼──────┼──────┼──────┼──────┤                    ├──────┼──────┼──────┼──────┼──────┼──────┤
+            // │ BOOT │RGB_SP│RGB_SA│RGB_HU│RGB_BR│RGB_TG│                    │      │      │      │      │      │ BOOT │
+            // ├──────┼──────┼──────┼──────┼──────┼──────┤                    ├──────┼──────┼──────┼──────┼──────┼──────┤
+            // │RESET │RGB_SP│RGB_SA│RGB_HU│RGB_BR│RGB_EF│                    │      │      │      │      │      │RESET │
+            // ├──────┼──────┼──────┼──────┼──────┼──────┤                    ├──────┼──────┼──────┼──────┼──────┼──────┤
+            // │      │      │ BT_0 │ BT_1 │ BT_2 │ BT_3 │                    │      │      │      │      │      │FACTRY│
+            // └──────┴──────┼──────┼──────┼──────┼──────┘                    └──────┼──────┼──────┼──────┼──────┴──────┘
+            //               │ USB  │      │      │                                  │      │      │      │
+            //               └──────┴──────┴──────┘                                  └──────┴──────┴──────┘
+            //                             ┌──────┬──────┬──────┐  ┌──────┬──────┬──────┐
+            //                             │      │      │      │  │      │      │      │
+            //                             └──────┴──────┴──────┘  └──────┴──────┴──────┘
+            bindings = <
+            &bt BT_CLR         &kp C_BRI_DN        &kp C_BRI_UP        &kp C_PREV          &kp C_NEXT           &kp C_PP                                                 &kp C_MUTE           &kp C_VOL_DN        &kp C_VOL_UP        &none                &none                  &bt BT_CLR_ALL
+            &bootloader        &rgb_ug RGB_SPI     &rgb_ug RGB_SAI     &rgb_ug RGB_HUI     &rgb_ug RGB_BRI      &rgb_ug RGB_TOG                                          &none                &none               &none               &none                &none                  &bootloader
+            &sys_reset         &rgb_ug RGB_SPD     &rgb_ug RGB_SAD     &rgb_ug RGB_HUD     &rgb_ug RGB_BRD      &rgb_ug RGB_EFF                                          &none                &none               &none               &none                &none                  &sys_reset
+            &none              &none               &bt_0               &bt_1               &bt_2                &bt_3                                                    &none                &none               &none               &none                &none                  &to FACTORY
+                                                   &out OUT_USB        &none               &none                                                                                              &none               &none               &none
+                                                                                                                &none  &none  &none  &none  &none  &none
+            >;
+        };
+
+        layer_Factory {
+            // Factory test layer - outputs key positions for testing
+            bindings = <
+            &kp N0  &kp N4  &kp N8  &kp N3  &kp N8  &kp N3                                                  &kp N3  &kp N8  &kp N3  &kp N8  &kp N4  &kp N0
+            &kp N1  &kp N5  &kp N9  &kp N4  &kp N9  &kp N4                                                  &kp N4  &kp N9  &kp N4  &kp N9  &kp N5  &kp N1
+            &kp N2  &kp N6  &kp N0  &kp N5  &kp N0  &kp N5                                                  &kp N5  &kp N0  &kp N5  &kp N0  &kp N6  &kp N2
+            &kp N3  &kp N7  &kp N1  &kp N6  &kp N1  &kp N6                                                  &kp N6  &kp N1  &kp N6  &kp N1  &kp N7  &kp N3
+                            &kp N2  &kp N7  &kp N2                                                                  &kp N2  &kp N7  &kp N2
+                                                            &kp N7  &kp N8  &kp N9  &kp N9  &kp N8  &kp N7
+            >;
+        };
+
+    };
+};
