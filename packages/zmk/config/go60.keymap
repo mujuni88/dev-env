@@ -338,7 +338,7 @@
             &lt SYMBOLNAV ESC  &homey_left LCTRL A &homey_left LALT S  &homey_left LGUI D  &index_left LSHFT F  &hyper_ht HYPER G                                        &hyper_ht HYPER H    &index_right RSHFT J &homey_right LGUI K &homey_right RALT L  &homey_right RCTRL SEMI &kp SQT
             &magic MAGIC 0     &kp Z               &kp X               &kp C               &kp V                &kp B                                                    &kp N                &kp M               &kp COMMA           &kp DOT              &kp FSLH               &td_keypad
                                                    &kp GRAVE           &kp DEL             &td_backspace                                                                                      &kp LCTRL           &kp LBKT            &kp RBKT
-                                                                                                                &kp BSPC  &mo SYMBOLNAV  &caps_word  &kp LGUI  &kp RET  &kp SPACE
+                                                                                                                &kp BSPC  &lt SYMBOLNAV ESC  &caps_word  &kp LGUI  &kp RET  &kp SPACE
             >;
         };
 
