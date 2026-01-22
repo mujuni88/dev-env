@@ -38,9 +38,10 @@
 // Timing parameters for home row mods
 #define TYPING_STREAK_TERM 175
 #define KEY_REPEATING_TERM 300
-#define REGISTER_MODS_TERM 250
+#define REGISTER_MODS_TERM 280
 #define THUMB_TAPPING_TERM 200
-#define INDEX_SHIFT_TAPPING_TERM 200
+#define INDEX_SHIFT_TAPPING_TERM 220
+#define PRIOR_IDLE 150
 
 // Go60 Key positions (60 keys)
 // Row 1:  0  1  2  3  4  5  |  6  7  8  9 10 11
@@ -127,6 +128,7 @@
             hold-trigger-on-release;
             tapping-term-ms = <REGISTER_MODS_TERM>;
             quick-tap-ms = <KEY_REPEATING_TERM>;
+            require-prior-idle-ms = <PRIOR_IDLE>;
             #binding-cells = <2>;
             bindings = <&kp>, <&kp>;
         };
@@ -140,6 +142,7 @@
             hold-trigger-on-release;
             tapping-term-ms = <REGISTER_MODS_TERM>;
             quick-tap-ms = <KEY_REPEATING_TERM>;
+            require-prior-idle-ms = <PRIOR_IDLE>;
             #binding-cells = <2>;
             bindings = <&kp>, <&kp>;
         };
@@ -150,8 +153,10 @@
             label = "HOME_ROW_MODS_LEFT_INDEX_SHIFT";
             flavor = "balanced";
             hold-trigger-key-positions = <RIGHT_HAND_KEYS THUMB_KEYS>;
+            hold-trigger-on-release;
             tapping-term-ms = <INDEX_SHIFT_TAPPING_TERM>;
             quick-tap-ms = <KEY_REPEATING_TERM>;
+            require-prior-idle-ms = <PRIOR_IDLE>;
             #binding-cells = <2>;
             bindings = <&kp>, <&kp>;
         };
@@ -162,8 +167,10 @@
             label = "HOME_ROW_MODS_RIGHT_INDEX_SHIFT";
             flavor = "balanced";
             hold-trigger-key-positions = <LEFT_HAND_KEYS THUMB_KEYS>;
+            hold-trigger-on-release;
             tapping-term-ms = <INDEX_SHIFT_TAPPING_TERM>;
             quick-tap-ms = <KEY_REPEATING_TERM>;
+            require-prior-idle-ms = <PRIOR_IDLE>;
             #binding-cells = <2>;
             bindings = <&kp>, <&kp>;
         };
@@ -317,28 +324,30 @@
 
         layer_Base {
             // ┌──────┬──────┬──────┬──────┬──────┬──────┐                    ┌──────┬──────┬──────┬──────┬──────┬──────┐
-            // │  =   │  1   │  2   │  3   │  4   │  5   │                    │  6   │  7   │  8   │  9   │  0   │  -   │
+            // │ ESC  │  1   │  2   │  3   │  4   │  5   │                    │  6   │  7   │  8   │  9   │  0   │  =   │
+            // │(SYM) │      │      │      │      │      │                    │      │      │      │      │      │      │
             // ├──────┼──────┼──────┼──────┼──────┼──────┤                    ├──────┼──────┼──────┼──────┼──────┼──────┤
             // │ TAB  │  Q   │  W   │  E   │  R   │  T   │                    │  Y   │  U   │  I   │  O   │  P   │  \   │
+            // │(SYM) │      │      │      │      │      │                    │      │      │      │      │      │      │
             // ├──────┼──────┼──────┼──────┼──────┼──────┤                    ├──────┼──────┼──────┼──────┼──────┼──────┤
             // │ ESC  │  A   │  S   │  D   │  F   │  G   │                    │  H   │  J   │  K   │  L   │  ;   │  '   │
-            // │      │ CTRL │ ALT  │ GUI  │ SHFT │      │                    │      │ SHFT │ GUI  │ ALT  │ CTRL │      │
+            // │(SYM) │ CTRL │ ALT  │ GUI  │ SHFT │HYPER │                    │HYPER │ SHFT │ GUI  │ ALT  │ CTRL │      │
             // ├──────┼──────┼──────┼──────┼──────┼──────┤                    ├──────┼──────┼──────┼──────┼──────┼──────┤
-            // │MAGIC │  Z   │  X   │  C   │  V   │  B   │                    │  N   │  M   │  ,   │  .   │  /   │KEYPAD│
+            // │MAGIC │  Z   │  X   │  C   │  V   │  B   │                    │  N   │  M   │  ,   │  .   │  /   │  -   │
             // └──────┴──────┼──────┼──────┼──────┼──────┘                    └──────┼──────┼──────┼──────┼──────┴──────┘
             //               │  `   │ DEL  │ BSPC │                                  │ LCTRL│  [   │  ]   │
             //               └──────┴──────┴──────┘                                  └──────┴──────┴──────┘
             //                             ┌──────┬──────┬──────┐  ┌──────┬──────┬──────┐
-            //                             │ BSPC │ SYM  │ ALT  │  │ GUI  │ RET  │ SPACE│
-            //                             │      │SHFT  │      │  │      │      │      │
+            //                             │ BSPC │ ESC  │ SYM  │  │ GUI  │ RET  │ SPACE│
+            //                             │      │(SYM) │      │  │ CTRL │      │      │
             //                             └──────┴──────┴──────┘  └──────┴──────┴──────┘
             bindings = <
-            &kp EQUAL          &kp N1              &kp N2              &kp N3              &kp N4               &kp N5                                                   &kp N6               &kp N7              &kp N8              &kp N9               &kp N0                 &kp MINUS
-            &lt KEYPAD TAB      &kp Q               &kp W               &kp E               &kp R                &kp T                                                    &kp Y                &kp U               &kp I               &kp O                &kp P                  &kp BSLH
+            &lt SYMBOLNAV ESC   &kp N1              &kp N2              &kp N3              &kp N4               &kp N5                                                   &kp N6               &kp N7              &kp N8              &kp N9               &kp N0                 &kp EQUAL
+            &lt SYMBOLNAV TAB  &kp Q               &kp W               &kp E               &kp R                &kp T                                                    &kp Y                &kp U               &kp I               &kp O                &kp P                  &kp BSLH
             &lt SYMBOLNAV ESC  &homey_left LCTRL A &homey_left LALT S  &homey_left LGUI D  &index_left LSHFT F  &hyper_ht HYPER G                                        &hyper_ht HYPER H    &index_right RSHFT J &homey_right LGUI K &homey_right RALT L  &homey_right RCTRL SEMI &kp SQT
-            &magic MAGIC 0     &kp Z               &kp X               &kp C               &kp V                &kp B                                                    &kp N                &kp M               &kp COMMA           &kp DOT              &kp FSLH               &td_keypad
+            &magic MAGIC 0     &kp Z               &kp X               &kp C               &kp V                &kp B                                                    &kp N                &kp M               &kp COMMA           &kp DOT              &kp FSLH               &kp MINUS
                                                    &kp GRAVE           &kp DEL             &td_backspace                                                                                      &kp LCTRL           &kp LBKT            &kp RBKT
-                                                                                                                &kp BSPC  &lt SYMBOLNAV ESC  &caps_word  &kp LGUI  &kp RET  &kp SPACE
+                                                                                                                &kp BSPC  &lt SYMBOLNAV ESC  &mo SYMBOLNAV  &mt LCTRL LGUI  &kp RET  &kp SPACE
             >;
         };
 
@@ -369,15 +378,15 @@
         };
 
         layer_SymbolNav {
-            // Symbols + Extended Navigation
+            // Symbols + Extended Navigation (Glove80-style)
             // ┌──────┬──────┬──────┬──────┬──────┬──────┐                    ┌──────┬──────┬──────┬──────┬──────┬──────┐
-            // │ INS  │  F1  │  F2  │  F3  │  F4  │  F5  │                    │  F6  │  F7  │  F8  │  F9  │ F10  │ F11  │
+            // │ INS  │  F1  │  F2  │  F3  │  F4  │  F5  │                    │  F6  │  F7  │  F8  │  F9  │ F10  │  |   │
             // ├──────┼──────┼──────┼──────┼──────┼──────┤                    ├──────┼──────┼──────┼──────┼──────┼──────┤
-            // │SCRLK │  !   │ HOME │  UP  │ END  │ PGUP │                    │  (   │  )   │  UP  │  %   │ APP  │ F12  │
+            // │SCRLK │  !   │ HOME │  UP  │ END  │ PGUP │                    │      │ ( )  │ { }  │ [ ]  │  ~   │  \   │
             // ├──────┼──────┼──────┼──────┼──────┼──────┤                    ├──────┼──────┼──────┼──────┼──────┼──────┤
-            // │ CAPS │  @   │ LEFT │ DOWN │RIGHT │ PGDN │                    │  $   │ LEFT │ DOWN │RIGHT │PAUSE │PSCRN │
+            // │ CAPS │  @   │ LEFT │ DOWN │RIGHT │ PGDN │                    │  ←   │  ↓   │  ↑   │  →   │  -   │  `   │
             // ├──────┼──────┼──────┼──────┼──────┼──────┤                    ├──────┼──────┼──────┼──────┼──────┼──────┤
-            // │MAGIC │  #   │  [   │  ]   │  {   │  }   │                    │  &   │  *   │  _   │  +   │SHIFT │ CTRL │
+            // │MAGIC │  #   │  [   │  ]   │  {   │  }   │                    │      │ ) (  │ } {  │ ] [  │  _   │      │
             // └──────┴──────┼──────┼──────┼──────┼──────┘                    └──────┼──────┼──────┼──────┼──────┴──────┘
             //               │  ^   │      │      │                                  │      │TAB-L │TAB-R │
             //               └──────┴──────┴──────┘                                  └──────┴──────┴──────┘
@@ -385,11 +394,11 @@
             //                             │ BASE │      │      │  │      │      │      │
             //                             └──────┴──────┴──────┘  └──────┴──────┴──────┘
             bindings = <
-            &kp INS            &kp F1              &kp F2              &kp F3              &kp F4               &kp F5                                                   &kp F6               &kp F7              &kp F8              &kp F9               &kp F10                &kp F11
-            &kp SLCK           &kp LS(N1)          &kp HOME            &kp UP              &kp END              &kp PG_UP                                                &kp LS(N9)           &kp LS(N0)          &kp UP              &kp LS(N5)           &kp K_APP              &kp F12
-            &kp CAPS           &kp LS(N2)          &kp LEFT            &kp DOWN            &kp RIGHT            &kp PG_DN                                                &kp LEFT             &kp DOWN            &kp UP              &kp RIGHT            &kp PAUSE_BREAK        &kp PSCRN
-            &magic MAGIC 0     &kp LS(N3)          &kp LBKT            &kp RBKT            &kp LS(LBKT)         &kp LS(RBKT)                                             &kp LS(N7)           &kp LS(N8)          &kp LS(MINUS)       &kp LS(EQUAL)        &kp LSHFT              &kp LCTRL
-                                                   &kp LS(N6)          &trans              &trans                                                                                            &trans              &kp LC(LS(TAB))     &kp LC(TAB)
+            &trans             &trans              &trans              &trans              &trans               &trans                                                   &kp F6               &kp F7              &kp F8              &kp F9               &kp F10                &kp LS(BSLH)
+            &trans             &trans              &trans              &trans              &trans               &trans                                                   &trans               &td_lpar_rpar       &td_lbrace_rbrace   &td_lbrack_rbrack    &kp LS(GRAVE)          &kp BSLH
+            &trans             &trans              &trans              &trans              &trans               &trans                                                   &kp LEFT             &kp DOWN            &kp UP              &kp RIGHT            &kp MINUS              &kp GRAVE
+            &magic MAGIC 0     &trans              &trans              &trans              &trans               &trans                                                   &trans               &td_rpar_lpar       &td_rbrace_lbrace   &td_rbrack_lbrack    &kp LS(MINUS)          &trans
+                                                   &trans              &trans              &trans                                                                                            &trans              &kp LC(LS(TAB))     &kp LC(TAB)
                                                                                                                 &to BASE  &trans  &trans  &trans  &trans  &trans
             >;
         };
