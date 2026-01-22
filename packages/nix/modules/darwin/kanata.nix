@@ -3,36 +3,40 @@
 {
   lib,
   stdenv,
-  fetchurl,
+  fetchzip,
 }:
 let
   version = "1.10.1";
-  
-  # Platform-specific binary selection
-  platform = if stdenv.hostPlatform.isAarch64 then {
-    name = "kanata_macos_cmd_allowed_arm64";
-    hash = "sha256-0KlECUGSb+ajxGB1K1GGmAAjfrC8rwphjDF7CLEH+f0=";
-  } else {
-    name = "kanata_macos_cmd_allowed_x86_64";
-    hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="; # Update if needed for Intel
-  };
+
+  # Platform-specific binary and zip selection
+  platform =
+    if stdenv.hostPlatform.isAarch64
+    then {
+      zip = "kanata-macos-binaries-arm64-v${version}.zip";
+      binary = "kanata_macos_cmd_allowed_arm64";
+      hash = "sha256-4gg2sruylr5IdZtANJ1e/AfxbFTRDXKs6e8orls1tkc=";
+    }
+    else {
+      zip = "kanata-macos-binaries-x64-v${version}.zip";
+      binary = "kanata_macos_cmd_allowed_x86_64";
+      # Hash for x86_64 - update if needed
+      hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+    };
 in
 stdenv.mkDerivation {
   pname = "kanata-cmd";
   inherit version;
 
-  src = fetchurl {
-    url = "https://github.com/jtroo/kanata/releases/download/v${version}/${platform.name}";
+  src = fetchzip {
+    url = "https://github.com/jtroo/kanata/releases/download/v${version}/${platform.zip}";
     inherit (platform) hash;
+    stripRoot = false;
   };
-
-  # Skip unpack since it's a single binary
-  dontUnpack = true;
 
   installPhase = ''
     runHook preInstall
     mkdir -p $out/bin
-    cp $src $out/bin/kanata
+    cp $src/${platform.binary} $out/bin/kanata
     chmod +x $out/bin/kanata
     runHook postInstall
   '';

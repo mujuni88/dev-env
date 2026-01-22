@@ -48,7 +48,6 @@
     "zoxide" # Smart directory jumping
     "fzf" # Fuzzy finder
     "atuin" # Shell history manager
-    "nushell" # Modern shell alternative
 
     # Terminal multiplexers
     "tmux" # Terminal multiplexer
@@ -104,8 +103,6 @@
     # AI Terminal Apps
     "anomalyco/tap/opencode" # Opencode (official)
 
-    # Keyboard remapping
-    "kanata" # Low-level keyboard remapper
   ];
 
   casks = [

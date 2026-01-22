@@ -7,7 +7,7 @@
 
     <key>ProgramArguments</key>
     <array>
-        <string>/opt/homebrew/bin/kanata</string>
+        <string>/run/current-system/sw/bin/kanata</string>
         <string>--cfg</string>
         <string>/Users/jbuza/.config/kanata/kanata.kbd</string>
     </array>
