@@ -12,6 +12,23 @@ in {
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = packages ++ [kanata-cmd];
 
+  # Kanata keyboard remapper daemon
+  launchd.daemons.kanata = {
+    serviceConfig = {
+      Label = "com.github.jtroo.kanata";
+      ProgramArguments = [
+        "${kanata-cmd}/bin/kanata"
+        "--cfg"
+        "/Users/${user}/.config/kanata/kanata.kbd"
+      ];
+      RunAtLoad = true;
+      KeepAlive = true;
+      StandardOutPath = "/tmp/kanata.out.log";
+      StandardErrorPath = "/tmp/kanata.err.log";
+      UserName = "root";
+    };
+  };
+
   # Homebrew configuration
   homebrew = homebrewConfig;
 
