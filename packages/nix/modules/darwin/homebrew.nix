@@ -103,6 +103,9 @@
 
     # AI Terminal Apps
     "anomalyco/tap/opencode" # Opencode (official)
+
+    # Keyboard remapping
+    "kanata" # Low-level keyboard remapper
   ];
 
   casks = [
@@ -159,7 +162,7 @@
     "ledger-wallet"
 
     # Keyboard/Navigation Management
-    "karabiner-elements"
+    "karabiner-elements" # Driver required for Kanata
     "homerow"
     "bazecor" # Dygma Keyboard Configurator
   ];
