@@ -1,0 +1,70 @@
+;; Kanata configuration for macOS
+;; Homerow mods + Hyper keys + Caps Lock arrow layer (vim-style)
+;;
+;; Left hand homerow mods:  A=Ctrl, S=Alt, D=Cmd, F=Shift
+;; Right hand homerow mods: J=Shift, K=Cmd, L=Alt, ;=Ctrl
+;; Hyper keys: G (hold) = Hyper, H (hold) = Hyper
+;; Caps Lock (tap) = Tab
+;; Caps Lock (hold) = Arrow layer where h,j,k,l = ←,↓,↑,→
+
+(defcfg
+  process-unmapped-keys yes
+  ;; Exclude ZMK keyboards (they have their own config in firmware)
+  macos-dev-names-exclude (
+    "Go60"
+    "Go60 Left"
+  )
+)
+
+;; Define the physical key layout (standard ANSI)
+(defsrc
+  esc   1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab   q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps  a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft  z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl  lalt lmet           spc            rmet ralt rctl
+)
+
+;; Aliases for homerow mods
+;; Using tap-hold-press: tap within timeout = key, hold beyond = modifier
+;; 200ms matches your ZMK configuration timing
+(defalias
+  ;; Left hand homerow mods
+  a_ctl (tap-hold-press 200 200 a lctl)
+  s_alt (tap-hold-press 200 200 s lalt)
+  d_met (tap-hold-press 200 200 d lmet)
+  f_sft (tap-hold-press 200 200 f lsft)
+
+  ;; Hyper keys (Cmd+Ctrl+Alt+Shift)
+  g_hyp (tap-hold-press 200 200 g (multi lmet lctl lalt lsft))
+  h_hyp (tap-hold-press 200 200 h (multi rmet rctl ralt rsft))
+
+  ;; Right hand homerow mods
+  j_sft (tap-hold-press 200 200 j rsft)
+  k_met (tap-hold-press 200 200 k rmet)
+  l_alt (tap-hold-press 200 200 l ralt)
+  ;_ctl (tap-hold-press 200 200 ; rctl)
+
+  ;; Caps Lock: tap = Tab, hold = Arrow layer
+  cap   (tap-hold-press 200 200 tab (layer-toggle arrows))
+)
+
+;; Base layer with homerow mods
+(deflayer base
+  esc   1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab   q    w    e    r    t    y    u    i    o    p    [    ]    \
+  @cap  @a_ctl @s_alt @d_met @f_sft @g_hyp @h_hyp @j_sft @k_met @l_alt @;_ctl '  ret
+  lsft  z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl  lalt lmet           spc            rmet ralt rctl
+)
+
+;; Arrow layer (activated by holding Caps Lock)
+;; h,j,k,l become vim-style arrow keys
+;; Also includes useful navigation keys
+(deflayer arrows
+  _     _    _    _    _    _    _    _    _    _    _    _    _    _
+  _     _    _    _    _    _    _    _    _    _    _    _    _    _
+  _     _    _    _    _    _    left down up   rght _    _    _
+  _     _    _    _    _    _    _    _    _    _    _    _
+  _     _    _              _              _    _    _
+)

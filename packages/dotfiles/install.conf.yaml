@@ -37,6 +37,7 @@
     ~/.config/ni: ni
     ~/.config/zed: zed
     ~/.config/opencode: opencode
+    ~/.config/kanata: kanata
 
     # IdeaVim configuration
     ~/.ideavimrc: ideavim/.ideavimrc
@@ -64,6 +65,14 @@
       create: true
 
 - shell:
+    # Kanata LaunchDaemon setup (runs as root for driver access)
+    - [sudo cp kanata/com.github.jtroo.kanata.plist /Library/LaunchDaemons/, Copying Kanata LaunchDaemon]
+    - [sudo launchctl bootout system /Library/LaunchDaemons/com.github.jtroo.kanata.plist 2>/dev/null || true, Unloading existing Kanata LaunchDaemon]
+    - [sudo launchctl bootstrap system /Library/LaunchDaemons/com.github.jtroo.kanata.plist 2>/dev/null || true, Loading Kanata LaunchDaemon]
+    # Clean up old LaunchAgent if exists
+    - [launchctl bootout gui/$(id -u) ~/Library/LaunchAgents/com.github.jtroo.kanata.plist 2>/dev/null || true, Removing old LaunchAgent]
+    - [rm -f ~/Library/LaunchAgents/com.github.jtroo.kanata.plist 2>/dev/null || true, Cleaning up old LaunchAgent file]
+
     # Claude Code files that get modified at runtime (copy, don't symlink)
     - [cp -n claude/settings.json ~/.claude/settings.json 2>/dev/null || true, Copying Claude settings.json (if not exists)]
     - [cp -n claude/CLAUDE.md ~/.claude/CLAUDE.md 2>/dev/null || true, Copying Claude CLAUDE.md (if not exists)]
