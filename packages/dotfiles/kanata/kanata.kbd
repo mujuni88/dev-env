@@ -6,6 +6,10 @@
 ;; Hyper keys: G (hold) = Hyper, H (hold) = Hyper
 ;; Caps Lock (tap) = Tab
 ;; Caps Lock (hold) = Arrow layer where h,j,k,l = ←,↓,↑,→
+;;
+;; Function keys map to media keys (MacBook layout):
+;; F1=BrightnessDown, F2=BrightnessUp, F7=Prev, F8=Play/Pause, F9=Next
+;; F10=Mute, F11=VolumeDown, F12=VolumeUp
 
 (defcfg
   process-unmapped-keys yes
@@ -17,8 +21,9 @@
   )
 )
 
-;; Define the physical key layout (standard ANSI)
+;; Define the physical key layout (standard ANSI with function row)
 (defsrc
+  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
   esc   1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab   q    w    e    r    t    y    u    i    o    p    [    ]    \
   caps  a    s    d    f    g    h    j    k    l    ;    '    ret
@@ -28,26 +33,26 @@
 
 ;; Aliases for homerow mods
 ;; Using tap-hold-release: tap registers on key release (handles rollover better)
-;; 200ms timeout - tap sends letter immediately on release, hold activates modifier
+;; 250ms timeout - matches Go60 ZMK timing for consistency
 (defalias
   ;; Left hand homerow mods
-  a_ctl (tap-hold-release 200 200 a lctl)
-  s_alt (tap-hold-release 200 200 s lalt)
-  d_met (tap-hold-release 200 200 d lmet)
-  f_sft (tap-hold-release 200 200 f lsft)
+  a_ctl (tap-hold-release 250 250 a lctl)
+  s_alt (tap-hold-release 250 250 s lalt)
+  d_met (tap-hold-release 250 250 d lmet)
+  f_sft (tap-hold-release 250 250 f lsft)
 
   ;; Hyper keys (Cmd+Ctrl+Alt+Shift)
-  g_hyp (tap-hold-release 200 200 g (multi lmet lctl lalt lsft))
-  h_hyp (tap-hold-release 200 200 h (multi rmet rctl ralt rsft))
+  g_hyp (tap-hold-release 250 250 g (multi lmet lctl lalt lsft))
+  h_hyp (tap-hold-release 250 250 h (multi rmet rctl ralt rsft))
 
   ;; Right hand homerow mods
-  j_sft (tap-hold-release 200 200 j rsft)
-  k_met (tap-hold-release 200 200 k rmet)
-  l_alt (tap-hold-release 200 200 l ralt)
-  ;_ctl (tap-hold-release 200 200 ; rctl)
+  j_sft (tap-hold-release 250 250 j rsft)
+  k_met (tap-hold-release 250 250 k rmet)
+  l_alt (tap-hold-release 250 250 l ralt)
+  ;_ctl (tap-hold-release 250 250 ; rctl)
 
   ;; Caps Lock: tap = Tab, hold = Arrow layer
-  cap   (tap-hold-release 200 200 tab (layer-toggle arrows))
+  cap   (tap-hold-release 250 250 tab (layer-toggle arrows))
 
   ;; Tap-dance brackets for arrow layer (matching Go60 SYMBOLNAV)
   td_par  (tap-dance 200 (S-9 S-0))     ;; u: tap=( double-tap=)
@@ -57,22 +62,25 @@
   ;; Apps layer toggle: tap = ', hold = apps layer
   '     (tap-hold-release 200 200 ' (layer-toggle apps))
 
-  ;; App launchers
-  app_a (cmd open -a "Arc")
-  app_g (cmd open -a "Ghostty")
-  app_s (cmd open -a "Slack")
-  app_o (cmd open -a "ChatGPT")
-  app_c (cmd open -a "Claude")
-  app_i (cmd open -a "IntelliJ IDEA")
-  app_u (cmd open -a "Cursor")
-  app_e (cmd open -a "Spark")
-  app_n (cmd open -a "Notion")
-  app_m (cmd open -a "Messages")
-  app_p (cmd open -a "Comet")
+  ;; App launchers via Hyper+letter (configure matching hotkeys in Raycast)
+  ;; Hyper = Cmd+Ctrl+Alt+Shift
+  app_a C-A-M-S-a  ;; Arc
+  app_g C-A-M-S-g  ;; Ghostty
+  app_s C-A-M-S-s  ;; Slack
+  app_o C-A-M-S-o  ;; ChatGPT
+  app_c C-A-M-S-c  ;; Claude
+  app_i C-A-M-S-i  ;; IntelliJ IDEA
+  app_u C-A-M-S-u  ;; Cursor
+  app_e C-A-M-S-e  ;; Spark (email)
+  app_n C-A-M-S-n  ;; Notion
+  app_m C-A-M-S-m  ;; Messages
+  app_p C-A-M-S-p  ;; Comet (Perplexity)
 )
 
 ;; Base layer with homerow mods
+;; F-keys mapped to media keys (MacBook layout)
 (deflayer base
+  brdn brup _    _    _    _    prev pp   next mute vold volu
   esc   1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab   q    w    e    r    t    y    u    i    o    p    [    ]    \
   @cap  @a_ctl @s_alt @d_met @f_sft @g_hyp @h_hyp @j_sft @k_met @l_alt @;_ctl @'  ret
@@ -84,6 +92,7 @@
 ;; h,j,k,l become vim-style arrow keys
 ;; u,i,o become bracket tap-dances (matching Go60)
 (deflayer arrows
+  _    _    _    _    _    _    _    _    _    _    _    _
   _     _    _    _    _    _    _    _    _    _    _    _    _    _
   _     _    _    _    _    _    _    @td_par @td_brc @td_brk _    _    _    _
   _     _    _    _    _    _    left down up   rght _    _    _
@@ -94,6 +103,7 @@
 ;; Apps layer (activated by holding ')
 ;; Quick app switching based on Screen Time usage
 (deflayer apps
+  _    _    _    _    _    _    _    _    _    _    _    _
   _     _    _    _    _    _    _    _    _    _    _    _    _    _
   _     _    _    @app_e _    _    _    @app_u @app_i @app_o @app_p _    _    _
   _     @app_a @app_s _    _    @app_g _    _    _    _    _    _    _
