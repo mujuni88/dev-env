@@ -57,17 +57,17 @@
   ;; Apps layer toggle: tap = ', hold = apps layer
   '     (tap-hold-release 200 200 ' (layer-toggle apps))
 
-  ;; App launchers (sorted by usage)
-  app_a (cmd open -a "Arc")              ;; 35.8h
-  app_g (cmd open -a "Ghostty")          ;; 22.5h
-  app_s (cmd open -a "Slack")            ;; 8.7h
-  app_o (cmd open -a "ChatGPT")          ;; 6.9h
-  app_c (cmd open -a "Claude")           ;; 5.4h
-  app_i (cmd open -a "IntelliJ IDEA")    ;; 4.9h
-  app_u (cmd open -a "Cursor")           ;; 2.0h
-  app_e (cmd open -a "Spark")            ;; 1.5h (email)
-  app_n (cmd open -a "Notion")           ;; 0.8h
-  app_m (cmd open -a "Messages")         ;; messages
+  ;; App launchers
+  app_a (cmd open -a "Arc")
+  app_g (cmd open -a "Ghostty")
+  app_s (cmd open -a "Slack")
+  app_o (cmd open -a "ChatGPT")
+  app_c (cmd open -a "Claude")
+  app_i (cmd open -a "IntelliJ IDEA")
+  app_u (cmd open -a "Cursor")
+  app_e (cmd open -a "Spark")
+  app_n (cmd open -a "Notion")
+  app_m (cmd open -a "Messages")
 )
 
 ;; Base layer with homerow mods
