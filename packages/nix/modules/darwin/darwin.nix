@@ -8,28 +8,6 @@
 
   # Custom packages
   kanata-cmd = pkgs.callPackage ./kanata.nix {};
-
-  # Wrapper script that waits for VirtualHID before starting Kanata
-  kanata-launcher = pkgs.writeShellScript "kanata-launcher" ''
-    SOCKET="/Library/Application Support/org.pqrs/tmp/rootonly/vhidd_server"
-    MAX_WAIT=30
-    WAITED=0
-
-    echo "Waiting for VirtualHID socket..."
-    while [ ! -e "$SOCKET" ] && [ $WAITED -lt $MAX_WAIT ]; do
-      sleep 1
-      WAITED=$((WAITED + 1))
-      echo "Waited $WAITED seconds..."
-    done
-
-    if [ ! -e "$SOCKET" ]; then
-      echo "ERROR: VirtualHID socket not found after $MAX_WAIT seconds"
-      exit 1
-    fi
-
-    echo "VirtualHID socket found, starting Kanata..."
-    exec ${kanata-cmd}/bin/kanata --cfg /Users/${user}/.config/kanata/kanata.kbd
-  '';
 in {
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = packages ++ [kanata-cmd];
@@ -49,16 +27,20 @@ in {
     };
   };
 
-  # Kanata keyboard remapper daemon (uses wrapper to wait for VirtualHID)
+  # Kanata keyboard remapper daemon
   launchd.daemons.kanata = {
     serviceConfig = {
       Label = "com.github.jtroo.kanata";
-      ProgramArguments = ["${kanata-launcher}"];
+      ProgramArguments = [
+        "/run/current-system/sw/bin/kanata"
+        "--cfg"
+        "/Users/${user}/.config/kanata/kanata.kbd"
+      ];
       RunAtLoad = true;
       KeepAlive = {
         SuccessfulExit = false;  # Only restart on crashes, not clean exits
       };
-      ThrottleInterval = 5;  # Wait 5s between retries
+      ThrottleInterval = 5;  # Wait 5s between retries (gives VirtualHID time to start)
       StandardOutPath = "/Library/Logs/Kanata/kanata.out.log";
       StandardErrorPath = "/Library/Logs/Kanata/kanata.err.log";
       UserName = "root";
@@ -153,7 +135,7 @@ in {
     # Keyboard settings
     keyboard = {
       enableKeyMapping = true;
-      remapCapsLockToControl = false;  # Kanata handles caps lock now
+      remapCapsLockToControl = true;
     };
   };
 
