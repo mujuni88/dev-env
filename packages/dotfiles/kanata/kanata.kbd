@@ -26,27 +26,32 @@
 )
 
 ;; Aliases for homerow mods
-;; Using tap-hold-press: tap within timeout = key, hold beyond = modifier
-;; 200ms matches your ZMK configuration timing
+;; Using tap-hold-release: tap registers on key release (handles rollover better)
+;; 200ms timeout - tap sends letter immediately on release, hold activates modifier
 (defalias
   ;; Left hand homerow mods
-  a_ctl (tap-hold-press 200 200 a lctl)
-  s_alt (tap-hold-press 200 200 s lalt)
-  d_met (tap-hold-press 200 200 d lmet)
-  f_sft (tap-hold-press 200 200 f lsft)
+  a_ctl (tap-hold-release 200 200 a lctl)
+  s_alt (tap-hold-release 200 200 s lalt)
+  d_met (tap-hold-release 200 200 d lmet)
+  f_sft (tap-hold-release 200 200 f lsft)
 
   ;; Hyper keys (Cmd+Ctrl+Alt+Shift)
-  g_hyp (tap-hold-press 200 200 g (multi lmet lctl lalt lsft))
-  h_hyp (tap-hold-press 200 200 h (multi rmet rctl ralt rsft))
+  g_hyp (tap-hold-release 200 200 g (multi lmet lctl lalt lsft))
+  h_hyp (tap-hold-release 200 200 h (multi rmet rctl ralt rsft))
 
   ;; Right hand homerow mods
-  j_sft (tap-hold-press 200 200 j rsft)
-  k_met (tap-hold-press 200 200 k rmet)
-  l_alt (tap-hold-press 200 200 l ralt)
-  ;_ctl (tap-hold-press 200 200 ; rctl)
+  j_sft (tap-hold-release 200 200 j rsft)
+  k_met (tap-hold-release 200 200 k rmet)
+  l_alt (tap-hold-release 200 200 l ralt)
+  ;_ctl (tap-hold-release 200 200 ; rctl)
 
   ;; Caps Lock: tap = Tab, hold = Arrow layer
-  cap   (tap-hold-press 200 200 tab (layer-toggle arrows))
+  cap   (tap-hold-release 200 200 tab (layer-toggle arrows))
+
+  ;; Tap-dance brackets for arrow layer (matching Go60 SYMBOLNAV)
+  td_par  (tap-dance 200 (S-9 S-0))     ;; u: tap=( double-tap=)
+  td_brc  (tap-dance 200 (S-[ S-]))     ;; i: tap={ double-tap=}
+  td_brk  (tap-dance 200 ([ ]))         ;; o: tap=[ double-tap=]
 )
 
 ;; Base layer with homerow mods
@@ -60,10 +65,10 @@
 
 ;; Arrow layer (activated by holding Caps Lock)
 ;; h,j,k,l become vim-style arrow keys
-;; Also includes useful navigation keys
+;; u,i,o become bracket tap-dances (matching Go60)
 (deflayer arrows
   _     _    _    _    _    _    _    _    _    _    _    _    _    _
-  _     _    _    _    _    _    _    _    _    _    _    _    _    _
+  _     _    _    _    _    _    _    @td_par @td_brc @td_brk _    _    _    _
   _     _    _    _    _    _    left down up   rght _    _    _
   _     _    _    _    _    _    _    _    _    _    _    _
   _     _    _              _              _    _    _

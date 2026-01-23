@@ -20,7 +20,6 @@
     ~/.git-commit-template.txt: git/.git-commit-template.txt
 
     # Config files in .config directory
-    ~/.config/karabiner: karabiner
     ~/.config/lazygit: lazygit
     ~/.config/nvim: nvim
     ~/.config/starship.toml: starship/starship.toml
