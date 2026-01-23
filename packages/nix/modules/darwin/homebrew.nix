@@ -159,7 +159,6 @@
     "ledger-wallet"
 
     # Keyboard/Navigation Management
-    "karabiner-elements" # Driver required for Kanata
     "homerow"
     "bazecor" # Dygma Keyboard Configurator
   ];

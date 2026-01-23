@@ -12,6 +12,21 @@ in {
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = packages ++ [kanata-cmd];
 
+  # Karabiner VirtualHIDDevice daemon (required for Kanata)
+  launchd.daemons.karabiner-vhid = {
+    serviceConfig = {
+      Label = "org.pqrs.Karabiner-VirtualHIDDevice-Daemon";
+      ProgramArguments = [
+        "/Library/Application Support/org.pqrs/Karabiner-DriverKit-VirtualHIDDevice/Applications/Karabiner-VirtualHIDDevice-Daemon.app/Contents/MacOS/Karabiner-VirtualHIDDevice-Daemon"
+      ];
+      RunAtLoad = true;
+      KeepAlive = true;
+      ProcessType = "Interactive";
+      StandardOutPath = "/tmp/karabiner-vhid.out.log";
+      StandardErrorPath = "/tmp/karabiner-vhid.err.log";
+    };
+  };
+
   # Kanata keyboard remapper daemon
   launchd.daemons.kanata = {
     serviceConfig = {
@@ -37,11 +52,29 @@ in {
     primaryUser = user; # Set the primary user for nix-darwin
     stateVersion = 5; # Match the version in system.nix
 
-    # Configure trackpad behavior
+    # Configure trackpad behavior and install Karabiner DriverKit
     activationScripts.postActivation.text = ''
       # Load trackpad settings
       defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -bool true
       defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerDrag -bool true
+
+      # Install Karabiner DriverKit VirtualHIDDevice for Kanata support
+      KARABINER_DK="${pkgs.karabiner-dk}"
+      
+      # Copy Manager app to /Applications (requires sudo, handled by activation)
+      if [ -d "$KARABINER_DK/Applications/.Karabiner-VirtualHIDDevice-Manager.app" ]; then
+        rm -rf "/Applications/.Karabiner-VirtualHIDDevice-Manager.app"
+        cp -R "$KARABINER_DK/Applications/.Karabiner-VirtualHIDDevice-Manager.app" "/Applications/"
+        echo "Installed Karabiner-VirtualHIDDevice-Manager.app"
+      fi
+      
+      # Copy Library support files
+      if [ -d "$KARABINER_DK/Library/Application Support/org.pqrs" ]; then
+        mkdir -p "/Library/Application Support/org.pqrs"
+        rm -rf "/Library/Application Support/org.pqrs/Karabiner-DriverKit-VirtualHIDDevice"
+        cp -R "$KARABINER_DK/Library/Application Support/org.pqrs/Karabiner-DriverKit-VirtualHIDDevice" "/Library/Application Support/org.pqrs/"
+        echo "Installed Karabiner DriverKit support files"
+      fi
     '';
 
     # Import system defaults from system.nix
