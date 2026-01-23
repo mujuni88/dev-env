@@ -64,6 +64,9 @@ in {
       defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -bool true
       defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerDrag -bool true
 
+      # Don't reopen apps on login
+      defaults write com.apple.loginwindow TALLogoutSavesState -bool false
+
       # Install Karabiner DriverKit VirtualHIDDevice for Kanata support
       KARABINER_DK="${pkgs.karabiner-dk}"
       
@@ -126,11 +129,6 @@ in {
       NSGlobalDomain = {
         AppleInterfaceStyle = "Dark";
         KeyRepeat = 3;
-      };
-
-      # Login window settings
-      loginwindow = {
-        TALLogoutSavesState = false;  # Don't reopen apps on login
       };
     };
 
