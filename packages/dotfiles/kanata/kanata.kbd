@@ -67,6 +67,7 @@
   app_u (cmd open -a "Cursor")           ;; 2.0h
   app_e (cmd open -a "Spark")            ;; 1.5h (email)
   app_n (cmd open -a "Notion")           ;; 0.8h
+  app_m (cmd open -a "Messages")         ;; messages
 )
 
 ;; Base layer with homerow mods
@@ -95,6 +96,6 @@
   _     _    _    _    _    _    _    _    _    _    _    _    _    _
   _     _    _    @app_e _    _    _    @app_u @app_i @app_o _    _    _    _
   _     @app_a @app_s _    _    @app_g _    _    _    _    _    _    _
-  _     _    _    @app_c _    _    @app_n _    _    _    _    _
+  _     _    _    @app_c _    _    @app_n @app_m _    _    _    _
   _     _    _              _              _    _    _
 )
