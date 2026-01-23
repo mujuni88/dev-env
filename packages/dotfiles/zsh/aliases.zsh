@@ -97,6 +97,9 @@ alias nixup="cd $MY_NIX && nix flake update && nixswitch"
 
 # Open nix configuration in neovim
 alias nixedit="cd $MY_NIX && nvim ."
+
+# Restart Kanata keyboard remapper
+alias kr="sudo launchctl bootout system/com.github.jtroo.kanata; sudo launchctl bootstrap system /Library/LaunchDaemons/com.github.jtroo.kanata.plist"
 # ----- Nix -----#
 
 # AI
