@@ -68,6 +68,7 @@
   app_e (cmd open -a "Spark")
   app_n (cmd open -a "Notion")
   app_m (cmd open -a "Messages")
+  app_p (cmd open -a "Comet")
 )
 
 ;; Base layer with homerow mods
@@ -94,7 +95,7 @@
 ;; Quick app switching based on Screen Time usage
 (deflayer apps
   _     _    _    _    _    _    _    _    _    _    _    _    _    _
-  _     _    _    @app_e _    _    _    @app_u @app_i @app_o _    _    _    _
+  _     _    _    @app_e _    _    _    @app_u @app_i @app_o @app_p _    _    _
   _     @app_a @app_s _    _    @app_g _    _    _    _    _    _    _
   _     _    _    @app_c _    _    @app_n @app_m _    _    _    _
   _     _    _              _              _    _    _
