@@ -6,6 +6,9 @@ history.txt
 # Karabiner backups
 dotfiles/karabiner/.config/karabiner/automatic_backups/
 
+# Carapace bridge cache (auto-generated)
+packages/dotfiles/carapace/bridge/
+
 **/.claude/settings.local.json
 .turbo
 # Node dependencies
