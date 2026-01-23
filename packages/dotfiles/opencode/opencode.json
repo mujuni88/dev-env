@@ -10,8 +10,17 @@
   ],
   "provider": {
     "anthropic": {
+      "models": {
+        "claude-sonnet-4-5-20250514": {
+          "name": "Claude Sonnet 4.5"
+        },
+        "claude-opus-4-5-20250514": {
+          "name": "Claude Opus 4.5"
+        }
+      },
       "options": {
-        "baseURL": "http://localhost:9123/mtlsproxy:claudecode/v1"
+        "baseURL": "http://localhost:9123/mtlsproxy:claudecode/v1",
+        "apiKey": "sk-dummy-key"
       }
     },
     "google": {
