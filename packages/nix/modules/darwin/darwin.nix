@@ -127,6 +127,11 @@ in {
         AppleInterfaceStyle = "Dark";
         KeyRepeat = 3;
       };
+
+      # Login window settings
+      loginwindow = {
+        TALLogoutSavesState = false;  # Don't reopen apps on login
+      };
     };
 
     # Keyboard settings
