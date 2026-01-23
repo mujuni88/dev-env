@@ -37,9 +37,12 @@ in {
         "/Users/${user}/.config/kanata/kanata.kbd"
       ];
       RunAtLoad = true;
-      KeepAlive = true;
-      StandardOutPath = "/tmp/kanata.out.log";
-      StandardErrorPath = "/tmp/kanata.err.log";
+      KeepAlive = {
+        SuccessfulExit = false;  # Only restart on crashes, not clean exits
+      };
+      ThrottleInterval = 5;  # Wait 5s between retries (gives VirtualHID time to start)
+      StandardOutPath = "/Library/Logs/Kanata/kanata.out.log";
+      StandardErrorPath = "/Library/Logs/Kanata/kanata.err.log";
       UserName = "root";
     };
   };
@@ -54,6 +57,9 @@ in {
 
     # Configure trackpad behavior and install Karabiner DriverKit
     activationScripts.postActivation.text = ''
+      # Create Kanata log directory
+      mkdir -p /Library/Logs/Kanata
+
       # Load trackpad settings
       defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -bool true
       defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerDrag -bool true
@@ -126,7 +132,7 @@ in {
     # Keyboard settings
     keyboard = {
       enableKeyMapping = true;
-      remapCapsLockToControl = true;
+      remapCapsLockToControl = false;  # Kanata handles caps lock now
     };
   };
 
