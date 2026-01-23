@@ -9,6 +9,7 @@
 
 (defcfg
   process-unmapped-keys yes
+  danger-enable-cmd yes
   ;; Exclude ZMK keyboards (they have their own config in firmware)
   macos-dev-names-exclude (
     "Go60"
@@ -52,13 +53,27 @@
   td_par  (tap-dance 200 (S-9 S-0))     ;; u: tap=( double-tap=)
   td_brc  (tap-dance 200 (S-[ S-]))     ;; i: tap={ double-tap=}
   td_brk  (tap-dance 200 ([ ]))         ;; o: tap=[ double-tap=]
+
+  ;; Apps layer toggle: tap = ', hold = apps layer
+  '     (tap-hold-release 200 200 ' (layer-toggle apps))
+
+  ;; App launchers (sorted by usage)
+  app_a (cmd open -a "Arc")              ;; 35.8h
+  app_g (cmd open -a "Ghostty")          ;; 22.5h
+  app_s (cmd open -a "Slack")            ;; 8.7h
+  app_o (cmd open -a "ChatGPT")          ;; 6.9h
+  app_c (cmd open -a "Claude")           ;; 5.4h
+  app_i (cmd open -a "IntelliJ IDEA")    ;; 4.9h
+  app_u (cmd open -a "Cursor")           ;; 2.0h
+  app_e (cmd open -a "Spark")            ;; 1.5h (email)
+  app_n (cmd open -a "Notion")           ;; 0.8h
 )
 
 ;; Base layer with homerow mods
 (deflayer base
   esc   1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab   q    w    e    r    t    y    u    i    o    p    [    ]    \
-  @cap  @a_ctl @s_alt @d_met @f_sft @g_hyp @h_hyp @j_sft @k_met @l_alt @;_ctl '  ret
+  @cap  @a_ctl @s_alt @d_met @f_sft @g_hyp @h_hyp @j_sft @k_met @l_alt @;_ctl @'  ret
   lsft  z    x    c    v    b    n    m    ,    .    /    rsft
   lctl  lalt lmet           spc            rmet ralt rctl
 )
@@ -71,5 +86,15 @@
   _     _    _    _    _    _    _    @td_par @td_brc @td_brk _    _    _    _
   _     _    _    _    _    _    left down up   rght _    _    _
   _     _    _    _    _    _    _    _    _    _    _    _
+  _     _    _              _              _    _    _
+)
+
+;; Apps layer (activated by holding ')
+;; Quick app switching based on Screen Time usage
+(deflayer apps
+  _     _    _    _    _    _    _    _    _    _    _    _    _    _
+  _     _    _    @app_e _    _    _    @app_u @app_i @app_o _    _    _    _
+  _     @app_a @app_s _    _    @app_g _    _    _    _    _    _    _
+  _     _    _    @app_c _    _    @app_n _    _    _    _    _
   _     _    _              _              _    _    _
 )
