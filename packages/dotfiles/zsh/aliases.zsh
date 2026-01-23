@@ -84,13 +84,9 @@ alias pg='psql postgres'
 alias szsh="source ~/.zshrc"
 
 # ----- Development Environment -----
-alias devenv="cd $MY_DEV"
-alias devedit="cd $MY_DEV && nvim ."
-# One command to update and set up the entire development environment
-alias devsetup="cd $MY_DEV && bun run setup"
-
-# ----- Dotfiles -----
-alias dotsedit="cd $MY_DEV/packages/dotfiles && nvim ."
+alias de="cd $MY_DEV"
+alias dee="cd $MY_DEV && nvim ."
+alias des="cd $MY_DEV && bun run setup"
 
 # ----- Nix -----
 # Rebuild and switch system configuration (automatically cleans up old generations)
