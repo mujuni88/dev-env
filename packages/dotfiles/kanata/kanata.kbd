@@ -3,7 +3,7 @@
 ;;
 ;; Left hand homerow mods:  A=Ctrl, S=Alt, D=Cmd, F=Shift
 ;; Right hand homerow mods: J=Shift, K=Cmd, L=Alt, ;=Ctrl
-;; Hyper keys: G (hold) = Hyper, H (hold) = Hyper
+;; Hyper keys: G (hold) = Hyper, H (hold) = Hyper, ' (hold) = Hyper
 ;; Caps Lock (tap) = Tab
 ;; Caps Lock (hold) = Arrow layer where h,j,k,l = ←,↓,↑,→
 ;;
@@ -59,22 +59,8 @@
   td_brc  (tap-dance 200 (S-[ S-]))     ;; i: tap={ double-tap=}
   td_brk  (tap-dance 200 ([ ]))         ;; o: tap=[ double-tap=]
 
-  ;; Apps layer toggle: tap = ', hold = apps layer
-  '     (tap-hold-release 200 200 ' (layer-toggle apps))
-
-  ;; App launchers via Hyper+letter (configure matching hotkeys in Raycast)
-  ;; Hyper = Cmd+Ctrl+Alt+Shift
-  app_a C-A-M-S-a  ;; Arc
-  app_g C-A-M-S-g  ;; Ghostty
-  app_s C-A-M-S-s  ;; Slack
-  app_o C-A-M-S-o  ;; ChatGPT
-  app_c C-A-M-S-c  ;; Claude
-  app_i C-A-M-S-i  ;; IntelliJ IDEA
-  app_u C-A-M-S-u  ;; Cursor
-  app_e C-A-M-S-e  ;; Spark (email)
-  app_n C-A-M-S-n  ;; Notion
-  app_m C-A-M-S-m  ;; Messages
-  app_p C-A-M-S-p  ;; Comet (Perplexity)
+  ;; ' key: tap = ', hold = Hyper (matching Go60)
+  '_hyp (tap-hold-release 250 250 ' (multi rmet rctl ralt rsft))
 )
 
 ;; Base layer with homerow mods
@@ -83,7 +69,7 @@
   brdn brup _    _    _    _    prev pp   next mute vold volu
   esc   1    2    3    4    5    6    7    8    9    0    -    =    bspc
   esc   q    w    e    r    t    y    u    i    o    p    [    ]    \
-  @cap  @a_ctl @s_alt @d_met @f_sft @g_hyp @h_hyp @j_sft @k_met @l_alt @;_ctl @'  ret
+  @cap  @a_ctl @s_alt @d_met @f_sft @g_hyp @h_hyp @j_sft @k_met @l_alt @;_ctl @'_hyp  ret
   lsft  z    x    c    v    b    n    m    ,    .    /    rsft
   lctl  lalt lmet           spc            rmet ralt rctl
 )
@@ -100,13 +86,4 @@
   _     _    _              _              _    _    _
 )
 
-;; Apps layer (activated by holding ')
-;; Quick app switching based on Screen Time usage
-(deflayer apps
-  _    _    _    _    _    _    _    _    _    _    _    _
-  _     _    _    _    _    _    _    _    _    _    _    _    _    _
-  _     _    _    @app_e _    _    _    @app_u @app_i @app_o @app_p _    _    _
-  _     @app_a @app_s _    _    @app_g _    _    _    _    _    _    _
-  _     _    _    @app_c _    _    @app_n @app_m _    _    _    _
-  _     _    _              _              _    _    _
-)
+
