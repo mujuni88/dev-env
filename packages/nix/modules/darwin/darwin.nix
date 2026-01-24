@@ -5,12 +5,9 @@
   # Import system packages and homebrew configurations
   packages = import ./packages.nix {inherit pkgs;};
   homebrewConfig = import ./homebrew.nix;
-
-  # Custom packages
-  kanata-cmd = pkgs.callPackage ./kanata.nix {};
 in {
   nixpkgs.config.allowUnfree = true;
-  environment.systemPackages = packages ++ [kanata-cmd];
+  environment.systemPackages = packages ++ [pkgs.kanata-with-cmd];
 
   # Karabiner VirtualHIDDevice daemon (required for Kanata)
   launchd.daemons.karabiner-vhid = {
