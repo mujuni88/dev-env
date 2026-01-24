@@ -99,7 +99,8 @@ alias nu="cd $MY_NIX && nix flake update && ns"
 alias ne="cd $MY_NIX && nvim ."
 
 # Kanata keyboard remapper
-alias ks="sudo kanata -c ~/.config/kanata/kanata.kbd &"
+alias ks="sudo kanata -c ~/.config/kanata/kanata.kbd &>/dev/null & disown"
+alias kk="sudo pkill -9 kanata"
 alias kr="sudo launchctl kickstart -k system/com.github.jtroo.kanata"
 # ----- Nix -----#
 
