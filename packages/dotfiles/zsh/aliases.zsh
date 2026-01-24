@@ -90,16 +90,17 @@ alias des="cd $MY_DEV && bun run setup"
 
 # ----- Nix -----
 # Rebuild and switch system configuration (automatically cleans up old generations)
-alias nxs="sudo darwin-rebuild switch --flake $MY_NIX#macos && nix-collect-garbage --delete-old"
+alias ns="sudo darwin-rebuild switch --flake $MY_NIX#macos && nix-collect-garbage --delete-old"
 
 # Update flake inputs and rebuild system
-alias nxu="cd $MY_NIX && nix flake update && nxs"
+alias nu="cd $MY_NIX && nix flake update && ns"
 
 # Open nix configuration in neovim
-alias nxe="cd $MY_NIX && nvim ."
+alias ne="cd $MY_NIX && nvim ."
 
-# Restart Kanata keyboard remapper
-alias kr="sudo launchctl bootout system/com.github.jtroo.kanata; sudo launchctl bootstrap system /Library/LaunchDaemons/com.github.jtroo.kanata.plist"
+# Kanata keyboard remapper
+alias ks="sudo kanata -c ~/.config/kanata/kanata.kbd &"
+alias kr="sudo launchctl kickstart -k system/com.github.jtroo.kanata"
 # ----- Nix -----#
 
 # AI
