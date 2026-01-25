@@ -161,9 +161,7 @@
     "ledger-wallet"
 
     # Keyboard/Navigation Management
-    "homerow"
     "bazecor" # Dygma Keyboard Configurator
-    "mouseless" # Keyboard-driven app launcher
     "shortcat" # Click buttons with keyboard
   ];
 
