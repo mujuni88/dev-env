@@ -30,6 +30,7 @@
     "steveyegge/beads"
     "withgraphite/tap"
     "anomalyco/tap"
+    "dashlane/tap"
   ];
 
   brews = [
@@ -63,6 +64,7 @@
     "jq" # JSON processor
     "yq" # YAML processor (jq for YAML)
     "wget" # Command-line tool for downloading files
+    "xh" # Friendly HTTP client (curl alternative)
     "dashlane/tap/dashlane-cli" # dashlane api
 
     # Development tools
@@ -161,9 +163,12 @@
     # Keyboard/Navigation Management
     "homerow"
     "bazecor" # Dygma Keyboard Configurator
+    "mouseless" # Keyboard-driven app launcher
+    "shortcat" # Click buttons with keyboard
   ];
 
   masApps = {
+    "Dashlane" = 517914548;
     "PastePal" = 1503446680;
     "Yoink" = 457622435;
     "SparkClassicEmailApp" = 1176895641;
