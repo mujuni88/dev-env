@@ -161,8 +161,8 @@
     "ledger-wallet"
 
     # Keyboard/Navigation Management
+    "homerow"
     "bazecor" # Dygma Keyboard Configurator
-    "shortcat" # Click buttons with keyboard
   ];
 
   masApps = {
