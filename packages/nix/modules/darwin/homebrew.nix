@@ -91,7 +91,7 @@
     "sdkman/tap/sdkman-cli" # SDKMAN - Software Development Kit Manager
 
     # AI tools
-    "steveyegge/beads/bd" # AI agent memory system
+    "steveyegge/beads/beads" # AI agent memory system
 
     # File management
     "yazi" # Terminal file manager
@@ -132,6 +132,7 @@
 
     # Productivity Apps
     "notion"
+    "obsidian"
     "raycast"
     "chatgpt"
     "claude"
