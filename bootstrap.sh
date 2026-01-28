@@ -224,10 +224,11 @@ bootstrap_nix_darwin() {
     fi
 
     info "First-time nix-darwin bootstrap..."
+    info "This requires sudo for system activation..."
     cd "$DEV_ENV_DIR/packages/nix"
 
-    # Run the initial bootstrap command
-    nix --extra-experimental-features "nix-command flakes" run nix-darwin/master#darwin-rebuild -- switch --flake ".#macos"
+    # Run the initial bootstrap command with sudo (required for system activation)
+    sudo nix --extra-experimental-features "nix-command flakes" run nix-darwin/master#darwin-rebuild -- switch --flake ".#macos"
 
     success "nix-darwin bootstrapped successfully"
 
