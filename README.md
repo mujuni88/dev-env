@@ -26,6 +26,31 @@ This repository is organized as a monorepo using Turborepo for efficient build o
 
 ## Quick Start
 
+### One-Liner Setup (Fresh Mac)
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/mujuni88/dev-env/main/bootstrap.sh | bash
+```
+
+This will:
+1. Install Xcode Command Line Tools
+2. Install Nix package manager
+3. Install Bun runtime
+4. Clone the repository to `~/dev-env`
+5. Bootstrap nix-darwin (installs Homebrew + system packages)
+6. Optionally install Claude Code for interactive setup completion
+
+After bootstrap completes, start a new terminal and run:
+```bash
+cd ~/dev-env && claude
+# Then tell Claude: "Complete my dev-env setup"
+```
+
+### Manual Installation
+
+<details>
+<summary>Click to expand manual steps</summary>
+
 1. **Prerequisites**
    - macOS
    - [Nix package manager](packages/nix/README.md)
@@ -35,12 +60,12 @@ This repository is organized as a monorepo using Turborepo for efficient build o
 2. **Installation**
    ```bash
    # Clone the repository
-   git clone <repository_url>
+   git clone https://github.com/mujuni88/dev-env.git
    cd dev-env
 
    # Set up environment variable
    export MY_DEV=$(pwd)
-   
+
    # Install dependencies
    bun install
    ```
@@ -49,9 +74,30 @@ This repository is organized as a monorepo using Turborepo for efficient build o
 
    - For full system configuration:
      → Follow the [Nix Setup Guide](packages/nix/README.md)
-   
+
    - For tool configurations only:
      → Follow the [Dotfiles Setup Guide](packages/dotfiles/README.md)
+
+</details>
+
+### Bootstrap Options
+
+```bash
+./bootstrap.sh --no-ai      # Skip AI assistant installation
+./bootstrap.sh --claude     # Install Claude Code (non-interactive)
+./bootstrap.sh --opencode   # Install OpenCode (non-interactive)
+./bootstrap.sh --ai-only    # Skip prerequisites, just install AI tools
+```
+
+### Verify Installation
+
+After bootstrap, verify everything installed correctly:
+
+```bash
+./verify-bootstrap.sh           # Run all checks
+./verify-bootstrap.sh --verbose # Show detailed output
+./verify-bootstrap.sh --fix     # Show fix commands for failures
+```
 
 ## Common Tasks
 
