@@ -1,19 +1,36 @@
 # Nix Configuration
 
 This directory contains my Nix-based system configuration for macOS using [nix-darwin](https://github.com/LnL7/nix-darwin?tab=readme-ov-file). It uses the flakes feature for reproducible builds.
+
+## Quick Start
+
+**Recommended:** Use the bootstrap script from the repository root:
+```bash
+curl -fsSL https://raw.githubusercontent.com/mujuni88/dev-env/main/bootstrap.sh | bash
+```
+
+This handles Nix installation, nix-darwin bootstrap, and all dependencies automatically.
+
+## Manual Installation
+
+<details>
+<summary>Click to expand manual steps</summary>
+
 1. Install [Nix](https://nixos.org/download/)
 ```bash
 sh <(curl -L https://nixos.org/nix/install)
 ```
 
-2. Buld your flake
+2. Build your flake
 ```bash
 # cd inside nix directory
-cd dev-env/nix
+cd dev-env/packages/nix
 
-# Run inside nix directory
-nix --extra-experimental-features "nix-command flakes" run nix-darwin/master#darwin-rebuild -- switch 
+# Run inside nix directory (requires sudo for system activation)
+sudo nix --extra-experimental-features "nix-command flakes" run nix-darwin/master#darwin-rebuild -- switch --flake ".#macos"
 ```
+
+</details>
 
 
 ## Structure

@@ -208,6 +208,51 @@ install_dependencies() {
     fi
 }
 
+handle_etc_conflicts() {
+    # nix-darwin won't overwrite existing /etc files - check and offer to remove them
+    local conflicting_files=()
+    local etc_files=("/etc/nix/nix.conf" "/etc/bashrc" "/etc/zshrc")
+
+    for f in "${etc_files[@]}"; do
+        if [ -f "$f" ]; then
+            conflicting_files+=("$f")
+        fi
+    done
+
+    if [ ${#conflicting_files[@]} -eq 0 ]; then
+        return 0
+    fi
+
+    warn "Found files that nix-darwin needs to manage:"
+    for f in "${conflicting_files[@]}"; do
+        echo "      $f"
+    done
+    echo ""
+
+    # Handle interactive vs non-interactive
+    local response
+    if [ -t 0 ]; then
+        read -rp "  Remove these files to continue? [Y/n]: " response
+    elif [ -e /dev/tty ]; then
+        read -rp "  Remove these files to continue? [Y/n]: " response </dev/tty
+    else
+        response="y"
+        info "Non-interactive mode, removing files automatically"
+    fi
+
+    if [[ "${response:-y}" =~ ^[Yy]?$ ]]; then
+        for f in "${conflicting_files[@]}"; do
+            sudo rm "$f"
+            info "Removed $f"
+        done
+        success "Conflicting files removed"
+    else
+        error "Cannot proceed without removing these files"
+        error "nix-darwin needs to manage /etc/bashrc, /etc/zshrc, and /etc/nix/nix.conf"
+        exit 1
+    fi
+}
+
 bootstrap_nix_darwin() {
     step "Bootstrapping nix-darwin"
 
@@ -222,6 +267,9 @@ bootstrap_nix_darwin() {
         success "System configuration applied"
         return 0
     fi
+
+    # First-time setup: check for /etc conflicts
+    handle_etc_conflicts
 
     info "First-time nix-darwin bootstrap..."
     info "This requires sudo for system activation..."

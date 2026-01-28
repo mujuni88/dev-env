@@ -34,9 +34,21 @@ My personal dotfiles managed with Dotbot. These configurations work in conjuncti
 
 ## Installation
 
+**Recommended:** Use the bootstrap script from the repository root:
+```bash
+curl -fsSL https://raw.githubusercontent.com/mujuni88/dev-env/main/bootstrap.sh | bash
+```
+
+This handles all prerequisites (Nix, Bun, nix-darwin) and sets up the complete environment.
+
+### Manual Installation
+
+<details>
+<summary>Click to expand manual steps</summary>
+
 1. Clone the repository if you haven't already:
    ```bash
-   git clone <repository_url>
+   git clone https://github.com/mujuni88/dev-env.git
    cd dev-env
    ```
 
@@ -44,13 +56,15 @@ My personal dotfiles managed with Dotbot. These configurations work in conjuncti
    ```bash
    # Complete setup (recommended - includes system dependencies)
    bun run setup
-   
+
    # Dotfiles only
    bun run dotfiles-install
-   
+
    # Direct install (for debugging)
    cd packages/dotfiles && ./install
    ```
+
+</details>
 
 The `install.conf.yaml` file controls which files are symlinked where. This setup uses [Dotbot](https://github.com/anishathalye/dotbot) to manage symlinks and installation.
 
