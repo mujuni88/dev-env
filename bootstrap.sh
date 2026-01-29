@@ -331,7 +331,7 @@ install_opencode() {
     # OpenCode should be installed via Homebrew (from nix-darwin config)
     if homebrew_installed; then
         info "Installing OpenCode via Homebrew..."
-        brew install opencode-ai/tap/opencode
+        brew install anomalyco/tap/opencode
         setup_paths
 
         if opencode_installed; then
