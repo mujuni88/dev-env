@@ -45,41 +45,41 @@ sudo nix --extra-experimental-features "nix-command flakes" run nix-darwin/maste
 
 ## Quick Commands
 
-- `nixswitch` - Rebuild and switch system configuration (automatically cleans up old generations)
-- `nixup` - Update flake inputs and rebuild system
-- `nixedit` - Open nix configuration in neovim
+- `ns` - Rebuild and switch system configuration (automatically cleans up old generations)
+- `nu` - Update flake inputs and rebuild system
+- `ne` - Open nix configuration in neovim
 
 ## Usage
 
 1. Edit the configuration:
    ```bash
-   nixedit  # Alias for: cd $MY_NIX && nvim .
+    ne  # Alias for: cd $MY_NIX && nvim .
    ```
 
 2. Build and switch to the new configuration:
    ```bash
-   nixswitch  # Alias for: sudo darwin-rebuild switch --flake $MY_NIX#macos && nix-collect-garbage --delete-old
+    ns  # Alias for: sudo darwin-rebuild switch --flake $MY_NIX#macos && nix-collect-garbage --delete-old
    ```
 
 3. Update flake inputs and rebuild:
    ```bash
-   nixup  # Alias for: cd $MY_NIX && nix flake update && nixswitch
+    nu  # Alias for: cd $MY_NIX && nix flake update && ns
    ```
 
-Note: Every time you run `nixswitch` or `nixup`, it automatically cleans up old system generations while keeping the current one as a backup.
+Note: Every time you run `ns` or `nu`, it automatically cleans up old system generations while keeping the current one as a backup.
 
 ## Adding New Packages
 
 1. Open the configuration:
    ```bash
-   nixedit
+    ne
    ```
 
 2. Add your package to the appropriate section in `flake.nix`
 
 3. Apply the changes:
    ```bash
-   nixswitch
+    ns
    ```
 
 ## Troubleshooting
@@ -88,7 +88,7 @@ If you encounter issues:
 
 1. Check the error messages in the build output
 2. Verify that your changes in `flake.nix` are properly formatted
-3. Try running `nixup` to ensure you have the latest package versions
+3. Try running `nu` to ensure you have the latest package versions
 4. Make sure `system.primaryUser` is set correctly in your configuration
 5. If needed, you can roll back to the previous generation using `sudo darwin-rebuild switch --rollback` (note: this is not aliased)
 

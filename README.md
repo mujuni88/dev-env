@@ -111,10 +111,10 @@ After bootstrap, verify everything installed correctly:
 
 ### Nix Commands
 
-- **Update System**: `nixup` (updates and rebuilds Nix configuration)
-- **Apply Changes**: `nixswitch` (rebuilds and switches to new configuration)
-- **Edit Config**: `nixedit` (opens Nix configuration in Neovim)
-- **Complete Setup**: `devsetup` (runs nixswitch and then full setup)
+- **Update System**: `nu` (updates flake inputs and rebuilds Nix configuration)
+- **Apply Changes**: `ns` (rebuilds and switches to new configuration)
+- **Edit Config**: `ne` (opens Nix configuration in Neovim)
+- **Complete Setup**: `devsetup` (runs ns and then full setup)
 
 ## Documentation
 

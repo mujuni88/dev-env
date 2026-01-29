@@ -19,7 +19,7 @@ fi
 # Skip actual nix rebuild in CI environments
 if [ -n "$CI" ] || [ -n "$TURBO_CI" ]; then
   echo "CI environment detected, skipping actual nix rebuild"
-  echo "Would have used nixswitch alias (MY_NIX=$MY_NIX)"
+  echo "Would have used ns alias (MY_NIX=$MY_NIX)"
   exit 0
 fi
 
@@ -34,8 +34,8 @@ if [ -n "$TURBO_INVOCATION_DIR" ]; then
   echo ""
   echo "Or simply run one of these aliases:"
   echo ""
-  echo "    nixswitch - rebuild and switch"
-  echo "    nixup     - update packages and rebuild"
+  echo "    ns - rebuild and switch"
+  echo "    nu - update packages and rebuild"
   echo "=============================================="
   exit 0
 fi

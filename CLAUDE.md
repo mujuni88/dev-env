@@ -24,9 +24,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ### Nix Commands
 
-- Rebuild configuration: `nixswitch` (alias for `sudo darwin-rebuild switch --flake $MY_NIX#macos && nix-collect-garbage --delete-old`)
-- Update and rebuild: `nixup` (alias for `cd $MY_NIX && nix flake update && nixswitch`)
-- Edit configuration: `nixedit` (alias for `cd $MY_NIX && nvim .`)
+- Rebuild configuration: `ns` (alias for `sudo darwin-rebuild switch --flake $MY_NIX#macos && nix-collect-garbage --delete-old`)
+- Update and rebuild: `nu` (alias for `cd $MY_NIX && nix flake update && ns`)
+- Edit configuration: `ne` (alias for `cd $MY_NIX && nvim .`)
 - Roll back to previous configuration: `darwin-rebuild switch --rollback` (no alias)
 
 ### Dotfiles Management
