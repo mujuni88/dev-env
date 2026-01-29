@@ -150,7 +150,7 @@ in {
     enable = true;
     reattach = true;
     touchIdAuth = true;
-    watchIdAuth = true;
+    watchIdAuth = false;
   };
 
   security.sudo.extraConfig = ''
