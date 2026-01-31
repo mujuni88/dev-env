@@ -5,6 +5,13 @@ return {
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 	},
 	config = function()
+		local npm_registry = vim.env.MASON_NPM_REGISTRY or vim.env.NPM_CONFIG_REGISTRY or vim.env.npm_config_registry
+		if not npm_registry or npm_registry == "" then
+			local default_registry = "https://registry.npmjs.org/"
+			vim.env.NPM_CONFIG_REGISTRY = default_registry
+			vim.env.npm_config_registry = default_registry
+		end
+
 		-- import mason
 		local mason = require("mason")
 
