@@ -123,6 +123,7 @@
     # Web Browsers
     "arc"
     "google-chrome"
+    "helium-browser"
 
     # Communication Apps
     "slack"
