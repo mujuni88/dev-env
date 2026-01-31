@@ -110,7 +110,7 @@
 };
 
 &cirque_lh_listener {
-    input-processors = <&zip_xy_to_scroll_mapper>, <&zip_xy_scaler 11 12>, <&zip_click_to_right_click_mapper>, <&zip_scroll_scaler 1 8>;
+    input-processors = <&zip_xy_to_scroll_mapper>, <&zip_xy_scaler 11 12>, <&zip_click_to_right_click_mapper>, <&zip_scroll_scaler 1 8>, <&zip_scroll_transform (INPUT_TRANSFORM_Y_INVERT)>;
     layer_factory {
         layers = <FACTORY>;
         input-processors = <&zip_xy_scaler 3 1>;  // Pointer mode in factory layer
