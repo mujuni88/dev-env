@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "config": {
+    "driveFolder": "https://drive.google.com/drive/folders/1i364Gle1X-JIyUzIlxj5d8lgP0m2H0Xh",
+    "outputPath": "/Users/jbuza/Library/Mobile Documents/iCloud~md~obsidian/Documents/Buza/20 Projects/23 System Design/Pro/",
+    "sourceAttribution": "System Design Pro by Arpit Bhayani"
+  },
+  "state": {
+    "nextNoteIndex": 3,
+    "totalNotesGenerated": 3
+  },
+  "processedPDFs": {
+    "01-01.pdf": {
+      "processedAt": "2026-02-01T10:30:00Z",
+      "noteFile": "00-bloom-filters.md",
+      "noteIndex": 0,
+      "pageCount": 15,
+      "status": "complete"
+    },
+    "01-02.pdf": {
+      "processedAt": "2026-02-01T11:15:00Z",
+      "noteFile": "01-consistent-hashing.md",
+      "noteIndex": 1,
+      "pageCount": 22,
+      "status": "complete"
+    },
+    "01-03.pdf": {
+      "processedAt": "2026-02-01T12:00:00Z",
+      "noteFile": "02-rate-limiting.md",
+      "noteIndex": 2,
+      "pageCount": 18,
+      "status": "complete"
+    }
+  },
+  "inProgress": null
+}
