@@ -1,10 +1,13 @@
 #!/bin/bash
-# ralph.sh - Autonomous task execution loop
+# ralph - Autonomous task execution loop
 #
-# Usage: ./ralph.sh [--idle-sleep N]
+# Usage: ralph [--idle-sleep N]
 #
 # Runs until all ready work is complete. Logs to logs/ralph-<timestamp>.log
 # Watch live: tail -f logs/ralph-*.log
+#
+# Environment:
+#   RALPH_WORKER_ID - Set by ralph-parallel for atomic task claiming
 
 set -e
 
@@ -13,14 +16,17 @@ IDLE_SLEEP=60
 while [[ $# -gt 0 ]]; do
   case $1 in
     --idle-sleep) IDLE_SLEEP="$2"; shift 2 ;;
-    -h|--help) head -n 8 "$0" | tail -n +2 | sed 's/^# //'; exit 0 ;;
+    -h|--help) head -n 12 "$0" | tail -n +2 | sed 's/^# //'; exit 0 ;;
     *) echo "Unknown option: $1" >&2; exit 1 ;;
   esac
 done
 
+# Worker ID for parallel mode
+WORKER_ID="${RALPH_WORKER_ID:-main}"
+
 mkdir -p logs
-LOG_FILE="logs/ralph-$(date '+%Y%m%d-%H%M%S').log"
-log() { echo "[$(date '+%Y-%m-%d %H:%M:%S')] $*" | tee -a "$LOG_FILE"; }
+LOG_FILE="logs/ralph-${WORKER_ID}-$(date '+%Y%m%d-%H%M%S').log"
+log() { echo "[$(date '+%Y-%m-%d %H:%M:%S')] [$WORKER_ID] $*" | tee -a "$LOG_FILE"; }
 
 log "=== Ralph Started ==="
 log "Log file: $LOG_FILE"
