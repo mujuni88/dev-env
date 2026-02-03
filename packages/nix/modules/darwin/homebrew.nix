@@ -60,6 +60,7 @@
     "ripgrep" # Fast text search
     "eza" # Modern ls replacement
     "tree" # Directory structure visualization
+    "tree-sitter" # Tree-sitter CLI for nvim-treesitter
     "fd" # Better alternative to find
     "jq" # JSON processor
     "yq" # YAML processor (jq for YAML)
