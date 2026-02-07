@@ -11,7 +11,7 @@ Extract PDF pages from Google Drive and convert them to Obsidian markdown notes.
 ## Configuration
 
 - **Drive Folder**: https://drive.google.com/drive/folders/1i364Gle1X-JIyUzIlxj5d8lgP0m2H0Xh
-- **Output Path**: `/Users/jbuza/Library/Mobile Documents/iCloud~md~obsidian/Documents/Buza/20 Projects/23 System Design/Pro/`
+- **Output Path**: `/Users/jbuza/Library/Mobile Documents/iCloud~md~obsidian/Documents/Buza/20 Projects/23 System Design/Masterclass/`
 - **Tracking File**: `~/.claude/data/gdrive-notes-tracking.json`
 
 ## Workflow
@@ -84,7 +84,7 @@ Extract PDF pages from Google Drive and convert them to Obsidian markdown notes.
 
 Format the extracted content using the template in `references/note-format-template.md`
 
-Save to the Pro output folder with naming convention:
+Save to the Masterclass output folder with naming convention:
 - `00-topic-slug.md`, `01-topic-slug.md`, etc.
 - Use `nextNoteIndex` from tracking state
 
@@ -135,7 +135,7 @@ Extracting content from images...
 - Key concepts identified: 5
 - Diagrams found: 3
 
-Generated note: Pro/00-bloom-filters.md
+Generated note: Masterclass/00-bloom-filters.md
 
 Updated tracking. Run `/gdrive-notes status` to see progress.
 ```
