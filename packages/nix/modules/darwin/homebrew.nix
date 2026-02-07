@@ -26,8 +26,6 @@
 
   # Homebrew taps (third-party repositories)
   taps = [
-    "sdkman/tap"
-    "steveyegge/beads"
     "withgraphite/tap"
     "anomalyco/tap"
     "dashlane/tap"
@@ -71,7 +69,6 @@
     # Development tools
     "jj" # A more improved Git
     "lazygit" # Terminal UI for git
-    "commitizen" # Git commit conventions tool
     "gh" # Github CLI
     "withgraphite/tap/graphite" # Graphite CLI for stacked diffs
     "neovim" # Text editor
@@ -82,17 +79,12 @@
 
     # Programming languages and runtimes
     "rustup" # Rust toolchain installer
-    "deno" # JavaScript/TypeScript runtime
     "oven-sh/bun/bun" # JavaScript/TypeScript runtime
     "go" # Go programming language
     "fnm" # Fast Node version manager
     "node" # Node.js runtime (needed for LSP servers)
     "python" # Python runtime (needed for some LSP servers)
     "luarocks" # Lua package manager
-    "sdkman/tap/sdkman-cli" # SDKMAN - Software Development Kit Manager
-
-    # AI tools
-    "steveyegge/beads/bd" # AI agent memory system
 
     # File management
     "yazi" # Terminal file manager
@@ -116,10 +108,9 @@
     "sublime-text" # Text editor
     #"cursor"  Cursor IDE::NOTE:: using companies version /Applications/Cursor.app/
     "ngrok"
-    "temurin" # Eclipse Temurin OpenJDK distribution (use SDKMAN for version management)
+    "temurin" # Eclipse Temurin OpenJDK distribution
     "docker-desktop" # Docker Desktop for macOS
-    "db-browser-for-sqlite" # SQLite database browser
-    "figma"
+
 
     # Web Browsers
     "arc"
@@ -131,6 +122,7 @@
     "discord"
     "whatsapp"
     "superwhisper"
+    "zoom" # Video conferencing
 
     # Productivity Apps
     "notion"
@@ -150,8 +142,6 @@
     # Utility Applications
     "appcleaner"
     "cleanshot"
-    "loom"
-    "muzzle"
     "canva"
     "grammarly-desktop"
     "clop"
