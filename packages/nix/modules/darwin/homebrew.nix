@@ -111,7 +111,6 @@
     "temurin" # Eclipse Temurin OpenJDK distribution
     "docker-desktop" # Docker Desktop for macOS
 
-
     # Web Browsers
     "arc"
     "google-chrome"

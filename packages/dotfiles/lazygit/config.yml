@@ -59,4 +59,3 @@ gui:
     "*": "#b4befe"
 os:
   editPreset: "nvim"
-
