@@ -268,6 +268,18 @@
             bindings = <&kp LS(N0)>, <&kp LS(N9)>;
         };
 
+        // Fast space bar with shift mod-tap
+        space_mt: space_mod_tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "SPACE_MOD_TAP";
+            flavor = "tap-preferred";
+            tapping-term-ms = <150>;
+            quick-tap-ms = <100>;
+            require-prior-idle-ms = <125>;
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+        };
+
         // Layer tap-dances
         ZMK_TD_LAYER(td_keypad, KEYPAD)
         ZMK_TD_LAYER(td_symbolnav, SYMBOLNAV)
@@ -347,7 +359,7 @@
             &lt SYMBOLNAV TAB  &homey_left LCTRL A &homey_left LALT S  &homey_left LGUI D  &index_left LSHFT F  &hyper_ht HYPER G                                        &hyper_ht HYPER H    &index_right RSHFT J &homey_right LGUI K &homey_right RALT L  &homey_right RCTRL SEMI &hyper_ht HYPER SQT
             &magic MAGIC 0     &kp Z               &kp X               &kp C               &kp V                &kp B                                                    &kp N                &kp M               &kp COMMA           &kp DOT              &kp FSLH               &kp MINUS
                                                    &kp GRAVE           &kp DEL             &td_backspace                                                                                      &kp LCTRL           &kp LBKT            &kp RBKT
-                                                                                                                &kp BSPC  &lt SYMBOLNAV ESC  &mo SYMBOLNAV  &mt LCTRL LGUI  &kp RET  &kp SPACE
+                                                                                                                &kp BSPC  &lt SYMBOLNAV ESC  &mo SYMBOLNAV  &mt LCTRL LGUI  &kp RET  &space_mt LSHFT SPACE
             >;
         };
 
