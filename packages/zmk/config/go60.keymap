@@ -269,13 +269,15 @@
         };
 
         // Fast space bar with shift mod-tap
+        // balanced flavor + retro-tap: releasing hold without another key still emits space
+        // generous quick-tap prevents stuck state on rapid hold→release→tap sequences
         space_mt: space_mod_tap {
             compatible = "zmk,behavior-hold-tap";
             label = "SPACE_MOD_TAP";
-            flavor = "tap-preferred";
-            tapping-term-ms = <150>;
-            quick-tap-ms = <100>;
-            require-prior-idle-ms = <125>;
+            flavor = "balanced";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <200>;
+            retro-tap;
             #binding-cells = <2>;
             bindings = <&kp>, <&kp>;
         };
