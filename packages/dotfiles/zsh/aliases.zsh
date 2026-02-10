@@ -53,6 +53,20 @@ alias cast="caroot && nyarn workspace @netflix-console/plugin-common-campaigns t
 
 alias campnew='create_full_campaign "Joe Test Campaign" "Test campaign for Joe" jbuza SERVICE test'
 alias campnewprod='create_full_campaign "Joe Test Campaign" "Test campaign for Joe" jbuza SERVICE prod'
+
+# Workstation UI
+alias wsroot="cd $MY_WORKSTATION"
+alias ws="killuiport && wsroot && newt exec npm install && newt develop --app manager"
+alias wsp="killuiport && wsroot && newt exec npm install && newt develop --app manager --awsEnv prod"
+alias wsschema="wsroot && npm run graphql:introspect -w manager"
+alias wsgen="wsroot && npm run graphql:generate -w manager"
+alias wscodegen="wsroot && npm run codegen -w manager"
+alias wst="wsroot && npm test -w manager"
+alias wstw="wsroot && npm run test:watch -w manager"
+alias wsts="wsroot && npm run typecheck -w manager"
+alias wslint="wsroot && npm run lint -w manager"
+alias wse2e="wsroot && npm run test:e2e:local -w manager"
+alias wsbuild="wsroot && npm run build -w manager"
 # ----- End Netflix Development -----
 
 # Tmux
