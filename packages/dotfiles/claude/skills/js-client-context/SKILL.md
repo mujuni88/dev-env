@@ -60,7 +60,9 @@ To find a Hawkins package's directory:
 
 If a Hawkins package directory contains an `llm-context` folder, use it to learn about the package:
 
-- If the folder contains only one file or an `index.context.md` file, read it for important package information
+- If the folder contains only one file or an `index.context.md` file, read it for important package information, and for a list of available components
 - Component-specific files are named `${COMPONENT_NAME}.context.md` (camelCase)
   - Example: `node_modules/@hawkins/components/llm-context/button.context.md`
 - Before using any Hawkins component, you MUST read its context file if one exists
+
+**Important:** `Grep` or `Glob` might return empty results due to `node_modules` being gitignored. Use `LS` and `Read` to explore instead.
