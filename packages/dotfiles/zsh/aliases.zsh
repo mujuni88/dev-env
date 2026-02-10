@@ -28,7 +28,6 @@ alias tuts="Code && cd tutorials"
 # Directory Navigation
 alias Netflix="cd $MY_NETFLIX"
 alias auiroot="Netflix && cd ai-animation-ui"
-alias caroot="Netflix && cd pxd-spotlight-ui"
 
 # Netflix CLI Tools
 alias nnpm="newt exec npm"
@@ -39,20 +38,6 @@ alias nyarn="newt exec yarn"
 alias nyarnx="newt exec yarn dlx"
 alias mtr="metatron enroll"
 alias killuiport="killport 8180 && killport 8080 && killport 3000"
-
-# Campaign UI
-alias camp="killuiport && caroot && nyarn install && newt develop"
-alias camplocal="killuiport && caroot && nyarn install && newt develop-local"
-alias campschema="caroot && nyarn fetch-schema"
-alias campgen="caroot && nyarn graphql:generate" 
-alias campstory="killport 6006 && caroot && nyarn storybook" 
-alias campt="caroot && nyarn test:plugin campaigns"
-alias campts="caroot && nyarn workspace @netflix-console/plugin-campaigns typecheck"
-alias casts="caroot && nyarn workspace @netflix-console/plugin-common-campaigns typecheck"
-alias cast="caroot && nyarn workspace @netflix-console/plugin-common-campaigns test"
-
-alias campnew='create_full_campaign "Joe Test Campaign" "Test campaign for Joe" jbuza SERVICE test'
-alias campnewprod='create_full_campaign "Joe Test Campaign" "Test campaign for Joe" jbuza SERVICE prod'
 
 # Workstation UI
 alias wsroot="cd $MY_WORKSTATION"

@@ -7,8 +7,7 @@ export MY_DEV="$HOME/dev-env"
 export MY_NIX="$MY_DEV/packages/nix" 
 export MY_CODE="$HOME/Code"
 export MY_NETFLIX="$MY_CODE/Netflix"
-export MY_CAMPAIGN_SCRIPTS="$MY_NETFLIX/campaign-scripts"
-export MY_WORKSTATION="$MY_NETFLIX/workstation-ui"
+export MY_WORKSTATION="$MY_NETFLIX/Workstations/workstation-ui"
 export HAWKINS_COMPONENTS_PATH="$MY_NETFLIX/netflix-libs/node_modules/@hawkins/components"
 export HAWKINS_TABLE_PATH="$MY_NETFLIX/netflix-libs/node_modules/@hawkins/table"
 export HAWKINS_FORMS_PATH="$MY_NETFLIX/netflix-libs/node_modules/@hawkins/forms"
@@ -34,7 +33,7 @@ export OPENAI_API_KEY="dummy"
 
 # ----- Path Configuration -----
 # Base PATH
-export PATH="$HOME/.local/bin:/opt/homebrew/bin:$MY_CAMPAIGN_SCRIPTS/bin:$PATH"
+export PATH="$HOME/.local/bin:/opt/homebrew/bin:$PATH"
 
 # Tool-specific paths
 export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
