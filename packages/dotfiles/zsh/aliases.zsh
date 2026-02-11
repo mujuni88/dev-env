@@ -41,6 +41,7 @@ alias killuiport="killport 8180 && killport 8080 && killport 3000"
 
 # Workstation UI
 alias wsroot="cd $MY_WORKSTATION"
+alias wui="cd $MY_WORKSTATION"
 alias ws="killuiport && wsroot && newt exec npm install && newt develop --app manager"
 alias wsp="killuiport && wsroot && newt exec npm install && newt develop --app manager --awsEnv prod"
 alias wsschema="wsroot && npm run graphql:introspect -w manager"
