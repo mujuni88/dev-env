@@ -62,10 +62,6 @@
   ;; ' key: tap = ', hold = Hyper (matching Go60)
   '_hyp (tap-hold-release 250 250 ' (multi rmet rctl ralt rsft))
 
-  ;; Space: tap = Space, hold = Shift (matching Glove80/Go60 space_mt)
-  ;; tap-hold-press = ZMK "balanced" flavor: hold activates on keypress or timeout
-  ;; 200ms matches ZMK tapping-term-ms
-  spc_sft (tap-hold-press 200 200 spc lsft)
 )
 
 ;; Base layer with homerow mods
@@ -76,7 +72,7 @@
   tab   q    w    e    r    t    y    u    i    o    p    [    ]    \
   @cap  @a_ctl @s_alt @d_met @f_sft @g_hyp @h_hyp @j_sft @k_met @l_alt @;_ctl @'_hyp  ret
   lsft  z    x    c    v    b    n    m    ,    .    /    rsft
-  lctl  lalt lmet           @spc_sft       rmet ralt rctl
+  lctl  lalt lmet           spc            rmet ralt rctl
 )
 
 ;; Arrow layer (activated by holding Caps Lock)
