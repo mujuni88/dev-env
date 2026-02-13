@@ -19,6 +19,11 @@ alias vimedit="cd ~/.config/nvim && nvim ."
 alias claudemcp="nvim ~/Library/Application\ Support/Claude/claude_desktop_config.json"
 alias claudeconfig="nvim /Users/jbuza/.claude.json"
 
+# Obsidian
+alias obs="cd \$MY_OBSIDIAN"
+alias obse="cd \$MY_OBSIDIAN && nvim ."
+alias obsvim="nvim \$MY_OBSIDIAN/.obsidian.vimrc"
+
 # Project Paths
 alias Code="cd $MY_CODE"
 alias pr="Code && cd projects"
@@ -42,8 +47,8 @@ alias killuiport="killport 8180 && killport 8080 && killport 3000"
 # Workstation UI
 alias wsroot="cd $MY_WORKSTATION"
 alias wui="cd $MY_WORKSTATION"
-alias ws="killuiport && wsroot && newt exec npm install && newt develop --app manager"
-alias wsp="killuiport && wsroot && newt exec npm install && newt develop --app manager --awsEnv prod"
+alias ws="killuiport && wsroot && newt exec npm install && newt develop-local --app manager"
+alias wsp="killuiport && wsroot && newt exec npm install && newt develop-local --app manager --awsEnv prod"
 alias wsschema="wsroot && npm run graphql:introspect -w manager"
 alias wsgen="wsroot && npm run graphql:generate -w manager"
 alias wscodegen="wsroot && npm run codegen -w manager"
