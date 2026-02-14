@@ -16,8 +16,8 @@
 
 - shell:
     # Preflight: backup existing non-symlink Claude paths so link step does not fail on new machines.
-    - [chmod +x claude/preflight-backup.sh, Making preflight backup script executable]
-    - [./claude/preflight-backup.sh, Backing up non-symlink Claude paths before linking]
+    - [mkdir -p ~/.claude, Ensuring ~/.claude exists]
+    - ["sh -c 'TS=$(date +%Y%m%d-%H%M%S); for p in statusline.sh claude-powerline.json hooks skills data; do TARGET=\"$HOME/.claude/$p\"; if [ -e \"$TARGET\" ] && [ ! -L \"$TARGET\" ]; then mv \"$TARGET\" \"$TARGET.pre-dotfiles-$TS\"; fi; done'", Backing up non-symlink Claude paths before linking]
 
 - link:
     # Git configuration
@@ -35,6 +35,7 @@
     ~/.config/bat: bat
     ~/.config/ghostty: ghostty
     ~/.config/aerospace: aerospace
+    ~/.config/mcp: mcp
     ~/.config/carapace: carapace
     ~/.config/ni: ni
     ~/.config/zed: zed
@@ -76,7 +77,4 @@
     - [chmod +x scripts/bin/*, Making scripts executable]
     - [chmod +x claude/install-plugins.sh, Making plugin installer executable]
     - [./claude/install-plugins.sh, Installing Claude Code plugins]
-    - [chmod +x claude/sync-skills.sh, Making skill sync script executable]
-    - [./claude/sync-skills.sh, Syncing Claude skills to other agents]
     - [echo "✅ Dotfiles installation complete!", Finishing up]
-
