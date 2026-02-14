@@ -14,6 +14,11 @@
     - "~/.config" # Clean dead links in config directory
     - "~/.local/bin"
 
+- shell:
+    # Preflight: backup existing non-symlink Claude paths so link step does not fail on new machines.
+    - [mkdir -p ~/.claude, Ensuring ~/.claude exists]
+    - [sh -c 'TS=$(date +%Y%m%d-%H%M%S); for p in statusline.sh claude-powerline.json hooks skills data; do TARGET="$HOME/.claude/$p"; if [ -e "$TARGET" ] && [ ! -L "$TARGET" ]; then mv "$TARGET" "$TARGET.pre-dotfiles-$TS"; fi; done', Backing up non-symlink Claude paths before linking]
+
 - link:
     # Git configuration
     ~/.gitconfig: git/.gitconfig
