@@ -12,7 +12,8 @@ Extract PDF pages from Google Drive and convert them to Obsidian markdown notes.
 
 - **Drive Folder**: https://drive.google.com/drive/folders/1i364Gle1X-JIyUzIlxj5d8lgP0m2H0Xh
 - **Output Path**: `/Users/jbuza/Library/Mobile Documents/iCloud~md~obsidian/Documents/Buza/20 Projects/23 System Design/Masterclass/`
-- **Tracking File**: `~/.claude/data/gdrive-notes-tracking.json`
+- **Tracking File**: `~/.claude/data/gdrive-notes-tracking.json` (symlinked from dotfiles)
+- **Source of Truth**: `packages/dotfiles/claude/data/gdrive-notes-tracking.json`
 
 ## Workflow
 

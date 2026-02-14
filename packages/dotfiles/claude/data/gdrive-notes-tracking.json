@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "config": {
+    "driveFolder": "https://drive.google.com/drive/folders/1i364Gle1X-JIyUzIlxj5d8lgP0m2H0Xh",
+    "outputPath": "/Users/jbuza/Library/Mobile Documents/iCloud~md~obsidian/Documents/Buza/20 Projects/23 System Design/Masterclass/",
+    "sourceAttribution": "System Design Pro by Arpit Bhayani"
+  },
+  "state": {
+    "nextNoteIndex": 5,
+    "totalNotesGenerated": 5
+  },
+  "processedPDFs": {
+    "01-01.pdf": {
+      "processedAt": "2026-02-01T20:15:00Z",
+      "noteFile": "00-foundational-topics.md",
+      "noteIndex": 0,
+      "pageCount": 19,
+      "status": "complete"
+    },
+    "01-02.pdf": {
+      "processedAt": "2026-02-01T21:30:00Z",
+      "noteFile": "01-scaling-delegation-communication.md",
+      "noteIndex": 1,
+      "pageCount": 15,
+      "status": "complete"
+    },
+    "02-01.pdf": {
+      "processedAt": "2026-02-07T06:30:00Z",
+      "noteFile": "02-databases-locking-and-kv-store-design.md",
+      "noteIndex": 2,
+      "pageCount": 17,
+      "status": "complete"
+    },
+    "02-02.pdf": {
+      "processedAt": "2026-02-08T07:00:00Z",
+      "noteFile": "03-non-relational-databases-and-slack-design.md",
+      "noteIndex": 3,
+      "pageCount": 19,
+      "status": "complete"
+    },
+    "03-01.pdf": {
+      "processedAt": "2026-02-14T08:22:20Z",
+      "noteFile": "04-load-balancer-design-and-distributed-locks.md",
+      "noteIndex": 4,
+      "pageCount": 21,
+      "status": "complete"
+    }
+  },
+  "inProgress": null
+}

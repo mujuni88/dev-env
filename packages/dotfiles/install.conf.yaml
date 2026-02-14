@@ -55,6 +55,7 @@
     ~/.claude/hooks: claude/hooks
     ~/.claude/commands: claude/commands
     ~/.claude/skills: claude/skills
+    ~/.claude/data: claude/data
 
     # Scripts directory
     ~/.local/bin/:
