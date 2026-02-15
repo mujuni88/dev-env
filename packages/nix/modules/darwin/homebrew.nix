@@ -97,6 +97,7 @@
 
     # AI Terminal Apps
     "anomalyco/tap/opencode" # Opencode (official)
+    "codex" # OpenAI Codex CLI
 
   ];
 
