@@ -14,7 +14,6 @@ My personal dotfiles managed with Dotbot. These configurations work in conjuncti
 ├── git/          # Git configuration and aliases
 ├── karabiner/    # Keyboard customization for home row mode navigation
 ├── lazygit/      # Git UI tool configuration
-├── mcp/          # Model Context Protocol configuration
 ├── ni/           # Universal package manager runner (@antfu/ni)
 ├── nushell/      # Alternative shell configuration
 ├── nvim/         # Neovim configuration and plugins
@@ -154,7 +153,6 @@ Each tool's directory contains its own configuration files and may include a REA
 ### AI & Automation
 
 - **codex** - OpenAI Codex integration for AI-assisted development
-- **mcp** - Model Context Protocol for connecting AI models with development tools
 
 ### Utilities
 
