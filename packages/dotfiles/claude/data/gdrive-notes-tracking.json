@@ -6,44 +6,69 @@
     "sourceAttribution": "System Design Pro by Arpit Bhayani"
   },
   "state": {
-    "nextNoteIndex": 5,
-    "totalNotesGenerated": 5
+    "nextNoteIndex": 6,
+    "totalNotesGenerated": 6
   },
   "processedPDFs": {
     "01-01.pdf": {
       "processedAt": "2026-02-01T20:15:00Z",
-      "noteFile": "00-foundational-topics.md",
+      "noteFile": "Week 01/week-01-foundational-topics.md",
       "noteIndex": 0,
       "pageCount": 19,
-      "status": "complete"
+      "status": "complete",
+      "week": "01",
+      "topic_title": "Foundational Topics",
+      "session_day": "friday"
     },
     "01-02.pdf": {
       "processedAt": "2026-02-01T21:30:00Z",
-      "noteFile": "01-scaling-delegation-communication.md",
+      "noteFile": "Week 01/week-01-scaling-delegation-communication.md",
       "noteIndex": 1,
       "pageCount": 15,
-      "status": "complete"
+      "status": "complete",
+      "week": "01",
+      "topic_title": "Scaling, Delegation, and Communication",
+      "session_day": "saturday"
     },
     "02-01.pdf": {
       "processedAt": "2026-02-07T06:30:00Z",
-      "noteFile": "02-databases-locking-and-kv-store-design.md",
+      "noteFile": "Week 02/week-02-databases-locking-and-kv-store-design.md",
       "noteIndex": 2,
       "pageCount": 17,
-      "status": "complete"
+      "status": "complete",
+      "week": "02",
+      "topic_title": "Databases, Locking, and KV Store Design",
+      "session_day": "friday"
     },
     "02-02.pdf": {
       "processedAt": "2026-02-08T07:00:00Z",
-      "noteFile": "03-non-relational-databases-and-slack-design.md",
+      "noteFile": "Week 02/week-02-non-relational-databases-and-slack-design.md",
       "noteIndex": 3,
       "pageCount": 19,
-      "status": "complete"
+      "status": "complete",
+      "week": "02",
+      "topic_title": "Non-Relational Databases and Slack Design",
+      "session_day": "saturday"
     },
     "03-01.pdf": {
       "processedAt": "2026-02-14T08:22:20Z",
-      "noteFile": "04-load-balancer-design-and-distributed-locks.md",
+      "noteFile": "Week 03/week-03-load-balancer-design-and-distributed-locks.md",
       "noteIndex": 4,
       "pageCount": 21,
-      "status": "complete"
+      "status": "complete",
+      "week": "03",
+      "topic_title": "Load Balancer Design and Distributed Locks",
+      "session_day": "friday"
+    },
+    "03-02.pdf": {
+      "processedAt": "2026-02-15T07:30:45Z",
+      "noteFile": "Week 03/week-03-distributed-id-generators.md",
+      "noteIndex": 5,
+      "pageCount": 20,
+      "status": "complete",
+      "week": "03",
+      "topic_title": "Distributed ID Generators",
+      "session_day": "saturday"
     }
   },
   "inProgress": null

@@ -1,5 +1,7 @@
 # Chrome MCP Workflow Reference
 
+Used by the gdrive-notes skill to open Drive PDFs, extract the document ID and page count, and download each page as an image for vision-based extraction into markdown lecture notes.
+
 ## Essential Tools
 
 ### Navigation

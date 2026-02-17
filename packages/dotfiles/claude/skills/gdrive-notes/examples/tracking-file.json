@@ -2,33 +2,42 @@
   "version": 1,
   "config": {
     "driveFolder": "https://drive.google.com/drive/folders/1i364Gle1X-JIyUzIlxj5d8lgP0m2H0Xh",
-    "outputPath": "/Users/jbuza/Library/Mobile Documents/iCloud~md~obsidian/Documents/Buza/20 Projects/23 System Design/Pro/",
+    "outputPath": "/Users/jbuza/Library/Mobile Documents/iCloud~md~obsidian/Documents/Buza/20 Projects/23 System Design/Masterclass/",
     "sourceAttribution": "System Design Pro by Arpit Bhayani"
   },
   "state": {
-    "nextNoteIndex": 3,
-    "totalNotesGenerated": 3
+    "nextNoteIndex": 5,
+    "totalNotesGenerated": 5
   },
   "processedPDFs": {
     "01-01.pdf": {
-      "processedAt": "2026-02-01T10:30:00Z",
-      "noteFile": "00-bloom-filters.md",
+      "processedAt": "2026-02-01T20:15:00Z",
+      "noteFile": "week-01-foundational-topics.md",
       "noteIndex": 0,
-      "pageCount": 15,
+      "week": "01",
+      "topic_title": "Foundational Topics",
+      "session_day": "friday",
+      "pageCount": 19,
       "status": "complete"
     },
     "01-02.pdf": {
-      "processedAt": "2026-02-01T11:15:00Z",
-      "noteFile": "01-consistent-hashing.md",
+      "processedAt": "2026-02-01T21:30:00Z",
+      "noteFile": "week-01-scaling-delegation-communication.md",
       "noteIndex": 1,
-      "pageCount": 22,
+      "week": "01",
+      "topic_title": "Scaling, Delegation, and Communication",
+      "session_day": "saturday",
+      "pageCount": 15,
       "status": "complete"
     },
-    "01-03.pdf": {
-      "processedAt": "2026-02-01T12:00:00Z",
-      "noteFile": "02-rate-limiting.md",
-      "noteIndex": 2,
-      "pageCount": 18,
+    "03-01.pdf": {
+      "processedAt": "2026-02-14T08:22:20Z",
+      "noteFile": "week-03-load-balancer-design-and-distributed-locks.md",
+      "noteIndex": 4,
+      "week": "03",
+      "topic_title": "Load Balancer Design and Distributed Locks",
+      "session_day": "friday",
+      "pageCount": 21,
       "status": "complete"
     }
   },

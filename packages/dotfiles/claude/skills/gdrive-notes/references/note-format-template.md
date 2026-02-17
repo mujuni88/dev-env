@@ -1,6 +1,16 @@
-# Note Format Template
+# Note Format Template (Lecture Notes)
 
-Use this template when generating Obsidian notes from PDF content.
+Use this template when generating Obsidian lecture notes from Drive PDFs. Output goes under `Week {NN}/week-{NN}-{topic-slug}.md`. Add this frontmatter at the top:
+
+```yaml
+---
+track: masterclass
+week: NN
+type: lecture-notes
+source_pdf: "WW-SS.pdf"
+session_day: friday | saturday | unknown
+---
+```
 
 ## Template Structure
 
