@@ -109,7 +109,7 @@
     "sublime-text" # Text editor
     #"cursor"  Cursor IDE::NOTE:: using companies version /Applications/Cursor.app/
     "ngrok"
-    "temurin" # Eclipse Temurin OpenJDK distribution
+    # Java managed via SDKMAN (not Homebrew)
     "docker-desktop" # Docker Desktop for macOS
 
     # Web Browsers
