@@ -62,8 +62,10 @@
     "fd" # Better alternative to find
     "jq" # JSON processor
     "yq" # YAML processor (jq for YAML)
+    "curl" # Latest curl with WebSocket support
     "wget" # Command-line tool for downloading files
     "xh" # Friendly HTTP client (curl alternative)
+    "websocat" # WebSocket CLI client (netcat for WebSockets)
     "dashlane/tap/dashlane-cli" # dashlane api
 
     # Development tools
@@ -98,6 +100,7 @@
     # AI Terminal Apps
     "anomalyco/tap/opencode" # Opencode (official)
     "codex" # OpenAI Codex CLI
+    "beads" # Persistent issue tracker for AI coding agents
 
   ];
 
