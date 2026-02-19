@@ -99,7 +99,6 @@
 
     # AI Terminal Apps
     "anomalyco/tap/opencode" # Opencode (official)
-    "codex" # OpenAI Codex CLI
     "beads" # Persistent issue tracker for AI coding agents
 
   ];
@@ -133,6 +132,7 @@
     "raycast"
     "chatgpt"
     "claude"
+    "codex" # OpenAI Codex CLI (migrated to cask)
     "opencode-desktop" # OpenCode desktop client
     # "claude-code" # Claude Code IDE
     "jordanbaird-ice"
