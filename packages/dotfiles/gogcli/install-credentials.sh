@@ -10,8 +10,8 @@ RED='\033[0;31m'
 NC='\033[0m'
 
 TEMPLATE_FILE="gogcli/credentials.template"
-TARGET_DIR="$HOME/.config/gogcli"
-TARGET_FILE="$TARGET_DIR/credentials.json"
+TARGET_DIR="${TMPDIR:-/tmp}"
+TARGET_FILE="$TARGET_DIR/gogcli-credentials.json"
 
 if ! command -v dcli >/dev/null 2>&1; then
   echo -e "${YELLOW}⚠️  Dashlane CLI (dcli) not found, skipping gogcli credentials restore${NC}"
@@ -22,8 +22,6 @@ if [ ! -f "$TEMPLATE_FILE" ]; then
   echo -e "${RED}❌ Missing template: $TEMPLATE_FILE${NC}"
   exit 1
 fi
-
-mkdir -p "$TARGET_DIR"
 
 echo -e "${GREEN}🔐 Restoring gogcli OAuth credentials from Dashlane...${NC}"
 if ! dcli inject -i "$TEMPLATE_FILE" -o "$TARGET_FILE"; then
@@ -41,9 +39,12 @@ if ! python3 -c 'import json,sys; json.load(open(sys.argv[1]))' "$TARGET_FILE" >
 fi
 
 if command -v gog >/dev/null 2>&1; then
-  gog auth credentials "$TARGET_FILE" >/dev/null
+  gog auth credentials set "$TARGET_FILE" >/dev/null
   echo -e "${GREEN}✅ gogcli OAuth credentials restored and registered${NC}"
 else
   echo -e "${GREEN}✅ gogcli OAuth credentials restored${NC}"
-  echo -e "${YELLOW}   gog not found in PATH; run this after install:${NC} gog auth credentials \"$TARGET_FILE\""
+  echo -e "${YELLOW}   gog not found in PATH; run this after install:${NC} gog auth credentials set \"$TARGET_FILE\""
 fi
+
+# Clean up temp file — credentials are now in gog's keyring/config
+rm -f "$TARGET_FILE"
