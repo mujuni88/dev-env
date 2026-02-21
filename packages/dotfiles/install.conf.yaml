@@ -17,7 +17,10 @@
 - shell:
     # Preflight: backup existing non-symlink Claude paths so link step does not fail on new machines.
     - [mkdir -p ~/.claude, Ensuring ~/.claude exists]
-    - ["sh -c 'TS=$(date +%Y%m%d-%H%M%S); for p in statusline.sh claude-powerline.json hooks skills data; do TARGET=\"$HOME/.claude/$p\"; if [ -e \"$TARGET\" ] && [ ! -L \"$TARGET\" ]; then mv \"$TARGET\" \"$TARGET.pre-dotfiles-$TS\"; fi; done'", Backing up non-symlink Claude paths before linking]
+    - [
+        'sh -c ''TS=$(date +%Y%m%d-%H%M%S); for p in statusline.sh claude-powerline.json hooks skills data; do TARGET="$HOME/.claude/$p"; if [ -e "$TARGET" ] && [ ! -L "$TARGET" ]; then mv "$TARGET" "$TARGET.pre-dotfiles-$TS"; fi; done''',
+        Backing up non-symlink Claude paths before linking,
+      ]
 
 - link:
     # Git configuration
@@ -35,7 +38,6 @@
     ~/.config/bat: bat
     ~/.config/ghostty: ghostty
     ~/.config/aerospace: aerospace
-    ~/.config/mcp: mcp
     ~/.config/carapace: carapace
     ~/.config/ni: ni
     ~/.config/zed: zed
@@ -69,12 +71,30 @@
 
 - shell:
     # Claude Code files that get modified at runtime (copy, don't symlink)
-    - [cp -n claude/settings.json ~/.claude/settings.json 2>/dev/null || true, Copying Claude settings.json (if not exists)]
-    - [cp -n claude/CLAUDE.md ~/.claude/CLAUDE.md 2>/dev/null || true, Copying Claude CLAUDE.md (if not exists)]
-    - [mkdir -p ~/.config/graphite && dcli inject -i graphite/user_config.template -o ~/.config/graphite/user_config, Generating Graphite config from Dashlane]
-    - [mkdir -p ~/.local/share/atuin && dcli inject -i atuin/key.template -o ~/.local/share/atuin/key, Restoring Atuin encryption key from Dashlane]
-    - [chmod +x gogcli/install-credentials.sh, Making gogcli credential installer executable]
-    - [./gogcli/install-credentials.sh, Restoring gogcli OAuth credentials from Dashlane]
+    - [
+        cp -n claude/settings.json ~/.claude/settings.json 2>/dev/null || true,
+        Copying Claude settings.json (if not exists),
+      ]
+    - [
+        cp -n claude/CLAUDE.md ~/.claude/CLAUDE.md 2>/dev/null || true,
+        Copying Claude CLAUDE.md (if not exists),
+      ]
+    - [
+        mkdir -p ~/.config/graphite && dcli inject -i graphite/user_config.template -o ~/.config/graphite/user_config,
+        Generating Graphite config from Dashlane,
+      ]
+    - [
+        mkdir -p ~/.local/share/atuin && dcli inject -i atuin/key.template -o ~/.local/share/atuin/key,
+        Restoring Atuin encryption key from Dashlane,
+      ]
+    - [
+        chmod +x gogcli/install-credentials.sh,
+        Making gogcli credential installer executable,
+      ]
+    - [
+        ./gogcli/install-credentials.sh,
+        Restoring gogcli OAuth credentials from Dashlane,
+      ]
     - [mkdir -p ~/.claude/plugins, Creating claude plugins directory]
     - [chmod +x scripts/bin/*, Making scripts executable]
     - [chmod +x claude/install-plugins.sh, Making plugin installer executable]
