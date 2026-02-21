@@ -10,7 +10,7 @@
     "setup": "turbo setup",
     "update": "turbo system-install",
     "system-install": "turbo system-install",
-    "global-install": "turbo global-install", 
+    "global-install": "turbo global-install",
     "dotfiles-install": "turbo dotfiles-install"
   },
   "devDependencies": {

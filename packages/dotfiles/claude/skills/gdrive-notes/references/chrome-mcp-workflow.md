@@ -1,6 +1,6 @@
 # Chrome MCP Workflow Reference
 
-Used by the gdrive-notes skill to open Drive PDFs, extract the document ID and page count, and download each page as an image for vision-based extraction into markdown lecture notes.
+Used by the gdrive-notes skill to open Drive PDFs, extract the document ID and page count, then generate lecture notes. Prefer viewer text extraction first, and use image downloads as a fallback.
 
 ## Essential Tools
 
@@ -63,7 +63,7 @@ After navigating to folder and taking snapshot:
 
 ### PDF Viewer Structure
 When PDF is open in Drive viewer:
-- Page images loaded via `viewerng/img` requests
+- Page images loaded via `drive.google.com/viewer/img` requests
 - Document ID in URL parameter: `?id=<doc_id>&page=<num>`
 - Page navigation often shows "X of Y" format
 - Zoom controls may affect image quality
@@ -80,7 +80,49 @@ mcp__chrome-devtools__evaluate_script({
 })
 ```
 
-Or from network requests - look for `viewerng/img` URLs.
+Or from network requests - look for `viewer/img` URLs.
+
+### Detecting page count reliably
+
+- The viewer toolbar usually exposes current page and total pages (for example `Page 1 / 20`).
+- If snapshot parsing is noisy, use an `evaluate_script` helper to read visible text and parse `Page <n> of <total>`.
+
+### Viewer-first extraction (recommended)
+
+Use this when direct downloads are restricted or disabled.
+
+```javascript
+mcp__chrome-devtools__evaluate_script({
+  function: `async () => {
+    // Scroll the main viewer container so lazy-loaded pages render.
+    const candidates = Array.from(document.querySelectorAll('*')).filter((el) => {
+      const s = getComputedStyle(el);
+      return (s.overflowY === 'auto' || s.overflowY === 'scroll') &&
+             el.scrollHeight > el.clientHeight + 50;
+    });
+    const target = candidates.sort(
+      (a, b) => (b.scrollHeight - b.clientHeight) - (a.scrollHeight - a.clientHeight)
+    )[0];
+
+    if (target) {
+      for (let i = 0; i < 30; i++) {
+        target.scrollTop = Math.min(target.scrollTop + target.clientHeight * 0.9, target.scrollHeight);
+        await new Promise((r) => setTimeout(r, 180));
+        if (target.scrollTop + target.clientHeight >= target.scrollHeight - 4) break;
+      }
+    }
+
+    const text = document.body ? document.body.innerText : '';
+    return {
+      textLength: text.length,
+      hasContent: text.length > 0,
+      sample: text.slice(0, 2000)
+    };
+  }`
+})
+```
+
+Then parse sections by `Page X of Y` markers and synthesize notes.
 
 ### Downloading Pages
 ```javascript
@@ -90,7 +132,7 @@ mcp__chrome-devtools__evaluate_script({
     const pageCount = 10;  // Determined from viewer UI
 
     for (let page = 0; page < pageCount; page++) {
-      const url = \`https://drive.google.com/viewer2/prod/img?id=\${docId}&page=\${page}&skiphighlight=true&w=1600\`;
+      const url = \`https://drive.google.com/viewer/img?id=\${docId}&auditContext=forDisplay&page=\${page}&skiphighlight=true&w=1600&webp=true\`;
 
       try {
         const response = await fetch(url, { credentials: 'include' });
@@ -115,6 +157,8 @@ mcp__chrome-devtools__evaluate_script({
 })
 ```
 
+If downloads are not visible in local `~/Downloads`, continue with viewer-first extraction and do not fail the run.
+
 ## Tips
 
 1. **Always take snapshot first** - Understand page structure before interacting
@@ -122,3 +166,4 @@ mcp__chrome-devtools__evaluate_script({
 3. **Check network** - Use network requests to understand API patterns
 4. **Include credentials** - Drive requires cookies for authenticated requests
 5. **Handle popups** - Drive may show dialogs; use `handle_dialog` if needed
+6. **Permission edge case** - `uc?export=download` can fail with "owner hasn't given permission" even when viewer access works; in that case use viewer-first extraction.

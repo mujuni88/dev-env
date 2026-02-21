@@ -6,8 +6,8 @@
     "sourceAttribution": "System Design Pro by Arpit Bhayani"
   },
   "state": {
-    "nextNoteIndex": 6,
-    "totalNotesGenerated": 6
+    "nextNoteIndex": 7,
+    "totalNotesGenerated": 7
   },
   "processedPDFs": {
     "01-01.pdf": {
@@ -69,6 +69,16 @@
       "week": "03",
       "topic_title": "Distributed ID Generators",
       "session_day": "saturday"
+    },
+    "04-01.pdf": {
+      "processedAt": "2026-02-21T10:48:44Z",
+      "noteFile": "Week 04/week-04-social-networks.md",
+      "noteIndex": 6,
+      "pageCount": 20,
+      "status": "complete",
+      "week": "04",
+      "topic_title": "Social Networks",
+      "session_day": "friday"
     }
   },
   "inProgress": null

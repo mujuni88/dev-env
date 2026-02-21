@@ -39,19 +39,26 @@ Parse the prefix before the first `-` to get the week number. Create or use the 
 3. Compare with `processedPDFs` in the tracking file to find unprocessed PDFs.
 4. Process the next unprocessed PDF (or the first if none processed yet).
 
-### 2. PDF extraction (page images)
+### 2. PDF extraction (viewer-first, then images)
 
 1. Open the PDF in the Drive viewer (click the PDF element; use snapshot to get `uid`).
 2. Wait for the viewer to load; take a snapshot to find page count (e.g. “X of Y”).
-3. Get the document ID from network requests: `list_network_requests(resourceTypes: ["xhr", "fetch"])`, look for `viewerng/img` and the `id` query parameter.
-4. Download each page as an image (see [references/chrome-mcp-workflow.md](references/chrome-mcp-workflow.md) for the exact `evaluate_script` snippet). Images land in `~/Downloads/` as `page-00.webp`, etc.
+3. Get the document ID from network requests: `list_network_requests(resourceTypes: ["xhr", "fetch", "image"])`, look for `viewer/img` and the `id` query parameter.
+4. **Preferred path**: extract slide text directly from viewer after scrolling the slide container to load all pages (see [references/chrome-mcp-workflow.md](references/chrome-mcp-workflow.md)).
+5. **Optional path**: download each page as an image via `evaluate_script` if needed for vision-heavy diagrams. Do not assume files always appear in `~/Downloads/` in MCP environments.
+
+### 2.1 Server/tool preference
+
+- Prefer `user-chrome-devtools` for Drive processing because it can keep the authenticated browser context and expose richer snapshots/network requests.
+- `cursor-ide-browser` is acceptable for quick checks, but if file rows are missing in snapshots or download actions fail, switch to `user-chrome-devtools`.
 
 ### 3. Content processing
 
-1. Read the downloaded images (vision) and extract:
+1. Use viewer text extraction first and extract:
    - **Topic title**: Main heading or first slide (used for H1 and filename slug).
    - **Key concepts**, **diagrams** (ASCII), **examples**, **summary points**.
-2. Build a **topic slug** from the title: lowercase, hyphens, no special chars (e.g. “Load Balancer Design” → `load-balancer-design`).
+2. If viewer text quality is poor for specific slides, supplement with image-based extraction.
+3. Build a **topic slug** from the title: lowercase, hyphens, no special chars (e.g. “Load Balancer Design” → `load-balancer-design`).
 
 ### 4. Note generation and placement
 
@@ -91,7 +98,8 @@ If processing was interrupted:
 
 - **PDF not found**: Suggest running `/gdrive-notes sync` to refresh the list.
 - **Chrome not connected**: Ask the user to ensure Chrome MCP is running and the folder is open.
-- **Download failed**: Retry with a short delay or report; suggest checking Drive access.
+- **Download failed or disabled**: Continue with viewer-first extraction flow; do not block note generation on binary download.
+- **Direct file download says permission denied**: Open file in viewer via Chrome MCP and extract from viewer requests/text instead of `uc?export=download`.
 - **Vision extraction unclear**: Summarize what was detected and ask the user for the intended topic title if needed.
 
 ## Legacy migration
