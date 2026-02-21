@@ -32,6 +32,7 @@ export ELEVENLABS_API_KEY=$(dcli read dl://39E8DADF-C93D-4070-97E6-8EB5AA942565/
 export CONTEXT7_API_KEY=$(dcli read dl://context7-api-key/content)
 export OBSIDIAN_API_KEY=$(dcli read dl://obsidian-api-key/content)
 export OPENAI_API_KEY="dummy"
+export GOG_ACCOUNT="joebm08@gmail.com"
 
 # ----- Path Configuration -----
 # Base PATH

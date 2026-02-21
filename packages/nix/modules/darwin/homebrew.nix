@@ -29,6 +29,7 @@
     "withgraphite/tap"
     "anomalyco/tap"
     "dashlane/tap"
+    "steipete/tap"
   ];
 
   brews = [
@@ -100,6 +101,7 @@
     # AI Terminal Apps
     "anomalyco/tap/opencode" # Opencode (official)
     "beads" # Persistent issue tracker for AI coding agents
+    "steipete/tap/gogcli" # Google Workspace/Gmail/Drive CLI
 
   ];
 
