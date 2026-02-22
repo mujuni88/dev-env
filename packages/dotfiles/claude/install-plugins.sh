@@ -10,10 +10,21 @@ YELLOW='\033[1;33m'
 RED='\033[0;31m'
 NC='\033[0m' # No Color
 
-# Plugins to install
+# Plugins to install (from claude-plugins-official marketplace)
 PLUGINS=(
-  "code-simplifier"
-  "kotlin-lsp"
+  "atlassian"
+  "code-review"
+  "commit-commands"
+  "context7"
+  "explanatory-output-style"
+  "feature-dev"
+  "figma"
+  "frontend-design"
+  "github"
+  "hookify"
+  "plugin-dev"
+  "pr-review-toolkit"
+  "slack"
 )
 
 # Check if claude CLI is available
