@@ -2,9 +2,14 @@ model = 'gpt-5.3-codex'
 model_reasoning_effort = 'xhigh'
 
 [mcp_servers]
+
 [mcp_servers.MCP_DOCKER]
-command = 'docker'
-args = ['mcp', 'gateway', 'run']
+command = "docker"
+args = ["mcp", "gateway", "run"]
+
+[mcp_servers.playwright]
+command = "npx"
+args = ["@playwright/mcp@latest"]
 
 [projects]
 [projects.'/Users/jbuza/dev-env']

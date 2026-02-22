@@ -6,8 +6,8 @@
     "sourceAttribution": "System Design Pro by Arpit Bhayani"
   },
   "state": {
-    "nextNoteIndex": 7,
-    "totalNotesGenerated": 7
+    "nextNoteIndex": 8,
+    "totalNotesGenerated": 8
   },
   "processedPDFs": {
     "01-01.pdf": {
@@ -79,6 +79,16 @@
       "week": "04",
       "topic_title": "Social Networks",
       "session_day": "friday"
+    },
+    "04-02.pdf": {
+      "processedAt": "2026-02-22T10:04:17Z",
+      "noteFile": "Week 04/week-04-hashtag-service-and-new-message-indicators.md",
+      "noteIndex": 7,
+      "pageCount": 20,
+      "status": "complete",
+      "week": "04",
+      "topic_title": "Hashtag Service and New Message Indicators",
+      "session_day": "saturday"
     }
   },
   "inProgress": null
