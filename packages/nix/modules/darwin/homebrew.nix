@@ -98,6 +98,9 @@
     "poppler" # PDF rendering
     "imagemagick" # Image processing
 
+    # CLI Platform Tools
+    "netlify-cli" # Netlify CLI
+
     # AI Terminal Apps
     "anomalyco/tap/opencode" # Opencode (official)
     "beads" # Persistent issue tracker for AI coding agents
