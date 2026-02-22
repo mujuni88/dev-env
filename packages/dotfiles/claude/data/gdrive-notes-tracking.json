@@ -81,14 +81,16 @@
       "session_day": "friday"
     },
     "04-02.pdf": {
-      "processedAt": "2026-02-22T10:04:17Z",
+      "processedAt": "2026-02-22T10:14:00Z",
       "noteFile": "Week 04/week-04-hashtag-service-and-new-message-indicators.md",
       "noteIndex": 7,
       "pageCount": 20,
       "status": "complete",
       "week": "04",
       "topic_title": "Hashtag Service and New Message Indicators",
-      "session_day": "saturday"
+      "session_day": "saturday",
+      "reprocessed": true,
+      "reprocessedAt": "2026-02-22T10:14:00Z"
     }
   },
   "inProgress": null

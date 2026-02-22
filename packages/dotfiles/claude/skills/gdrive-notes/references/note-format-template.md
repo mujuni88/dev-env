@@ -29,19 +29,23 @@ session_day: friday | saturday | unknown
 - **{Key term}**: Definition or explanation
 - **{Another term}**: Definition or explanation
 
-### {Subsection with Diagram}
+### {Subsection with Architecture Diagram}
 {Context for the diagram}
 
 ```
-┌─────────────────────────────────────┐
-│         ASCII Diagram               │
-│                                     │
-│   Component A ──── Component B      │
-│       │                │            │
-│       ▼                ▼            │
-│   Component C ──── Component D      │
-│                                     │
-└─────────────────────────────────────┘
+┌──────────────┐     Kafka          ┌──────────────────┐
+│ Post Service │────(TOPIC_NAME)───→│ Consumer Service │
+└──────────────┘     part by key    └────────┬─────────┘
+                                             │
+                                    ┌────────▼─────────┐
+                                    │  Partitioned DB  │
+                                    └──────────────────┘
+```
+
+```mermaid
+graph LR
+    A[Post Service] -->|Kafka| B[Consumer Service]
+    B --> C[(Partitioned DB)]
 ```
 
 ## {Main Section 2}
@@ -64,6 +68,67 @@ session_day: friday | saturday | unknown
 *Source: System Design Pro by Arpit Bhayani*
 ```
 
+## Diagram Guidelines
+
+The slides are handwritten whiteboard notes full of architecture diagrams, flow diagrams, and data flow sketches. **Every diagram on the whiteboard must be captured in the notes.** Use ASCII art, Mermaid, or both.
+
+### When to use ASCII art
+- System architecture diagrams with boxes and arrows
+- Data flow pipelines (Kafka → Service → DB)
+- Comparison tables
+- Index structures and data layouts
+
+### When to use Mermaid
+- Multi-step flows that benefit from automatic layout
+- Sequence diagrams (request/response flows)
+- Hierarchies and trees
+- Anything that is hard to align in ASCII
+
+### When to use both
+When a diagram is central to the concept, provide both ASCII (for quick reading) and Mermaid (for rendered view in Obsidian). Place the ASCII version first.
+
+### ASCII Box Characters
+- Corners: `┌ ┐ └ ┘`
+- Lines: `─ │`
+- Connections: `├ ┤ ┬ ┴ ┼`
+- Arrows: `→ ← ↑ ↓ ▶ ◀ ▲ ▼`
+
+### Mermaid Syntax Quick Reference
+
+**Flow diagram:**
+```mermaid
+graph TD
+    A[Service A] --> B[Service B]
+    B --> C[(Database)]
+    B --> D[Cache]
+```
+
+**Sequence diagram:**
+```mermaid
+sequenceDiagram
+    Client->>API: GET /resource
+    API->>DB: Query
+    DB-->>API: Result
+    API-->>Client: Response
+```
+
+### Pseudocode blocks
+
+When the whiteboard shows code or algorithms, transcribe them in fenced code blocks with `python` or appropriate language hint. Preserve the logic faithfully even if the handwriting has shorthand.
+
+### Comparison tables
+
+Use ASCII tables for trade-off comparisons shown on the whiteboard:
+
+```
+┌──────────────────┬───────────┬───────────┬────────────┐
+│ Approach         │ Simplicity│ Speed     │ Efficiency │
+├──────────────────┼───────────┼───────────┼────────────┤
+│ Option A         │ High      │ Low       │ Moderate   │
+│ Option B         │ Low       │ High      │ High       │
+└──────────────────┴───────────┴───────────┴────────────┘
+```
+
 ## Formatting Guidelines
 
 ### Headings
@@ -78,47 +143,14 @@ session_day: friday | saturday | unknown
 - Bold the key term before the colon: `- **Term**: Definition`
 
 ### Code Blocks
-- Use for ASCII diagrams
-- Use for code examples or technical notation
-- No syntax highlighting needed for diagrams (use plain ```)
-
-### ASCII Diagrams
-Convert visual diagrams to ASCII art:
-
-**Box characters:**
-- Corners: `┌ ┐ └ ┘`
-- Lines: `─ │`
-- Connections: `├ ┤ ┬ ┴ ┼`
-- Arrows: `→ ← ↑ ↓ ▶ ◀ ▲ ▼`
-
-**Flow diagram:**
-```
-Input → Process → Output
-```
-
-**Hierarchy:**
-```
-Parent
-├── Child 1
-│   ├── Grandchild A
-│   └── Grandchild B
-└── Child 2
-```
-
-**Comparison table:**
-```
-┌──────────┬───────────┬───────────┐
-│ Aspect   │ Option A  │ Option B  │
-├──────────┼───────────┼───────────┤
-│ Speed    │ Fast      │ Slow      │
-│ Memory   │ Low       │ High      │
-└──────────┴───────────┴───────────┘
-```
+- Use for ASCII diagrams (plain ``` with no language)
+- Use for pseudocode (```python or appropriate language)
+- Use for Mermaid diagrams (```mermaid)
 
 ### Emphasis
 - **Bold**: Key terms, important concepts
 - *Italic*: Used sparingly for emphasis or foreign terms
-- `Inline code`: Technical terms, file names, commands
+- `Inline code`: Technical terms, file names, commands, API paths
 
 ### Links
 - Internal Obsidian links: `[[Other Note]]`
@@ -126,12 +158,13 @@ Parent
 
 ## Content Extraction Tips
 
-When reading PDF slides:
+When reading slide images:
 
-1. **Identify the main topic** - Usually the first slide or repeated header
-2. **Group related slides** - Combine slides covering the same concept
-3. **Preserve hierarchy** - Slide progression often indicates importance
-4. **Simplify verbose text** - Condense wordy explanations
-5. **Enhance diagrams** - Convert to clean ASCII, add labels if needed
-6. **Add context** - Connect concepts to real-world applications
-7. **Create summary** - Synthesize key points, don't just list slide titles
+1. **Identify the main topic** — Usually the title slide (page 0)
+2. **Capture every diagram** — This is the most important content. Convert each whiteboard drawing to ASCII and/or Mermaid
+3. **Group related slides** — Combine slides covering the same concept into one section
+4. **Transcribe pseudocode faithfully** — Preserve the algorithm logic from whiteboard code
+5. **Preserve brainstorm checklists** — These appear as checkbox lists on the whiteboard
+6. **Build trade-off tables** — When the instructor compares approaches, capture as a table
+7. **Include the key takeaways** — Usually listed on the final slides
+8. **Synthesize, don't just transcribe** — Add context and connect concepts, but keep diagrams exact

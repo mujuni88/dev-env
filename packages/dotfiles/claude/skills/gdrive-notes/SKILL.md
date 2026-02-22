@@ -18,6 +18,7 @@ Extract lecture-note PDFs from Google Drive and convert them to Obsidian markdow
 - **Drive folder**: `https://drive.google.com/drive/folders/1i364Gle1X-JIyUzIlxj5d8lgP0m2H0Xh`
 - **Output base**: `/Users/jbuza/Library/Mobile Documents/iCloud~md~obsidian/Documents/Buza/20 Projects/23 System Design/Masterclass/`
 - **Tracking file**: `~/.claude/data/gdrive-notes-tracking.json` (symlinked from dotfiles)
+- **Temp directory**: `/Users/jbuza/Code/system-design/tmp/` (for intermediate image files)
 
 Output path for a note is: `{outputBase}/Week {NN}/week-{NN}-{topic-slug}.md`.
 
@@ -26,44 +27,56 @@ Output path for a note is: `{outputBase}/Week {NN}/week-{NN}-{topic-slug}.md`.
 PDF filenames indicate week and session: `WW-SS.pdf` (e.g. `03-01.pdf`, `04-02.pdf`).
 
 - **WW** = week number (01–08) → route to folder `Week 01` … `Week 08`.
-- **SS** = session (01 = first lecture, 02 = second). Use for `session_day` when known (e.g. 01 → friday, 02 → saturday if you adopt that convention).
+- **SS** = session (01 = first lecture, 02 = second). 01 → friday, 02 → saturday.
 
 Parse the prefix before the first `-` to get the week number. Create or use the folder `Week {NN}` under the output base.
+
+## MCP Server
+
+**Always use `user-chrome-devtools`** for all Drive operations. It connects to the user's authenticated Chrome browser, which has Google session cookies. Do NOT use `cursor-ide-browser` — it opens an unauthenticated browser that shows "Sign in" instead of file contents.
 
 ## Workflow
 
 ### 1. PDF discovery (sync)
 
-1. Navigate to the Drive folder with Chrome MCP: `navigate_page(url: config.driveFolder)`.
-2. Take a snapshot and parse PDF names (elements containing `.pdf`).
-3. Compare with `processedPDFs` in the tracking file to find unprocessed PDFs.
-4. Process the next unprocessed PDF (or the first if none processed yet).
+1. Navigate to the Drive folder: `navigate_page(url: config.driveFolder)`.
+2. Take a snapshot and parse PDF names (rows containing `.pdf`).
+3. If a "Try Drive" dialog appears, close it first (`click` the Close button).
+4. Compare with `processedPDFs` in the tracking file to find unprocessed PDFs.
+5. Process the next unprocessed PDF (or the first if none processed yet).
 
-### 2. PDF extraction (viewer-first, then images)
+### 2. PDF extraction (image-based)
 
-1. Open the PDF in the Drive viewer (click the PDF element; use snapshot to get `uid`).
-2. Wait for the viewer to load; take a snapshot to find page count (e.g. “X of Y”).
-3. Get the document ID from network requests: `list_network_requests(resourceTypes: ["xhr", "fetch", "image"])`, look for `viewer/img` and the `id` query parameter.
-4. **Preferred path**: extract slide text directly from viewer after scrolling the slide container to load all pages (see [references/chrome-mcp-workflow.md](references/chrome-mcp-workflow.md)).
-5. **Optional path**: download each page as an image via `evaluate_script` if needed for vision-heavy diagrams. Do not assume files always appear in `~/Downloads/` in MCP environments.
+The slides are handwritten whiteboard notes. Viewer OCR text is garbled and unreliable. **Always download page images and read them visually.**
 
-### 2.1 Server/tool preference
-
-- Prefer `user-chrome-devtools` for Drive processing because it can keep the authenticated browser context and expose richer snapshots/network requests.
-- `cursor-ide-browser` is acceptable for quick checks, but if file rows are missing in snapshots or download actions fail, switch to `user-chrome-devtools`.
+1. **Open the PDF**: Double-click the PDF row (`click(uid, dblClick: true)`).
+2. **Wait for viewer**: `wait_for(text: "of")` to detect the page counter (e.g. "Page 1 / 20").
+3. **Get page count**: From the snapshot, find the total pages number next to the `/` in the viewer toolbar.
+4. **Scroll to load all pages**: Run the scroll script (see [references/chrome-mcp-workflow.md](references/chrome-mcp-workflow.md)) so all page images load via the viewer.
+5. **Get the document ID**: Call `list_network_requests(resourceTypes: ["image"])` and find `viewer/img` URLs. Extract the `id` query parameter value. This is NOT a short alphanumeric ID — it is a long encoded string (starts with `ACFrOg...` and ends with `==`).
+6. **Download all pages**: Run the download script (see [references/chrome-mcp-workflow.md](references/chrome-mcp-workflow.md)) using the doc ID and page count. Pages download to `~/Downloads/` as `.webp` files.
+7. **Move and convert**: Move files from `~/Downloads/page-*.webp` to `tmp/{WW-SS}-pages/`, then convert WebP to PNG with `sips`:
+   ```bash
+   mkdir -p tmp/{WW-SS}-pages
+   mv ~/Downloads/page-*.webp tmp/{WW-SS}-pages/
+   cd tmp/{WW-SS}-pages
+   for f in page-*.webp; do sips -s format png "$f" --out "${f%.webp}.png"; done
+   ```
+8. **Read all PNG images**: Use the Read tool on each `.png` file. Read in batches of 5 to stay within limits. This is the primary content source — the images contain whiteboard diagrams, code, and architecture drawings that cannot be captured by text extraction.
 
 ### 3. Content processing
 
-1. Use viewer text extraction first and extract:
-   - **Topic title**: Main heading or first slide (used for H1 and filename slug).
-   - **Key concepts**, **diagrams** (ASCII), **examples**, **summary points**.
-2. If viewer text quality is poor for specific slides, supplement with image-based extraction.
-3. Build a **topic slug** from the title: lowercase, hyphens, no special chars (e.g. “Load Balancer Design” → `load-balancer-design`).
+1. Read all page images and extract:
+   - **Topic title**: From the title slide (page 0) — used for H1 and filename slug.
+   - **Architecture diagrams**: Faithfully convert every whiteboard diagram to ASCII art and/or Mermaid.
+   - **Code/pseudocode**: Transcribe any code shown on the whiteboard.
+   - **Key concepts**, **trade-off tables**, **brainstorm checklists**, **summary points**.
+2. Build a **topic slug** from the title: lowercase, hyphens, no special chars (e.g. "Load Balancer Design" → `load-balancer-design`).
 
 ### 4. Note generation and placement
 
 - **Path**: `{outputBase}/Week {NN}/week-{NN}-{topic-slug}.md`. Create `Week {NN}` if it does not exist.
-- **Conflict**: If `week-{NN}-{topic-slug}.md` already exists (e.g. two lectures same week), append a short disambiguator: `week-{NN}-{topic-slug}-02.md` or use a more specific slug (e.g. include session or a key word from the title).
+- **Conflict**: If `week-{NN}-{topic-slug}.md` already exists (e.g. two lectures same week), append a short disambiguator: `week-{NN}-{topic-slug}-02.md` or use a more specific slug.
 - **Frontmatter** (add at top of the note):
 
   ```yaml
@@ -76,7 +89,7 @@ Parse the prefix before the first `-` to get the week number. Create or use the 
   ---
   ```
 
-- **Body**: Use the structure in [references/note-format-template.md](references/note-format-template.md). Keep the H1 as the topic title so references by title are clear.
+- **Body**: Use the structure in [references/note-format-template.md](references/note-format-template.md). Keep the H1 as the topic title. **Prioritize diagrams** — every whiteboard drawing should become an ASCII diagram, a Mermaid diagram, or both.
 
 ### 5. Tracking update
 
@@ -97,9 +110,9 @@ If processing was interrupted:
 ## Error handling
 
 - **PDF not found**: Suggest running `/gdrive-notes sync` to refresh the list.
-- **Chrome not connected**: Ask the user to ensure Chrome MCP is running and the folder is open.
-- **Download failed or disabled**: Continue with viewer-first extraction flow; do not block note generation on binary download.
-- **Direct file download says permission denied**: Open file in viewer via Chrome MCP and extract from viewer requests/text instead of `uc?export=download`.
+- **Chrome not connected**: Ask the user to ensure Chrome DevTools MCP is running and Chrome is open.
+- **WebP not supported by Read tool**: Convert to PNG with `sips` first (see step 2.7).
+- **Downloads not in ~/Downloads/**: Check the actual download location; Chrome may use a different path.
 - **Vision extraction unclear**: Summarize what was detected and ask the user for the intended topic title if needed.
 
 ## Legacy migration
